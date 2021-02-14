@@ -1,0 +1,155 @@
+{
+  "project_info": {
+    "project_number": "345973023112",
+    "firebase_url": "https://adonis-atlas-app.firebaseio.com",
+    "project_id": "adonis-atlas-app",
+    "storage_bucket": "adonis-atlas-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345973023112:android:a828019dd7c3259ad05a3d",
+        "android_client_info": {
+          "package_name": "com.AdonisAthletics.adonis_athletics_atlas"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345973023112-941n7j3qkgt82fmosf1v67q90bnc526g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpBM_PKH-3xV4ew7Gf2wJSq-FDBFMqz8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345973023112-941n7j3qkgt82fmosf1v67q90bnc526g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "345973023112-rvm74hsap7f1s5ge0hl0ve83j43bt866.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gymTracker"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345973023112:android:103b32f569fb9ab6d05a3d",
+        "android_client_info": {
+          "package_name": "com.AdonisAthletics.adonis_athletics_atlas_mobile"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345973023112-941n7j3qkgt82fmosf1v67q90bnc526g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpBM_PKH-3xV4ew7Gf2wJSq-FDBFMqz8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345973023112-941n7j3qkgt82fmosf1v67q90bnc526g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "345973023112-rvm74hsap7f1s5ge0hl0ve83j43bt866.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gymTracker"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345973023112:android:6b67adbba9c44dd0d05a3d",
+        "android_client_info": {
+          "package_name": "com.AdonisAthletics.atlas_mobile_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345973023112-941n7j3qkgt82fmosf1v67q90bnc526g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpBM_PKH-3xV4ew7Gf2wJSq-FDBFMqz8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345973023112-941n7j3qkgt82fmosf1v67q90bnc526g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "345973023112-rvm74hsap7f1s5ge0hl0ve83j43bt866.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gymTracker"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:345973023112:android:82deb1fd10dab723d05a3d",
+        "android_client_info": {
+          "package_name": "com.example.gym_tracker"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "345973023112-941n7j3qkgt82fmosf1v67q90bnc526g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpBM_PKH-3xV4ew7Gf2wJSq-FDBFMqz8I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "345973023112-941n7j3qkgt82fmosf1v67q90bnc526g.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "345973023112-rvm74hsap7f1s5ge0hl0ve83j43bt866.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.gymTracker"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
