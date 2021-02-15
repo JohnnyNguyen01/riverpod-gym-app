@@ -1,8 +1,42 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/domain/authentication/auth_repository.dart';
+import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
 import 'package:gym_tracker/domain/authentication/models/user_model.dart';
 
-final currentUserStateProvider =
-    StateProvider<UserModel>((ref) => UserModel.initValue());
+final userStateController = StateNotifierProvider<UserStateAsyncNotifier>(
+    (ref) => UserStateAsyncNotifier(ref.read));
 
-class UserState {}
+class UserStateAsyncNotifier extends StateNotifier<AsyncValue<UserModel>> {
+  //ref reader to read database provider
+  final Reader read;
+  AuthRepository _authRepo;
+
+  UserStateAsyncNotifier(this.read) : super(AsyncLoading()) {
+    _init();
+  }
+
+  /*
+   * There are 3 main types of async values.
+   * AsyncLoading - define at beginning of each method to indicate loading state 
+   * AsyncData - used when returning new immutable state object
+   * AsyncError - used when an error is returned
+   */
+
+  void _init() async {
+    state = AsyncData(UserModel.initValue());
+    _authRepo = read(firebaseAuthRepoProvider);
+  }
+
+  //add methods for manipulating state
+  Future<void> getCurrentUser() async {
+    state = AsyncLoading();
+    state = AsyncValue.guard(() async {
+      return UserModel.fromAuthProvider(_authRepo);
+    }) as AsyncValue<UserModel>;
+  }
+
+  Future<void> removeCurrentUser() async {
+    state = AsyncLoading();
+    state = AsyncData(UserModel.initValue());
+  }
+}

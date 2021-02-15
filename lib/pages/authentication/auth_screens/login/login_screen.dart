@@ -41,7 +41,7 @@ class _BuildForm extends StatelessWidget {
     Widget _sizedBox = SizedBox(height: 10);
 
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 25),
+      margin: const EdgeInsets.symmetric(horizontal: 25),
       child: Form(
         key: _formKey,
         child: Column(
