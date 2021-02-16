@@ -6,7 +6,7 @@ import 'package:gym_tracker/domain/authentication/auth_repository.dart';
 import 'package:gym_tracker/domain/authentication/models/user_model.dart';
 
 final firebaseAuthRepoProvider =
-    Provider.autoDispose<FirebaseAuthRepo>((ref) => FirebaseAuthRepo());
+    Provider<FirebaseAuthRepo>((ref) => FirebaseAuthRepo());
 
 class FirebaseAuthRepo implements AuthRepository {
   final FirebaseAuth _authInstance;
@@ -85,4 +85,6 @@ class FirebaseAuthRepo implements AuthRepository {
 
   @override
   String get userName => _authInstance.currentUser.displayName;
+
+  Stream<User> authStateChanges() => _authInstance.authStateChanges();
 }

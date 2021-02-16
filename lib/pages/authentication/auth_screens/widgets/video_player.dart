@@ -20,13 +20,17 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
     _videoController = VideoPlayerController.asset(widget.videoLocation)
       ..initialize().then((_) => setState(() {}));
     _videoController.setLooping(true);
+    _videoController.setVolume(0.0);
     _videoController.play();
   }
 
   @override
   Widget build(BuildContext context) {
     return _videoController.value.initialized
-        ? VideoPlayer(_videoController)
+        ? SizedBox(
+            width: _videoController.value.size?.width ?? 0,
+            height: _videoController.value.size?.height ?? 0,
+            child: VideoPlayer(_videoController))
         : Container(child: Text("Video Error"));
   }
 

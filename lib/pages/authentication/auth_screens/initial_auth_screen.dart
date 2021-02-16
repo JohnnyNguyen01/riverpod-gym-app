@@ -26,28 +26,16 @@ class _BuildFormCard extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 15),
         child: Card(
+          color: Colors.white.withOpacity(0.55),
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              _BuildHeading(),
-              SizedBox(height: 70),
+              Image.asset('assets/images/logo.png'),
+              SizedBox(height: 20),
               _BuildButtonGroup(),
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-class _BuildHeading extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      "Welcome!",
-      style: TextStyle(
-        fontSize: 32,
-        fontWeight: FontWeight.w700,
       ),
     );
   }
@@ -68,24 +56,33 @@ class _BuildButtonGroup extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: Row(
+      child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          ElevatedButton(
-            onPressed: () {
-              //todo: remove and refactor routing
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (c) => SignUpScreen()));
-            },
-            child: Text("Sign Up"),
+          Container(
+            margin: const EdgeInsets.symmetric(horizontal: 15),
+            child: SizedBox(
+              width: double.infinity,
+              child: ElevatedButton(
+                onPressed: () {
+                  //todo: remove and refactor routing
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (c) => SignUpScreen()));
+                },
+                child: Text("Sign Up"),
+              ),
+            ),
           ),
           SizedBox(width: 15),
-          ElevatedButton(
+          TextButton(
             onPressed: () {
               Navigator.of(context)
                   .push(MaterialPageRoute(builder: (c) => LoginScreen()));
             },
-            child: Text("Login"),
+            child: Text(
+              "I already have an account",
+              style: TextStyle(color: Colors.white),
+            ),
           )
         ],
       ),
@@ -96,6 +93,13 @@ class _BuildButtonGroup extends StatelessWidget {
 class _BuildVideoPlayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return CustomVideoPlayer('assets/videos/initial_screen.mp4');
+    return Container(
+      child: SizedBox.expand(
+        child: FittedBox(
+          fit: BoxFit.cover,
+          child: CustomVideoPlayer('assets/videos/homepage_video.mp4'),
+        ),
+      ),
+    );
   }
 }
