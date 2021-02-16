@@ -22,5 +22,7 @@ abstract class AuthRepository {
 
   String get userName;
 
+  String get email;
+
   Future<UserModel> getCurrentUserDetails();
 }

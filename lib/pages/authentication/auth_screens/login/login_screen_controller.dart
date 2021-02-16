@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
+import 'package:gym_tracker/pages/home/home_screen.dart';
 import 'package:gym_tracker/providers/states/user_state_provider.dart';
 
 final loginScreenController =
@@ -34,6 +35,9 @@ class LoginScreenController {
               )
             },
           );
+      context.read(userStateController).getCurrentUser();
+      Navigator.of(context)
+          .pushReplacement(MaterialPageRoute(builder: (c) => HomeScreen()));
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(

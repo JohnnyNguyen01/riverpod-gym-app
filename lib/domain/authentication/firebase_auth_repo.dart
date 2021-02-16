@@ -74,9 +74,12 @@ class FirebaseAuthRepo implements AuthRepository {
   Future<UserModel> getCurrentUserDetails() async {
     return UserModel(
         uid: _authInstance.currentUser.uid,
-        userName: _authInstance.currentUser.displayName);
+        userName: _authInstance.currentUser.displayName,
+        email: _authInstance.currentUser.email);
   }
 
+  @override
+  String get email => _authInstance.currentUser.email;
   @override
   String get uid => _authInstance.currentUser.uid;
 
