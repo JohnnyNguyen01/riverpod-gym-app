@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
 import 'package:gym_tracker/pages/home/home_screen.dart';
 import 'package:gym_tracker/providers/states/user_state_provider.dart';
+import 'package:gym_tracker/routing/app_router.dart';
 
 final loginScreenController =
     Provider.autoDispose((ref) => LoginScreenController(ref.read));
@@ -35,9 +36,10 @@ class LoginScreenController {
               )
             },
           );
-      context.read(userStateController).getCurrentUser();
-      Navigator.of(context)
-          .pushReplacement(MaterialPageRoute(builder: (c) => HomeScreen()));
+      //if successful -> map user state
+      await read(userStateController).getCurrentUser();
+      // navigate to the homeScreen
+      Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
