@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/pages/authentication/auth_screens/login/login_screen.dart';
-import 'package:gym_tracker/pages/authentication/auth_screens/signup/signup_screen.dart';
 import 'package:gym_tracker/pages/authentication/auth_screens/widgets/video_player.dart';
+import 'package:gym_tracker/routing/app_router.dart';
 
 class InitialAuthScreen extends StatelessWidget {
   @override
@@ -10,7 +8,8 @@ class InitialAuthScreen extends StatelessWidget {
     return Scaffold(
       body: Stack(
         children: [
-          _BuildVideoPlayer(),
+          //todo: Uncomment below when deploying app. Doing this to stop emulator lag.
+          //_BuildVideoPlayer(),
           _BuildOpacityContainer(),
           _BuildFormCard()
         ],
@@ -65,9 +64,7 @@ class _BuildButtonGroup extends StatelessWidget {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: () {
-                  //todo: remove and refactor routing
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (c) => SignUpScreen()));
+                  Navigator.pushNamed(context, AppRoutes.authSignUpScreen);
                 },
                 child: Text("Sign Up"),
               ),
@@ -76,8 +73,7 @@ class _BuildButtonGroup extends StatelessWidget {
           SizedBox(width: 15),
           TextButton(
             onPressed: () {
-              Navigator.of(context)
-                  .push(MaterialPageRoute(builder: (c) => LoginScreen()));
+              Navigator.pushNamed(context, AppRoutes.authLoginScreen);
             },
             child: Text(
               "I already have an account",

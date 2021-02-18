@@ -3,8 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
 import 'package:gym_tracker/pages/authentication/auth_screens/initial_auth_screen.dart';
-
-import '../auth_screens/login/login_screen.dart';
+import 'package:gym_tracker/pages/home/home_screen.dart';
 
 class AuthWrapper extends ConsumerWidget {
   @override
@@ -17,21 +16,7 @@ class AuthWrapper extends ConsumerWidget {
         if (userSnapshot.data == null) {
           return InitialAuthScreen();
         } else
-          return Scaffold(
-            body: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Text("Logged In - HomeScreen"),
-                  TextButton(
-                    child: Text("log out"),
-                    onPressed: () async =>
-                        context.read(firebaseAuthRepoProvider).logOut(),
-                  )
-                ],
-              ),
-            ),
-          ); // HomeScreen();
+          return HomeScreen();
       },
     );
   }

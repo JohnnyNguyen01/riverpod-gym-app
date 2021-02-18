@@ -34,6 +34,8 @@ dependencies:
   flutter_riverpod: ^0.12.4
   form_field_validator: ^1.0.1
   video_player: ^1.0.1
+  date_picker_timeline: ^1.2.1
+  google_fonts: ^1.1.2
 
 dev_dependencies:
   flutter_test:
