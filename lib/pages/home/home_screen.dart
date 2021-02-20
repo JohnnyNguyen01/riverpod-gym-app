@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
+import 'package:gym_tracker/pages/widgets/bottom_nav_bar/custom_bottom_navbar.dart';
 import 'package:gym_tracker/providers/states/user_state_provider.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 
@@ -10,6 +11,7 @@ class HomeScreen extends ConsumerWidget {
     final currentUserState = watch(userStateController);
 
     return Scaffold(
+      bottomNavigationBar: CustomBottomNavBar(),
       body: Center(
         child: SafeArea(
           child: Column(
