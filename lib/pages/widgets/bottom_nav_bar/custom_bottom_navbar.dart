@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/pages/widgets/bottom_nav_bar/custom_bottom_nav_bar_controller.dart';
-import 'package:persistent_bottom_nav_bar/persistent-tab-view.dart';
 
 class CustomBottomNavBar extends ConsumerWidget {
   @override

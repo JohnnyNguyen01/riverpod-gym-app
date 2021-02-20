@@ -36,7 +36,6 @@ dependencies:
   video_player: ^1.0.1
   date_picker_timeline: ^1.2.1
   google_fonts: ^1.1.2
-  persistent_bottom_nav_bar: ^3.1.0
 
 
 dev_dependencies:
