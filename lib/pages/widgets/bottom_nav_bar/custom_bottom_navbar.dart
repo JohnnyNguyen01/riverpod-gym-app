@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/pages/widgets/bottom_nav_bar/custom_bottom_nav_bar_controller.dart';
 
 class CustomBottomNavBar extends ConsumerWidget {
+  final GlobalKey<ScaffoldState> drawerKey;
+  CustomBottomNavBar({this.drawerKey});
+
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final _selectedIndexState = watch(bottomNavBarStateNotifier.state);
@@ -10,7 +13,9 @@ class CustomBottomNavBar extends ConsumerWidget {
     return BottomNavigationBar(
       items: [
         BottomNavigationBarItem(
-            icon: Icon(Icons.account_box), label: 'Profile'),
+          icon: Icon(Icons.account_box),
+          label: 'Profile',
+        ),
         BottomNavigationBarItem(
           icon: Icon(Icons.history),
           label: 'History',
@@ -21,7 +26,9 @@ class CustomBottomNavBar extends ConsumerWidget {
         ),
       ],
       currentIndex: _selectedIndexState.data.value,
-      onTap: context.read(bottomNavBarStateNotifier).changeSelectedIndex,
+      onTap: (index) => context
+          .read(bottomNavBarStateNotifier)
+          .changeSelectedIndex(index, drawerKey),
     );
   }
 }

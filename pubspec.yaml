@@ -37,7 +37,6 @@ dependencies:
   date_picker_timeline: ^1.2.1
   google_fonts: ^1.1.2
 
-
 dev_dependencies:
   flutter_test:
     sdk: flutter
