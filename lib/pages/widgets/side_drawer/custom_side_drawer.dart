@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:gym_tracker/pages/widgets/side_drawer/custom_side_drawer_controller.dart';
 
 class SideDrawer extends ConsumerWidget {
@@ -17,11 +18,29 @@ class SideDrawer extends ConsumerWidget {
               color: Theme.of(context).primaryColor,
             ),
           ),
-          ElevatedButton(
+          _BuildLogoutButton(
             onPressed: () => _controller.handleLogoutBtn(context),
-            child: Text("Logout"),
-          ),
+          )
         ],
+      ),
+    );
+  }
+}
+
+class _BuildLogoutButton extends StatelessWidget {
+  final Function onPressed;
+
+  const _BuildLogoutButton({
+    this.onPressed,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 15),
+      child: ElevatedButton(
+        onPressed: () => onPressed(),
+        child: Text("Logout"),
       ),
     );
   }
