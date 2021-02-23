@@ -23,15 +23,7 @@ class HomeScreen extends ConsumerWidget {
             children: [
               _BuildMockDateTimePicker(),
               SizedBox(height: 15),
-              ElevatedButton(
-                onPressed: () => print(currentUserState.state),
-                child: Text("get current user state"),
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    context.read(firebaseAuthRepoProvider).logOut();
-                  },
-                  child: Text('Logout'))
+              // _BuildMockTable()
             ],
           ),
         ),
@@ -53,6 +45,30 @@ class _BuildMockDateTimePicker extends StatelessWidget {
         // New date selected
         print(date);
       },
+    );
+  }
+}
+
+class _BuildMockTable extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Table(
+      border: TableBorder.all(
+          color: Colors.black26, width: 1, style: BorderStyle.solid),
+      children: [
+        TableRow(children: [
+          TableCell(child: Text('Cell 1')),
+          TableCell(child: Text('Cell 2')),
+          TableCell(child: Text('Cell 3'))
+        ]),
+        TableRow(children: [
+          TableCell(child: Text('Value 1')),
+          TableCell(
+            child: Text('Value 2'),
+          ),
+          TableCell(child: Text('Value 3')),
+        ]),
+      ],
     );
   }
 }
