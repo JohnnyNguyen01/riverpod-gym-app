@@ -34,7 +34,7 @@ class UserStateAsyncNotifier extends StateNotifier<AsyncValue<UserModel>> {
       return "getCurrentuser() success";
     } catch (e) {
       print(e);
-      return e;
+      return e.toString();
     }
   }
 

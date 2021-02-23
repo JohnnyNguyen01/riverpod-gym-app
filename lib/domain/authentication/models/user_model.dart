@@ -5,12 +5,13 @@ class UserModel {
   String userName;
   String uid;
   String email;
+  String profileImageURL;
 
-  UserModel({
-    @required this.userName,
-    @required this.uid,
-    @required this.email,
-  });
+  UserModel(
+      {@required this.userName,
+      @required this.uid,
+      @required this.email,
+      @required this.profileImageURL});
 
   UserModel.fromDocumentSnapshot(Map<String, dynamic> json) {
     this.uid = json['uid'];
@@ -22,12 +23,15 @@ class UserModel {
   UserModel.initValue() {
     this.userName = '';
     this.uid = '';
+    this.profileImageURL = '';
+    this.email = '';
   }
 
   UserModel.fromAuthProvider(AuthRepository authProvider) {
     this.uid = authProvider.uid;
     this.userName = authProvider.userName;
     this.email = authProvider.email;
+    // this.profileImageURL = authProvider.profileImageURL ?? '';
   }
 
   @override

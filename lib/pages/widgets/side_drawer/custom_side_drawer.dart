@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:gym_tracker/pages/widgets/side_drawer/custom_side_drawer_controller.dart';
+import 'package:gym_tracker/pages/widgets/side_drawer/drawer_tile.dart';
 import 'package:gym_tracker/providers/states/user_state_provider.dart';
 
 class SideDrawer extends ConsumerWidget {
@@ -18,7 +19,20 @@ class SideDrawer extends ConsumerWidget {
             avatarOnPressed: () =>
                 _controller.handleEditCircleAvatarBtn(context),
           ),
-          _BuildEmailTile(_userState.data.value.email),
+          DrawerTile(
+              title: "User ID",
+              subtitle: _userState.data.value.uid,
+              onPressed: () {}),
+          DrawerTile(
+            title: "Email",
+            subtitle: _userState.data.value.email,
+            onPressed: () {},
+          ),
+          DrawerTile(
+            title: "Name",
+            subtitle: _userState.data.value.userName,
+            onPressed: () {},
+          ),
           _BuildLogoutButton(
             onPressed: () => _controller.handleLogoutBtn(context),
           )
@@ -50,7 +64,8 @@ class _BuildDrawerHeader extends StatelessWidget {
           ),
           Stack(clipBehavior: Clip.none, children: [
             CircleAvatar(
-              radius: 46,
+              backgroundColor: Colors.white30,
+              radius: 48,
             ),
             Positioned(
               right: -3,
@@ -71,38 +86,6 @@ class _BuildDrawerHeader extends StatelessWidget {
       ),
       decoration: BoxDecoration(
         color: Colors.redAccent.shade100,
-      ),
-    );
-  }
-}
-
-class _BuildEmailTile extends StatelessWidget {
-  final String currentuserEmail;
-
-  const _BuildEmailTile(this.currentuserEmail);
-
-  @override
-  Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (buildContext, constraint) => Column(
-        children: [
-          ListTile(
-            title: Text(
-              "Email",
-              style: TextStyle(fontWeight: FontWeight.w600),
-            ),
-            subtitle: Text(currentuserEmail ?? "ERROR"),
-            trailing: IconButton(
-              icon: Icon(Icons.arrow_right),
-              onPressed: () {},
-            ),
-          ),
-          Container(
-            width: constraint.maxWidth * 0.9,
-            height: 1,
-            color: Colors.grey.shade300,
-          )
-        ],
       ),
     );
   }

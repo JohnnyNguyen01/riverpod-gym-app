@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/pages/widgets/side_drawer/photo_dialog_box/photo_dialog_box_controller.dart';
 
-class PhotoDialogBox extends StatelessWidget {
+class PhotoDialogBox extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final _controller = watch(photoDialogBoxControllerProvider);
+
     return Stack(clipBehavior: Clip.none, children: [
       AlertDialog(
         title: Text("Upload a photo"),
@@ -20,7 +24,9 @@ class PhotoDialogBox extends StatelessWidget {
                 _BuildGalleryButton(),
               ],
             ),
-            _BuildCancelButton()
+            _BuildCancelButton(
+              onPressed: () => _controller.handleCancelBtn(context),
+            )
           ],
         ),
       ),
@@ -64,13 +70,16 @@ class _BuildGalleryButton extends StatelessWidget {
 }
 
 class _BuildCancelButton extends StatelessWidget {
+  final Function onPressed;
+
+  const _BuildCancelButton({@required this.onPressed});
   @override
   Widget build(BuildContext context) {
     return Align(
       alignment: Alignment.bottomRight,
       child: TextButton(
         child: Text("Cancel"),
-        onPressed: () {},
+        onPressed: onPressed,
       ),
     );
   }

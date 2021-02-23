@@ -75,7 +75,9 @@ class FirebaseAuthRepo implements AuthRepository {
     return UserModel(
         uid: _authInstance.currentUser.uid,
         userName: _authInstance.currentUser.displayName,
-        email: _authInstance.currentUser.email);
+        email: _authInstance.currentUser.email,
+        //todo: Implement Profile Image location
+        profileImageURL: '');
   }
 
   @override
