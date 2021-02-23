@@ -13,7 +13,7 @@ class AppRoutes {
 
 class AppRouter {
   static Route<dynamic> onGenerateRoute(RouteSettings settings) {
-    final args = settings.arguments;
+    // final args = settings.arguments;
     switch (settings.name) {
       case AppRoutes.initAuthScreen:
         return MaterialPageRoute(

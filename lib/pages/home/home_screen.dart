@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
 import 'package:gym_tracker/pages/widgets/bottom_nav_bar/custom_bottom_navbar.dart';
 import 'package:gym_tracker/pages/widgets/side_drawer/custom_side_drawer.dart';
 import 'package:gym_tracker/providers/states/user_state_provider.dart';

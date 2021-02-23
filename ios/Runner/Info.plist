@@ -41,6 +41,12 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string> used to obtain photos for your avatar </string>
+	<key>NSCameraUsageDescription</key>
+	<string>Used to access camera for video recordings and photos.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Used to pick sound from videos</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
