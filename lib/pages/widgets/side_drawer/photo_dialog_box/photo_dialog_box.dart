@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/domain/camera_services/image_picker.dart';
 import 'package:gym_tracker/pages/widgets/side_drawer/photo_dialog_box/photo_dialog_box_controller.dart';
 
 class PhotoDialogBox extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final _controller = watch(photoDialogBoxControllerProvider);
+    final _imgPickerProvider = watch(imagePickerServiceProvider);
 
     return Stack(clipBehavior: Clip.none, children: [
       AlertDialog(
@@ -19,7 +21,10 @@ class PhotoDialogBox extends ConsumerWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                _BuildCameraButton(),
+                _BuildCameraButton(
+                  onPressed: () =>
+                      _imgPickerProvider.getNewAvatarImageFromCamera(),
+                ),
                 SizedBox(width: 10),
                 _BuildGalleryButton(),
               ],
@@ -50,11 +55,15 @@ class _BuildCircleAvatar extends StatelessWidget {
 }
 
 class _BuildCameraButton extends StatelessWidget {
+  final Function onPressed;
+
+  _BuildCameraButton({@required this.onPressed});
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       child: Text('Camera'),
-      onPressed: () {},
+      onPressed: () => onPressed(),
     );
   }
 }

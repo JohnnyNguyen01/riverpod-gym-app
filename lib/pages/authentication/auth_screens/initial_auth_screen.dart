@@ -9,7 +9,7 @@ class InitialAuthScreen extends StatelessWidget {
       body: Stack(
         children: [
           //todo: Uncomment below when deploying app. Doing this to stop emulator lag.
-          //_BuildVideoPlayer(),
+          // _BuildVideoPlayer(),
           _BuildOpacityContainer(),
           _BuildFormCard()
         ],
@@ -29,6 +29,7 @@ class _BuildFormCard extends StatelessWidget {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
+              SizedBox(height: 10),
               Image.asset('assets/images/logo.png'),
               SizedBox(height: 20),
               _BuildButtonGroup(),
@@ -86,6 +87,7 @@ class _BuildButtonGroup extends StatelessWidget {
   }
 }
 
+// ignore: unused_element
 class _BuildVideoPlayer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
