@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import 'package:gym_tracker/pages/authentication/auth_screens/signup/signup_screen_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/providers/states/signup_screen/circle_avatar_state.dart';
+
+import 'signup_screen_controller.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override
@@ -32,14 +35,16 @@ class _BuildHeading extends StatelessWidget {
   }
 }
 
-class _BuildSignupForm extends StatelessWidget {
+class _BuildSignupForm extends ConsumerWidget {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _firstPasswordController = TextEditingController();
   final _secondPasswordController = TextEditingController();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final _circleAvaterState = watch(circleAvatarStateProvider.state);
+
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 25),
       child: Form(
@@ -47,6 +52,29 @@ class _BuildSignupForm extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
+            Stack(children: [
+              CircleAvatar(
+                radius: 60,
+                backgroundImage: _circleAvaterState.data.value,
+              ),
+              Positioned(
+                right: -3,
+                bottom: -5,
+                child: Container(
+                  child: IconButton(
+                    icon: Icon(Icons.edit),
+                    onPressed: () => context
+                        .read(signUpScreenController)
+                        .handleEdtAvatarBtn(),
+                  ),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                  ),
+                ),
+              ),
+            ]),
+            SizedBox(height: 10),
             TextFormField(
               controller: _emailController,
               decoration: InputDecoration(

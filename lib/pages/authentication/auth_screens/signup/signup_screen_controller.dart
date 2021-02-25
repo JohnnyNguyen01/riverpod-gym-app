@@ -2,6 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
 
+import '../../../../domain/camera_services/image_picker.dart';
+import '../../../../providers/states/signup_screen/circle_avatar_state.dart';
+
 final signUpScreenController =
     Provider.autoDispose((ref) => SignUpScreenController(ref.read));
 
@@ -33,5 +36,9 @@ class SignUpScreenController {
         duration: Duration(seconds: 3),
       ),
     );
+  }
+
+  void handleEdtAvatarBtn() {
+    read(circleAvatarStateProvider).getImageFromCamera();
   }
 }
