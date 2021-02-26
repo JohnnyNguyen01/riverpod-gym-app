@@ -33,12 +33,14 @@ class FirestoreService {
     }
   }
 
-  Future<void> setUserName(String uid, String newName) async {
+  Future<String> setUserName(String uid, String newName) async {
     CollectionReference users = _firestore.collection('users');
     try {
       await users.doc(uid).update({'username': newName});
-    } catch (e) {
-      log(e);
+      return "Success";
+    } on FirebaseException catch (e) {
+      log(e.message);
+      return e.message;
     }
   }
 }

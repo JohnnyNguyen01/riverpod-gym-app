@@ -15,12 +15,17 @@ class NameChangeDialogController {
   NameChangeDialogController(this.read);
 
   void handleSubmitBtn(
-      {TextEditingController nameController,
+      {BuildContext context,
+      TextEditingController nameController,
       GlobalKey<FormState> formKey}) async {
-    //change internal state name
-
-    //change name in database
-    final String uid = read(userStateController).state.data.value.uid;
-    read(databaseProvider).setUserName(uid, nameController.text);
+    if (formKey.currentState.validate()) {
+      //change internal state name
+      read(userStateController).setUserName(nameController.text);
+      //change name in database
+      final String uid = read(userStateController).state.data.value.uid;
+      read(databaseProvider).setUserName(uid, nameController.text);
+      //pop context after
+      Navigator.of(context).pop();
+    }
   }
 }

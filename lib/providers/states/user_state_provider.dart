@@ -2,6 +2,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/auth_repository.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
 import 'package:gym_tracker/domain/authentication/models/user_model.dart';
+import 'package:gym_tracker/domain/storage/firebase_cloud_storage_service.dart';
 
 final userStateController = StateNotifierProvider<UserStateAsyncNotifier>(
     (ref) => UserStateAsyncNotifier(ref.read));
@@ -36,6 +37,18 @@ class UserStateAsyncNotifier extends StateNotifier<AsyncValue<UserModel>> {
       print(e);
       return e.toString();
     }
+  }
+
+  Future<void> setUserName(String newName) async {
+    String currentUID = state.data.value.uid;
+    String profileURL =
+        await read(storageCloudService).getUserProfilePhotoUrl(currentUID);
+    UserModel newState = UserModel(
+        email: state.data.value.email,
+        uid: currentUID,
+        profileImageURL: profileURL,
+        userName: newName);
+    state = AsyncData(newState);
   }
 
   Future<void> removeCurrentUser() async {

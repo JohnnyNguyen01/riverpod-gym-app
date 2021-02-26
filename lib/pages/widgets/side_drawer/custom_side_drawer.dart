@@ -6,7 +6,6 @@ import 'package:gym_tracker/pages/widgets/side_drawer/drawer_tile.dart';
 import 'package:gym_tracker/providers/states/user_state_provider.dart';
 
 import '../../../providers/states/signup_screen/circle_avatar_state.dart';
-import '../../../providers/states/signup_screen/circle_avatar_state.dart';
 
 class SideDrawer extends ConsumerWidget {
   @override
