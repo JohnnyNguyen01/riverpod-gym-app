@@ -3,6 +3,9 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/camera_services/image_picker.dart';
 import 'package:gym_tracker/pages/widgets/side_drawer/photo_dialog_box/photo_dialog_box_controller.dart';
 
+import '../../../../providers/states/signup_screen/circle_avatar_state.dart';
+import '../../../../providers/states/signup_screen/circle_avatar_state.dart';
+
 class PhotoDialogBox extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -40,15 +43,18 @@ class PhotoDialogBox extends ConsumerWidget {
   }
 }
 
-class _BuildCircleAvatar extends StatelessWidget {
+class _BuildCircleAvatar extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final _circleAvatarState = watch(circleAvatarStateProvider.state);
+
     final _mediaQuerySize = MediaQuery.of(context).size;
     return Positioned(
       left: _mediaQuerySize.width / 2.6,
       top: _mediaQuerySize.height / 4.35,
       child: CircleAvatar(
         radius: 50,
+        backgroundImage: _circleAvatarState.data.value.entries.first.value,
       ),
     );
   }

@@ -5,6 +5,9 @@ import 'package:gym_tracker/pages/widgets/side_drawer/custom_side_drawer_control
 import 'package:gym_tracker/pages/widgets/side_drawer/drawer_tile.dart';
 import 'package:gym_tracker/providers/states/user_state_provider.dart';
 
+import '../../../providers/states/signup_screen/circle_avatar_state.dart';
+import '../../../providers/states/signup_screen/circle_avatar_state.dart';
+
 class SideDrawer extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -42,13 +45,15 @@ class SideDrawer extends ConsumerWidget {
   }
 }
 
-class _BuildDrawerHeader extends StatelessWidget {
+class _BuildDrawerHeader extends ConsumerWidget {
   final Function avatarOnPressed;
 
   const _BuildDrawerHeader({this.avatarOnPressed});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final circleAvatarState = watch(circleAvatarStateProvider.state);
+
     return DrawerHeader(
       child: Column(
         children: [
@@ -65,6 +70,7 @@ class _BuildDrawerHeader extends StatelessWidget {
           Stack(clipBehavior: Clip.none, children: [
             CircleAvatar(
               backgroundColor: Colors.white30,
+              backgroundImage: circleAvatarState.data.value.entries.first.value,
               radius: 48,
             ),
             Positioned(
