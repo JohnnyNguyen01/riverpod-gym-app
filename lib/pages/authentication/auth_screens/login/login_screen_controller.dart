@@ -4,6 +4,9 @@ import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
 import 'package:gym_tracker/providers/states/user_state_provider.dart';
 import 'package:gym_tracker/routing/app_router.dart';
 
+import '../../../../providers/states/signup_screen/circle_avatar_state.dart';
+import '../../../../providers/states/user_state_provider.dart';
+
 final loginScreenController =
     Provider.autoDispose((ref) => LoginScreenController(ref.read));
 
@@ -37,6 +40,9 @@ class LoginScreenController {
           );
       //if successful -> map user state
       await read(userStateController).setCurrentUserFromAuthRepo();
+      //set circle avatar state to user avatar
+      await read(circleAvatarStateProvider).getImageFromWebStorage(
+          read(userStateController.state).data.value.uid);
       // navigate to the homeScreen
       Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
     } else {

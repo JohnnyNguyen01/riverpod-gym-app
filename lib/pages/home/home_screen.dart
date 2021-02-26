@@ -7,6 +7,7 @@ import 'package:gym_tracker/providers/states/user_state_provider.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
 
 import '../../providers/states/user_state_provider.dart';
+import 'dart:developer';
 
 class HomeScreen extends ConsumerWidget {
   @override
@@ -27,7 +28,7 @@ class HomeScreen extends ConsumerWidget {
               SizedBox(height: 15),
               ElevatedButton(
                   onPressed: () async {
-                    print(await context
+                    log(await context
                         .read(storageCloudService)
                         .getUserProfilePhotoUrl(
                             currentUserState.state.data.value.uid));
