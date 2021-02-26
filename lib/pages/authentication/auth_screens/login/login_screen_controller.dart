@@ -36,7 +36,7 @@ class LoginScreenController {
             },
           );
       //if successful -> map user state
-      await read(userStateController).getCurrentUser();
+      await read(userStateController).setCurrentUserFromAuthRepo();
       // navigate to the homeScreen
       Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
     } else {

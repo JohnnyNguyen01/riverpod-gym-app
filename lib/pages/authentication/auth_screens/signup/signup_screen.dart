@@ -55,7 +55,8 @@ class _BuildSignupForm extends ConsumerWidget {
             Stack(children: [
               CircleAvatar(
                 radius: 60,
-                backgroundImage: _circleAvaterState.data.value,
+                backgroundImage:
+                    _circleAvaterState.data.value.entries.first.value,
               ),
               Positioned(
                 right: -3,

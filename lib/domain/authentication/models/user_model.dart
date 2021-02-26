@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/auth_repository.dart';
 
 class UserModel {
@@ -27,11 +28,11 @@ class UserModel {
     this.email = '';
   }
 
-  UserModel.fromAuthProvider(AuthRepository authProvider) {
+  UserModel.fromAuthAndStorageProviders(AuthRepository authProvider) {
     this.uid = authProvider.uid;
     this.userName = authProvider.userName;
     this.email = authProvider.email;
-    // this.profileImageURL = authProvider.profileImageURL ?? '';
+    this.profileImageURL = '';
   }
 
   @override

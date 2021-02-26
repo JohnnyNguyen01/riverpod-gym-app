@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/domain/storage/firebase_cloud_storage_service.dart';
 import 'package:gym_tracker/pages/widgets/bottom_nav_bar/custom_bottom_navbar.dart';
 import 'package:gym_tracker/pages/widgets/side_drawer/custom_side_drawer.dart';
 import 'package:gym_tracker/providers/states/user_state_provider.dart';
 import 'package:date_picker_timeline/date_picker_timeline.dart';
+
+import '../../providers/states/user_state_provider.dart';
 
 class HomeScreen extends ConsumerWidget {
   @override
@@ -22,6 +25,14 @@ class HomeScreen extends ConsumerWidget {
             children: [
               _BuildMockDateTimePicker(),
               SizedBox(height: 15),
+              ElevatedButton(
+                  onPressed: () async {
+                    print(await context
+                        .read(storageCloudService)
+                        .getUserProfilePhotoUrl(
+                            currentUserState.state.data.value.uid));
+                  },
+                  child: Text('print user state'))
               // _BuildMockTable()
             ],
           ),

@@ -28,9 +28,9 @@ class UserStateAsyncNotifier extends StateNotifier<AsyncValue<UserModel>> {
   }
 
   //add methods for manipulating state
-  Future<String> getCurrentUser() async {
+  Future<String> setCurrentUserFromAuthRepo() async {
     try {
-      state = AsyncValue.data(UserModel.fromAuthProvider(_authRepo));
+      state = AsyncValue.data(UserModel.fromAuthAndStorageProviders(_authRepo));
       return "getCurrentuser() success";
     } catch (e) {
       print(e);
