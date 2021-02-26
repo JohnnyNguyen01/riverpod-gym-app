@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
 import 'package:gym_tracker/domain/storage/firebase_cloud_storage_service.dart';
 import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
+import 'package:gym_tracker/providers/states/auth_state_change_provider.dart';
 
 import '../../../../domain/authentication/models/user_model.dart';
 import '../../../../providers/states/signup_screen/circle_avatar_state.dart';
@@ -21,7 +23,8 @@ class SignUpScreenController {
   SignUpScreenController(this.read);
 
   void validateAndSubmitForm(
-      {TextEditingController emailController,
+      {TextEditingController nameController,
+      TextEditingController emailController,
       TextEditingController firstPassController,
       TextEditingController secondPassController,
       BuildContext context,
@@ -41,20 +44,20 @@ class SignUpScreenController {
           .then((_) async => await userState.setCurrentUserFromAuthRepo())
           // upload profile photo to cloud
           .then((_) async => await read(storageCloudService)
-              .addNewUserProfilephoto(
-                  File(circleAvatarPath), userState.state.data.value.uid))
-
+              .addNewUserProfilephoto(File(circleAvatarPath),
+                  context.read(authStateChangesProvider).data.value.uid))
           //4. upload user details to database
           // todo: implement proper username
           .then((value) async => await context
               .read(databaseProvider)
               .addNewUser(UserModel(
-                  userName: 'example',
+                  userName: nameController.text,
                   email: userState.state.data.value.email,
                   uid: userState.state.data.value.uid,
                   profileImageURL: await context
                       .read(storageCloudService)
                       .getUserProfilePhotoUrl(userState.state.data.value.uid))))
+          .then((_) async => await userState.setUserName(nameController.text))
           //3. catch any errors
           .catchError((e) => _showErrorSnackbar(context, e))
           //5. Navigate to homeScreen

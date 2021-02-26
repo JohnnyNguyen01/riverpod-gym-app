@@ -40,6 +40,7 @@ class _BuildSignupForm extends ConsumerWidget {
   final _emailController = TextEditingController();
   final _firstPasswordController = TextEditingController();
   final _secondPasswordController = TextEditingController();
+  final _nameController = TextEditingController();
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
@@ -77,6 +78,14 @@ class _BuildSignupForm extends ConsumerWidget {
             ]),
             SizedBox(height: 10),
             TextFormField(
+              controller: _nameController,
+              decoration: InputDecoration(
+                labelText: 'Name',
+                hintText: 'Enter your name',
+              ),
+              validator: RequiredValidator(errorText: 'Name cannot be empty'),
+            ),
+            TextFormField(
               controller: _emailController,
               decoration: InputDecoration(
                   labelText: 'New Email',
@@ -109,6 +118,7 @@ class _BuildSignupForm extends ConsumerWidget {
               onPressed: () => context
                   .read(signUpScreenController)
                   .validateAndSubmitForm(
+                      nameController: _nameController,
                       emailController: _emailController,
                       firstPassController: _firstPasswordController,
                       secondPassController: _secondPasswordController,
