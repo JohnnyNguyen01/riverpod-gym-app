@@ -34,7 +34,7 @@ class SideDrawer extends ConsumerWidget {
           DrawerTile(
             title: "Name",
             subtitle: _userState.data.value.userName,
-            onPressed: () {},
+            onPressed: () => _controller.handleEditNameBtn(context),
           ),
           _BuildLogoutButton(
             onPressed: () => _controller.handleLogoutBtn(context),

@@ -46,15 +46,15 @@ class SignUpScreenController {
 
           //4. upload user details to database
           // todo: implement proper username
-          // .then((value) async => await context
-          //     .read(databaseProvider)
-          //     .addNewUser(UserModel(
-          //         userName: 'example',
-          //         email: userState.state.data.value.email,
-          //         uid: userState.state.data.value.uid,
-          //         profileImageURL: await context
-          //             .read(storageCloudService)
-          //             .getUserProfilePhotoUrl(userState.state.data.value.uid))))
+          .then((value) async => await context
+              .read(databaseProvider)
+              .addNewUser(UserModel(
+                  userName: 'example',
+                  email: userState.state.data.value.email,
+                  uid: userState.state.data.value.uid,
+                  profileImageURL: await context
+                      .read(storageCloudService)
+                      .getUserProfilePhotoUrl(userState.state.data.value.uid))))
           //3. catch any errors
           .catchError((e) => _showErrorSnackbar(context, e))
           //5. Navigate to homeScreen

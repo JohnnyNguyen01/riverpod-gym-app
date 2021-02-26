@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
@@ -9,21 +11,34 @@ final databaseProvider = Provider<FirestoreService>((ref) {
 
 class FirestoreService {
   final Reader read;
-  FirebaseFirestore firestore;
+  FirebaseFirestore _firestore;
 
   FirestoreService({this.read}) {
-    firestore = firestore ?? FirebaseFirestore.instance;
+    _firestore = _firestore ?? FirebaseFirestore.instance;
   }
 
+  ///Add a new user to the users collection in firestore.
+  ///Creates an new doc using their uid
   Future<void> addNewUser(UserModel user) async {
-    CollectionReference users = firestore.collection('users');
+    CollectionReference users = _firestore.collection('users');
     try {
-      await users.add({
+      await users.doc(user.uid).set({
         'email': user.email,
         'username': user.userName,
         'uid': user.uid,
         'image_url': user.profileImageURL
       });
-    } catch (e) {}
+    } catch (e) {
+      log(e);
+    }
+  }
+
+  Future<void> setUserName(String uid, String newName) async {
+    CollectionReference users = _firestore.collection('users');
+    try {
+      await users.doc(uid).update({'username': newName});
+    } catch (e) {
+      log(e);
+    }
   }
 }

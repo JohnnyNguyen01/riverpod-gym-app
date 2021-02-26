@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
+import 'package:gym_tracker/pages/widgets/side_drawer/name_change_dialog/name_change_dialog.dart';
 import 'package:gym_tracker/pages/widgets/side_drawer/photo_dialog_box/photo_dialog_box.dart';
 import 'package:gym_tracker/providers/states/user_state_provider.dart';
 import 'package:gym_tracker/routing/app_router.dart';
@@ -23,5 +24,9 @@ class CustomSideDrawerController {
 
   void handleEditCircleAvatarBtn(BuildContext context) {
     showDialog(context: context, builder: (_) => PhotoDialogBox());
+  }
+
+  void handleEditNameBtn(BuildContext context) {
+    showDialog(context: context, builder: (_) => NameChangeDialog());
   }
 }
