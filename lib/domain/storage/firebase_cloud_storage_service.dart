@@ -33,8 +33,8 @@ class FirebaseStorageService {
   ///Retrieve the link to a user's profile photo using their 'uid'
   Future<String> getUserProfilePhotoUrl(String uid) async {
     return await _storage
-        .ref('user_images')
-        .child('user_images')
+        .ref()
+        .child('profile_pictures')
         .child(uid)
         .getDownloadURL();
   }
