@@ -24,6 +24,8 @@ class CircleAvatarState
     imagePickerService = read(imagePickerServiceProvider);
   }
 
+  ///Capture an image from the camera and update all circle avatar states to new
+  ///image.
   void getImageFromCamera() async {
     state = AsyncData({_deafultImgPath: _defaultImg});
     File imagePath = await imagePickerService.getNewAvatarImageFromCamera();
@@ -36,5 +38,10 @@ class CircleAvatarState
     String photoURL =
         await read(storageCloudService).getUserProfilePhotoUrl(uid);
     state = AsyncData({photoURL: NetworkImage(photoURL)});
+  }
+
+  ///Reset the state the default empty profile image.
+  void resetStateToDefault() async {
+    state = AsyncData({_deafultImgPath: _defaultImg});
   }
 }
