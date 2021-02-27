@@ -3,6 +3,8 @@ import 'package:gym_tracker/domain/authentication/auth_repository.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
 import 'package:gym_tracker/domain/authentication/models/user_model.dart';
 import 'package:gym_tracker/domain/storage/firebase_cloud_storage_service.dart';
+import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
+import 'package:gym_tracker/providers/states/auth_state_change_provider.dart';
 
 final userStateController = StateNotifierProvider<UserStateAsyncNotifier>(
     (ref) => UserStateAsyncNotifier(ref.read));
@@ -49,6 +51,16 @@ class UserStateAsyncNotifier extends StateNotifier<AsyncValue<UserModel>> {
         profileImageURL: profileURL,
         userName: newName);
     state = AsyncData(newState);
+  }
+
+  ///Sets the state object to that of ther user from firebase, using the
+  ///auth repo singleton to obtain the uid.
+  Future<void> setUserFromDatabase(String uid) async {
+    state = AsyncLoading();
+    // String uid = read(firebaseAuthRepoProvider).uid;
+    // print(uid);
+    UserModel user = await read(databaseProvider).getUser(uid);
+    state = AsyncData(user);
   }
 
   Future<void> removeCurrentUser() async {

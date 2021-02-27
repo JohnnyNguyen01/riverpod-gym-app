@@ -43,4 +43,15 @@ class FirestoreService {
       return e.message;
     }
   }
+
+  ///Retrieve a user's details as a [UserModel] object from firestore.
+  Future<UserModel> getUser(String uid) async {
+    CollectionReference users = _firestore.collection('users');
+    final userSnapshot = await users.doc(uid).get().catchError((e) {
+      print(e);
+      return UserModel.initValue();
+    });
+    UserModel user = UserModel.fromDocumentSnapshot(userSnapshot.data());
+    return user;
+  }
 }

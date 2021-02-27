@@ -1,6 +1,9 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
+import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
 import 'package:gym_tracker/providers/states/user_state_provider.dart';
 import 'package:gym_tracker/routing/app_router.dart';
 
@@ -28,21 +31,24 @@ class LoginScreenController {
       await read(firebaseAuthRepoProvider)
           .loginWithEmailAndPassword(email: email, password: password)
           .catchError(
-            (e) => {
-              //todo: refactor this
-              ScaffoldMessenger.of(context).showSnackBar(
-                SnackBar(
-                  content: Text(e),
-                  duration: Duration(seconds: 3),
-                ),
-              )
-            },
+        (e) async {
+          //todo: refactor this
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text(e),
+              duration: Duration(seconds: 3),
+            ),
           );
+        },
+      );
       //if successful -> map user state
-      await read(userStateController).setCurrentUserFromAuthRepo();
+      await read(userStateController)
+          .setUserFromDatabase(read(firebaseAuthRepoProvider).uid);
+      log(read(userStateController).state.data.toString());
       //set circle avatar state to user avatar
-      await read(circleAvatarStateProvider).getImageFromWebStorage(
-          read(userStateController.state).data.value.uid);
+      String photoURL =
+          read(userStateController).state.data.value.profileImageURL;
+      read(circleAvatarStateProvider).getImageFromURL(photoURL);
       // navigate to the homeScreen
       Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
     } else {

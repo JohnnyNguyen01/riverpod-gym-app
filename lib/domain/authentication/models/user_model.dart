@@ -16,8 +16,9 @@ class UserModel {
 
   UserModel.fromDocumentSnapshot(Map<String, dynamic> json) {
     this.uid = json['uid'];
-    this.userName = json['displayName'];
+    this.userName = json['username'];
     this.email = json['email'];
+    this.profileImageURL = json['image_url'];
   }
 
   ///Creates a new [UserModel] object with empty strings to counter null values
@@ -37,6 +38,6 @@ class UserModel {
 
   @override
   String toString() {
-    return 'username: $userName || email: $email || uid: $uid';
+    return 'username: $userName || email: $email || uid: $uid || image_irl: $profileImageURL';
   }
 }

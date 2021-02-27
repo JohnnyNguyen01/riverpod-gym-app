@@ -40,6 +40,11 @@ class CircleAvatarState
     state = AsyncData({photoURL: NetworkImage(photoURL)});
   }
 
+  void getImageFromURL(String url) async {
+    state = AsyncData({_deafultImgPath: _defaultImg});
+    state = AsyncData({url: NetworkImage(url)});
+  }
+
   ///Reset the state the default empty profile image.
   void resetStateToDefault() async {
     state = AsyncData({_deafultImgPath: _defaultImg});
