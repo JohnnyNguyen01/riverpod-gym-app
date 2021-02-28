@@ -1,9 +1,18 @@
 import 'package:flutter/material.dart';
 
 class BuildWorkoutCard extends StatelessWidget {
-  final List<String> exercises;
+  List<String> exercises;
 
   BuildWorkoutCard({this.exercises});
+
+  Widget _buildExerciseTextList() {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        for (String exercise in exercises) Text(exercise)
+      ], //exercises.map((exercise) => Text(exercise)).toList(),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -28,13 +37,7 @@ class BuildWorkoutCard extends StatelessWidget {
               ),
               Text("Last performed: 3 days ago"),
               SizedBox(height: 3),
-              ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: exercises.length,
-                  itemBuilder: (_, itemCount) {
-                    return Text(exercises[itemCount]);
-                  })
+              _buildExerciseTextList(),
             ],
           ),
         ),
