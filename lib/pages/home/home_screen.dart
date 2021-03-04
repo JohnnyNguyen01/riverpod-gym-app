@@ -33,17 +33,6 @@ class HomeScreen extends ConsumerWidget {
               SizedBox(height: 15),
               _BuildTodaysWorkoutHeading(),
               _BuildWorkoutCard(scaffoldkey: _scaffoldKey),
-              ElevatedButton(
-                onPressed: () async {
-                  print(context
-                      .read(workoutStateprovider)
-                      .state
-                      .data
-                      .value
-                      .toString());
-                },
-                child: Text("test doc retrieval"),
-              )
             ],
           ),
         ),
@@ -91,7 +80,8 @@ class _BuildWorkoutCard extends ConsumerWidget {
 
     return WorkoutCard(
       exercises: workoutState.data.value.exerciseList,
-      title: "Back",
+      title: "Day ${workoutState.data.value.exerciseDay}",
+      description: workoutState.data.value.exerciseDescription,
       onTap: () => context
           .read(homeScreenControllerProvider)
           .showModalBottomSheet(scaffoldkey),

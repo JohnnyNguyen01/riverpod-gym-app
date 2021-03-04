@@ -50,6 +50,11 @@ class WorkoutCard extends StatelessWidget {
               ),
               Text("Last performed: 3 days ago"),
               SizedBox(height: 3),
+              Text(
+                description,
+                style: TextStyle(fontStyle: FontStyle.italic),
+              ),
+              SizedBox(height: 15),
               _buildExerciseTextList(),
             ],
           ),
