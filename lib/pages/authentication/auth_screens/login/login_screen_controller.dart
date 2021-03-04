@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
-import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
 import 'package:gym_tracker/providers/states/user_state_provider.dart';
 import 'package:gym_tracker/routing/app_router.dart';
 
@@ -49,6 +48,8 @@ class LoginScreenController {
       String photoURL =
           read(userStateController).state.data.value.profileImageURL;
       read(circleAvatarStateProvider).getImageFromURL(photoURL);
+      //Dismiss keyboard
+      FocusScope.of(context).unfocus();
       // navigate to the homeScreen
       Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
     } else {

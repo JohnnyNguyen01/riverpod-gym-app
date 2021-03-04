@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/domain/authentication/models/workout_model.dart';
 
 import '../authentication/models/user_model.dart';
 
@@ -53,5 +54,41 @@ class FirestoreService {
     });
     UserModel user = UserModel.fromDocumentSnapshot(userSnapshot.data());
     return user;
+  }
+
+  ///Returns the Workout for the specified uid and timestamp.
+  ///todo: Check if there's a more efficient way of doing this
+  Future<Workout> getUserWorkout(String uid, DateTime dateTime) async {
+    Workout workout = Workout.empty();
+    CollectionReference workoutPlan = _firestore.collection("workout_plan");
+
+    //get latest workout snapshot for specified uid
+    final workoutDocRef = await workoutPlan
+        .where("clientID", isEqualTo: uid)
+        .orderBy("createdAt", descending: false)
+        .limit(1)
+        .get();
+
+    //get workout document
+    final workoutDoc = workoutDocRef.docs[0];
+
+    //get into day's collection
+    final workoutDays = workoutDoc.reference.collection("days");
+    //snapshot containing list of all workout "days" documents
+    final snapshot = await workoutDays.get();
+    //loop through each doc and check for a matching DateTime
+    snapshot.docs.forEach((doc) {
+      var docSnapshot = doc.data();
+      List dates = docSnapshot["dates"];
+      dates.forEach((timestamp) {
+        DateTime docDate = DateTime.parse(timestamp.toDate().toString());
+        if (docDate == dateTime) {
+          print(true);
+          workout = Workout.fromWorkoutPlan(docSnapshot);
+        }
+      });
+    });
+
+    return workout;
   }
 }

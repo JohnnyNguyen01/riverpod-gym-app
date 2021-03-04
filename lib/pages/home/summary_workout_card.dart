@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 
 class BuildWorkoutCard extends StatelessWidget {
-  List<String> exercises;
+  final List<String> exercises;
+  final String title;
+  final Function onTap;
+  final Function onTapDown;
 
-  BuildWorkoutCard({this.exercises});
+  BuildWorkoutCard({this.exercises, this.onTap, this.onTapDown, this.title});
 
+  ///Builds a [Text] widget for each element in [exercises] list laid out
+  ///in a column.
   Widget _buildExerciseTextList() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -29,7 +34,7 @@ class BuildWorkoutCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                "Legs",
+                title,
                 style: TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
@@ -45,7 +50,7 @@ class BuildWorkoutCard extends StatelessWidget {
       customBorder: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(15),
       ),
-      onTap: () {},
+      onTap: onTap,
       onTapDown: (tdd) {},
     );
   }

@@ -9,7 +9,7 @@ class InitialAuthScreen extends StatelessWidget {
       body: Stack(
         children: [
           //todo: Uncomment below when deploying app. Doing this to stop emulator lag.
-          // _BuildVideoPlayer(),
+          _BuildVideoPlayer(),
           _BuildOpacityContainer(),
           _BuildFormCard()
         ],
