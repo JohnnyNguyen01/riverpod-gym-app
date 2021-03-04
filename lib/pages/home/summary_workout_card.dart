@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:gym_tracker/domain/authentication/models/exercise_model.dart';
 
 class WorkoutCard extends StatelessWidget {
-  final List<String> exercises;
+  final List exercises;
   final String title;
   final String description;
   final Function onTap;
@@ -20,7 +21,8 @@ class WorkoutCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        for (String exercise in exercises) Text(exercise)
+        for (var exercise in exercises)
+          Text(exercise["exerciseName"].toString())
       ], //exercises.map((exercise) => Text(exercise)).toList(),
     );
   }
