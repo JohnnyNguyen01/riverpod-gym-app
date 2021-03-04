@@ -1,12 +1,18 @@
 import 'package:flutter/material.dart';
 
-class BuildWorkoutCard extends StatelessWidget {
+class WorkoutCard extends StatelessWidget {
   final List<String> exercises;
   final String title;
+  final String description;
   final Function onTap;
   final Function onTapDown;
 
-  BuildWorkoutCard({this.exercises, this.onTap, this.onTapDown, this.title});
+  WorkoutCard(
+      {this.exercises,
+      this.onTap,
+      this.onTapDown,
+      this.title,
+      this.description});
 
   ///Builds a [Text] widget for each element in [exercises] list laid out
   ///in a column.
