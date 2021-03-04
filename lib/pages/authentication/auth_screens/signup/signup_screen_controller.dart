@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
 import 'package:gym_tracker/domain/storage/firebase_cloud_storage_service.dart';

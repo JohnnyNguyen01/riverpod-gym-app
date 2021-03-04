@@ -1,7 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
-import 'exercise_model.dart';
-
 class Workout {
   List exerciseList;
   String exerciseDescription;
