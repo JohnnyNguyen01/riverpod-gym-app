@@ -4,7 +4,6 @@ import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
 import 'package:gym_tracker/domain/authentication/models/user_model.dart';
 import 'package:gym_tracker/domain/storage/firebase_cloud_storage_service.dart';
 import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
-import 'package:gym_tracker/providers/states/auth_state_change_provider.dart';
 
 final userStateController = StateNotifierProvider<UserStateAsyncNotifier>(
     (ref) => UserStateAsyncNotifier(ref.read));

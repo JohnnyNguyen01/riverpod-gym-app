@@ -30,8 +30,9 @@ class HomeScreen extends ConsumerWidget {
           child: Column(
             children: [
               _BuildDateTimePicker(),
-              SizedBox(height: 15),
+              const SizedBox(height: 15),
               _BuildTodaysWorkoutHeading(),
+              const SizedBox(height: 10),
               _BuildWorkoutCard(scaffoldkey: _scaffoldKey),
             ],
           ),

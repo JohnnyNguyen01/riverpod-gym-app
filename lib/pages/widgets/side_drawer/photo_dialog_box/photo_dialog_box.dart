@@ -4,7 +4,6 @@ import 'package:gym_tracker/domain/camera_services/image_picker.dart';
 import 'package:gym_tracker/pages/widgets/side_drawer/photo_dialog_box/photo_dialog_box_controller.dart';
 
 import '../../../../providers/states/signup_screen/circle_avatar_state.dart';
-import '../../../../providers/states/signup_screen/circle_avatar_state.dart';
 
 class PhotoDialogBox extends ConsumerWidget {
   @override

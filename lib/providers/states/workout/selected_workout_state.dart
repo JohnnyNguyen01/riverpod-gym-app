@@ -1,6 +1,5 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/models/workout_model.dart';
-import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
 
 final workoutStateprovider =
     StateNotifierProvider<WorkoutState>((ref) => WorkoutState(ref.read));

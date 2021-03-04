@@ -18,7 +18,7 @@ class CustomSideDrawerController {
 
   void handleLogoutBtn(BuildContext context) async {
     await read(userStateController).removeCurrentUser();
-    await read(circleAvatarStateProvider).resetStateToDefault();
+    read(circleAvatarStateProvider).resetStateToDefault();
     await read(firebaseAuthRepoProvider).logOut().whenComplete(() =>
         Navigator.of(context).pushNamedAndRemoveUntil(
             AppRoutes.initAuthScreen, (Route<dynamic> route) => false));
