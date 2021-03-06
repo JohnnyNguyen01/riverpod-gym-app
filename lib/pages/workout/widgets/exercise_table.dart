@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gym_tracker/domain/authentication/models/exercise_model.dart';
+import 'package:gym_tracker/pages/widgets/youtube_player/youtube_player_tile.dart';
 
 class ExerciseTable extends StatelessWidget {
   final Exercise exercise;
@@ -9,11 +10,25 @@ class ExerciseTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Table(
-      defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-      defaultColumnWidth: FixedColumnWidth(80),
-      columnWidths: {3: FixedColumnWidth(15)},
-      children: _buildRows(),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          exercise.exerciseName,
+          style: Theme.of(context).textTheme.headline6,
+        ),
+        const SizedBox(height: 8),
+        YoutubePlayerTile(
+          url: exercise.exerciseURL,
+        ),
+        const SizedBox(height: 8),
+        Table(
+          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
+          defaultColumnWidth: FixedColumnWidth(80),
+          columnWidths: {3: FixedColumnWidth(15)},
+          children: _buildRows(),
+        ),
+      ],
     );
   }
 

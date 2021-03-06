@@ -15,14 +15,11 @@ class HomeScreenController {
 
   HomeScreenController(this.read);
 
-  void showModalBottomSheet(GlobalKey<ScaffoldState> scaffoldKey) {
-    scaffoldKey.currentState.showBottomSheet(
-      (context) => WorkoutBottomSheet(),
-      // Container(
-      //   height: MediaQuery.of(context).size.height / 1.25,
-      //   color: Colors.blueAccent,
-      // ),
-    );
+  void showModalBottomSheet(
+    BuildContext context,
+  ) {
+    showBottomSheet<void>(
+        context: context, builder: (context) => WorkoutBottomSheet());
   }
 
   void handleOnDateChange(DateTime date) async {

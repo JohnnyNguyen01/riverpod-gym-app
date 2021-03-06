@@ -10,30 +10,28 @@ class WorkoutBottomSheet extends ConsumerWidget {
     final workoutValues = workoutState.data.value;
 
     return Container(
-      padding: EdgeInsets.only(top: 30),
-      child: SafeArea(
-        child: Scaffold(
-          //Used to help unfocus the workoutNoteTextField widget
-          body: GestureDetector(
-            onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+      padding: EdgeInsets.only(top: 60),
+      child: Scaffold(
+        //Used to help unfocus the workoutNoteTextField widget
+        body: GestureDetector(
+          onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 8.0),
             child: SingleChildScrollView(
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    _BuildWorkoutHeading(workoutValues.exerciseDay.toString()),
-                    const SizedBox(height: 15),
-                    _BuildTimer(),
-                    const SizedBox(height: 15),
-                    _BuildTextDescription(workoutValues.exerciseDescription),
-                    const SizedBox(height: 15),
-                    _BuildWorkoutNoteTextField(),
-                    const SizedBox(height: 15),
-                    _BuildWorkoutColumn(),
-                    _TestBtn(),
-                  ],
-                ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  _BuildWorkoutHeading(workoutValues.exerciseDay.toString()),
+                  const SizedBox(height: 15),
+                  _BuildTimer(),
+                  const SizedBox(height: 15),
+                  _BuildTextDescription(workoutValues.exerciseDescription),
+                  const SizedBox(height: 15),
+                  _BuildWorkoutNoteTextField(),
+                  const SizedBox(height: 15),
+                  _BuildWorkoutColumn(),
+                  _TestBtn(),
+                ],
               ),
             ),
           ),
@@ -117,9 +115,11 @@ class _BuildWorkoutColumn extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final _workoutState = watch(workoutStateprovider).state.data.value;
-    final exercise = _workoutState.exerciseList[0];
-    return ExerciseTable(
-      exercise: exercise,
+    return Column(
+      children: [
+        for (var exercise in _workoutState.exerciseList)
+          ExerciseTable(exercise: exercise),
+      ],
     );
   }
 }
