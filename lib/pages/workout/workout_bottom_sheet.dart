@@ -9,23 +9,46 @@ class WorkoutBottomSheet extends ConsumerWidget {
     final workoutValues = workoutState.data.value;
 
     return Container(
-      height: MediaQuery.of(context).size.height / 1.15,
-      child: Scaffold(
-        body: Center(
+      height: MediaQuery.of(context).size.height / 1.20,
+      child: SafeArea(
+        child: Scaffold(
+          //Used to help unfocus the workoutNoteTextField widget
+          body: GestureDetector(
+            onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
             child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                _BuildWorkoutHeading(workoutValues.exerciseDay.toString()),
-                const SizedBox(height: 15),
-                _BuildTextDescription(workoutValues.exerciseDescription),
-              ],
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _BuildWorkoutHeading(workoutValues.exerciseDay.toString()),
+                    const SizedBox(height: 15),
+                    _BuildTimer(),
+                    const SizedBox(height: 15),
+                    _BuildTextDescription(workoutValues.exerciseDescription),
+                    const SizedBox(height: 15),
+                    _BuildWorkoutNoteTextField(),
+                    const SizedBox(height: 15),
+                    _TestBtn(),
+                  ],
+                ),
+              ),
             ),
           ),
-        )),
+        ),
       ),
+    );
+  }
+}
+
+//todo: remove
+class _TestBtn extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      child: Text("Grab workout state"),
+      onPressed: () =>
+          print(context.read(workoutStateprovider).state.data.value.toString()),
     );
   }
 }
@@ -53,5 +76,37 @@ class _BuildTextDescription extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text(description);
+  }
+}
+
+//todo: implement timer
+class _BuildTimer extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      "07:18",
+      style: TextStyle(color: Colors.grey),
+    );
+  }
+}
+
+class _BuildWorkoutNoteTextField extends StatelessWidget {
+  final _controller = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return TextField(
+      controller: _controller,
+      maxLines: 3,
+      decoration: InputDecoration(
+        hintText: "Workout note",
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(
+            width: 1,
+            style: BorderStyle.none,
+          ),
+        ),
+      ),
+    );
   }
 }

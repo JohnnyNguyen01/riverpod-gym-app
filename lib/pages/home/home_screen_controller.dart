@@ -16,19 +16,20 @@ class HomeScreenController {
   HomeScreenController(this.read);
 
   void showModalBottomSheet(GlobalKey<ScaffoldState> scaffoldKey) {
-    scaffoldKey.currentState.showBottomSheet((context) => WorkoutBottomSheet()
-        // Container(
-        //   height: MediaQuery.of(context).size.height / 1.25,
-        //   color: Colors.blueAccent,
-        // ),
-        );
+    scaffoldKey.currentState.showBottomSheet(
+      (context) => WorkoutBottomSheet(),
+      // Container(
+      //   height: MediaQuery.of(context).size.height / 1.25,
+      //   color: Colors.blueAccent,
+      // ),
+    );
   }
 
   void handleOnDateChange(DateTime date) async {
     final userState = read(userStateController.state);
     String uid = userState.data.value.uid;
     Workout workout = await read(databaseProvider).getUserWorkout(uid, date);
+    print(workout);
     read(workoutStateprovider).setCurrentWorkout(workout);
-    print(read(workoutStateprovider).state.data.value.exerciseList);
   }
 }

@@ -1,5 +1,7 @@
+import 'package:gym_tracker/domain/authentication/models/exercise_model.dart';
+
 class Workout {
-  List exerciseList;
+  List<Exercise> exerciseList;
   String exerciseDescription;
   int exerciseDay;
   List dates;
@@ -15,11 +17,16 @@ class Workout {
     dates = snapshot["dates"];
     exerciseDay = snapshot["day"];
     exerciseDescription = snapshot["description"];
-    exerciseList = snapshot["exercises"];
+    List exercises = snapshot["exercises"];
+    List<Exercise> assignToExerciseList = [];
+    exercises.forEach((obj) {
+      assignToExerciseList.add(Exercise.fromFirestore(obj));
+    });
+    exerciseList = assignToExerciseList;
   }
 
   @override
   String toString() {
-    return "Workout object: ${this.exerciseList} ${this.exerciseDescription} ${this.exerciseDay} ${this.dates}";
+    return "Workout object: ${this.exerciseList.toString()} ${this.exerciseDescription} ${this.exerciseDay} ${this.dates}";
   }
 }

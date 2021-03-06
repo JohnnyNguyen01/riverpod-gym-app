@@ -2,8 +2,6 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/domain/authentication/models/workout_model.dart';
-import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
 import 'package:gym_tracker/pages/home/home_screen_controller.dart';
 import 'package:gym_tracker/pages/home/summary_workout_card.dart';
 import 'package:gym_tracker/pages/widgets/bottom_nav_bar/custom_bottom_navbar.dart';
