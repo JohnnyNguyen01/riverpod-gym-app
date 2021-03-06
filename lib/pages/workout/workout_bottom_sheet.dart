@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/pages/workout/widgets/exercise_table.dart';
 import 'package:gym_tracker/providers/states/workout/selected_workout_state.dart';
 
 class WorkoutBottomSheet extends ConsumerWidget {
@@ -9,7 +10,7 @@ class WorkoutBottomSheet extends ConsumerWidget {
     final workoutValues = workoutState.data.value;
 
     return Container(
-      height: MediaQuery.of(context).size.height / 1.20,
+      padding: EdgeInsets.only(top: 30),
       child: SafeArea(
         child: Scaffold(
           //Used to help unfocus the workoutNoteTextField widget
@@ -29,6 +30,7 @@ class WorkoutBottomSheet extends ConsumerWidget {
                     const SizedBox(height: 15),
                     _BuildWorkoutNoteTextField(),
                     const SizedBox(height: 15),
+                    _BuildWorkoutColumn(),
                     _TestBtn(),
                   ],
                 ),
@@ -107,6 +109,17 @@ class _BuildWorkoutNoteTextField extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class _BuildWorkoutColumn extends ConsumerWidget {
+  @override
+  Widget build(BuildContext context, ScopedReader watch) {
+    final _workoutState = watch(workoutStateprovider).state.data.value;
+    final exercise = _workoutState.exerciseList[0];
+    return ExerciseTable(
+      exercise: exercise,
     );
   }
 }
