@@ -4,10 +4,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/pages/authentication/auth_wrapper/auth_wrapper.dart';
 import 'package:gym_tracker/pages/widgets/safe-area_top_padding.dart';
 import 'package:gym_tracker/routing/app_router.dart';
+import 'package:flutter/services.dart';
 import 'package:gym_tracker/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
   await Firebase.initializeApp();
   runApp(
     ProviderScope(

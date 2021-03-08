@@ -16,7 +16,7 @@ class WorkoutBottomSheet extends ConsumerWidget {
         padding: EdgeInsets.only(top: topPadding),
         child: Scaffold(
           appBar: PreferredSize(
-            preferredSize: Size.fromHeight(56),
+            preferredSize: Size.fromHeight(60),
             child: BottomSheetAppBar(),
           ),
           //Used to help unfocus the workoutNoteTextField widget
@@ -54,11 +54,36 @@ class BottomSheetAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return AppBar(
       backgroundColor: Theme.of(context).canvasColor,
+      leading: _buildLeadingRow(context),
+      leadingWidth: 80,
       actions: [
         TextButton(
           child: Text("Finish"),
           onPressed: () {},
         )
+      ],
+    );
+  }
+
+  Widget _buildLeadingRow(BuildContext context) {
+    return Row(
+      children: [
+        const SizedBox(width: 3),
+        InkWell(
+          child: Icon(
+            Icons.arrow_downward,
+            color: Colors.black,
+          ),
+          onTap: () {},
+        ),
+        const SizedBox(width: 12),
+        InkWell(
+          child: Icon(
+            Icons.timer,
+            color: Colors.black,
+          ),
+          onTap: () {},
+        ),
       ],
     );
   }
