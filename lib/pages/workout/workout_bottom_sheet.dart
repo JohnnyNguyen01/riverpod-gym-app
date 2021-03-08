@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/pages/widgets/safe-area_top_padding.dart';
-import 'package:gym_tracker/pages/workout/widgets/exercise_table.dart';
+import 'package:gym_tracker/pages/workout/widgets/exercise_table/exercise_table.dart';
 import 'package:gym_tracker/providers/states/workout/selected_workout_state.dart';
 
 class WorkoutBottomSheet extends ConsumerWidget {

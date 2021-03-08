@@ -1,15 +1,20 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/models/exercise_model.dart';
 import 'package:gym_tracker/pages/widgets/youtube_player/youtube_player_tile.dart';
+import 'package:gym_tracker/pages/workout/widgets/exercise_table/exercise_table_controller.dart';
 import 'package:gym_tracker/pages/workout/widgets/tick_box.dart';
 
-class ExerciseTable extends StatelessWidget {
+class ExerciseTable extends ConsumerWidget {
   final Exercise exercise;
   ExerciseTable({@required this.exercise});
-
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final _exerciseTableController = watch(exerciseTableControllerProvider);
+
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -65,9 +70,9 @@ class ExerciseTable extends StatelessWidget {
           children: [
             Text(i.toString()),
             Text("-"),
-            _BuildInputTextField(),
+            _BuildInputTextField(i), //kg textField
             SizedBox(width: 5),
-            _BuildInputTextField(),
+            _BuildInputTextField(i), //reps textField
             SizedBox(width: 5),
             TickBox(),
             SizedBox(width: 1),
@@ -79,6 +84,10 @@ class ExerciseTable extends StatelessWidget {
 }
 
 class _BuildInputTextField extends StatelessWidget {
+  final int keyValue;
+
+  _BuildInputTextField(this.keyValue);
+
   @override
   Widget build(BuildContext context) {
     final _controller = TextEditingController();
@@ -86,19 +95,20 @@ class _BuildInputTextField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 2),
       height: 39,
       child: TextField(
-        inputFormatters: [
-          LengthLimitingTextInputFormatter(6),
-        ],
-        controller: _controller,
-        keyboardType: TextInputType.number,
-        decoration: InputDecoration(
-          contentPadding: const EdgeInsets.only(bottom: 5, left: 10),
-          border: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(8),
-            borderSide: BorderSide(width: 1),
+          key: Key(keyValue.toString()),
+          inputFormatters: [
+            LengthLimitingTextInputFormatter(6),
+          ],
+          controller: _controller,
+          keyboardType: TextInputType.number,
+          decoration: InputDecoration(
+            contentPadding: const EdgeInsets.only(bottom: 5, left: 10),
+            border: OutlineInputBorder(
+              borderRadius: BorderRadius.circular(8),
+              borderSide: BorderSide(width: 1),
+            ),
           ),
-        ),
-      ),
+          onChanged: (value) => log(value)),
     );
   }
 }
