@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:gym_tracker/domain/authentication/models/exercise_model.dart';
 import 'package:gym_tracker/pages/widgets/youtube_player/youtube_player_tile.dart';
+import 'package:gym_tracker/pages/workout/widgets/tick_box.dart';
 
 class ExerciseTable extends StatelessWidget {
   final Exercise exercise;
-
   ExerciseTable({@required this.exercise});
 
   @override
@@ -25,7 +25,11 @@ class ExerciseTable extends StatelessWidget {
         Table(
           defaultVerticalAlignment: TableCellVerticalAlignment.middle,
           defaultColumnWidth: FixedColumnWidth(80),
-          columnWidths: {3: FixedColumnWidth(15)},
+          columnWidths: {
+            3: FixedColumnWidth(5),
+            5: FixedColumnWidth(5),
+            6: FixedColumnWidth(35)
+          },
           children: _buildRows(),
         ),
       ],
@@ -44,20 +48,30 @@ class ExerciseTable extends StatelessWidget {
           Text("SET"),
           Text("PREVIOUS"),
           Text("KG"),
+          SizedBox(width: 1), //[3]spacer
+          Text("REPS"),
+          SizedBox(width: 1), //[5]spacer
           SizedBox(width: 1),
-          Text("REPS")
+          SizedBox(width: 1), //[7]spacer
         ],
       ),
     );
     //create a table row for each set
     for (int i = 0; i < sets; i++) {
-      rows.add(TableRow(children: [
-        Text(i.toString()),
-        Text("-"),
-        _BuildInputTextField(),
-        SizedBox(width: 5),
-        _BuildInputTextField(),
-      ]));
+      rows.add(TableRow(
+          decoration: BoxDecoration(
+              // color: Color(0xFFEBFCF3),
+              ),
+          children: [
+            Text(i.toString()),
+            Text("-"),
+            _BuildInputTextField(),
+            SizedBox(width: 5),
+            _BuildInputTextField(),
+            SizedBox(width: 5),
+            TickBox(),
+            SizedBox(width: 1),
+          ]));
     }
     //return table
     return rows;

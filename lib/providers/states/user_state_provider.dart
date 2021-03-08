@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/auth_repository.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';

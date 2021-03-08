@@ -19,7 +19,9 @@ class HomeScreenController {
     BuildContext context,
   ) {
     showBottomSheet<void>(
-        context: context, builder: (context) => WorkoutBottomSheet());
+      context: context,
+      builder: (context) => WorkoutBottomSheet(),
+    );
   }
 
   void handleOnDateChange(DateTime date) async {

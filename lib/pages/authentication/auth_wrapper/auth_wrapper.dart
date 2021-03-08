@@ -5,6 +5,7 @@ import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
 import 'package:gym_tracker/domain/authentication/models/user_model.dart';
 import 'package:gym_tracker/pages/authentication/auth_screens/initial_auth_screen.dart';
 import 'package:gym_tracker/pages/home/home_screen.dart';
+import 'package:gym_tracker/providers/states/user_state_provider.dart';
 
 class AuthWrapper extends ConsumerWidget {
   @override
@@ -18,7 +19,8 @@ class AuthWrapper extends ConsumerWidget {
             userSnapshot.data == UserModel.initValue()) {
           return InitialAuthScreen();
         } else
-          return HomeScreen();
+          context.read(userStateController).setCurrentUserFromAuthRepo();
+        return HomeScreen();
       },
     );
   }
