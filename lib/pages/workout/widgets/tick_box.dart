@@ -11,8 +11,10 @@ class _TickBoxState extends State<TickBox> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      child: Container(
+      child: AnimatedContainer(
+        duration: Duration(seconds: 1),
         height: 30,
+        curve: Curves.easeOutCubic,
         decoration: BoxDecoration(
           color: !isChecked ? Colors.grey.shade200 : Color(0xFF2FCD70),
           border: Border.all(
