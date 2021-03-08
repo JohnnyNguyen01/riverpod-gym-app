@@ -35,4 +35,10 @@ class _YoutubePlayerTileState extends State<YoutubePlayerTile> {
   Widget build(BuildContext context) {
     return YoutubePlayer(controller: _controller);
   }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _controller.dispose();
+  }
 }
