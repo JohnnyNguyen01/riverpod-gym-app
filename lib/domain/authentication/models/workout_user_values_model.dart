@@ -19,4 +19,9 @@ class WorkoutUserValuesModel {
     this.workoutNote = "";
     this.filledOutExercises = [];
   }
+
+  @override
+  String toString() {
+    return "$completedAt || $workoutNote || $filledOutExercises ";
+  }
 }

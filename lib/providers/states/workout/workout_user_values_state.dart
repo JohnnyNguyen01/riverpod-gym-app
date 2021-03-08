@@ -14,7 +14,6 @@ class WorkoutUserValues
 
   void addWorkoutNote(String workoutNote) {
     final currentState = state.data.value;
-    state = AsyncValue.loading();
     final newState = WorkoutUserValuesModel(
         completedAt: currentState.completedAt,
         workoutNote: workoutNote,
@@ -25,7 +24,6 @@ class WorkoutUserValues
   void addNewFilledOutExercise(
       String exerciseName, List<Map<String, int>> setsValues) {
     final currentState = state.data.value;
-    state = AsyncValue.loading();
     final newfilledOutExercisesState = [
       ...currentState.filledOutExercises,
       FilledOutExercises(
@@ -43,7 +41,6 @@ class WorkoutUserValues
   void addKgRepsToFilleldOutExercise(String exerciseName, int kg, int reps) {
     final topLevelState = state.data.value;
     final filldOutExercisesList = state.data.value.filledOutExercises;
-    state = AsyncValue.loading();
     //get exercise we're looking to change
     FilledOutExercises exerciseToEdit =
         filldOutExercisesList.firstWhere((element) {
