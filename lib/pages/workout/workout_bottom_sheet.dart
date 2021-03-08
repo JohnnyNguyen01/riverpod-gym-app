@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/pages/widgets/safe-area_top_padding.dart';
 import 'package:gym_tracker/pages/workout/widgets/exercise_table.dart';
 import 'package:gym_tracker/providers/states/workout/selected_workout_state.dart';
 
@@ -8,35 +9,57 @@ class WorkoutBottomSheet extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final workoutState = watch(workoutStateprovider.state);
     final workoutValues = workoutState.data.value;
+    final topPadding = RootMediaQueryDataHolder.of(context).data.padding.top;
 
-    return Container(
-      padding: EdgeInsets.only(top: 60),
-      child: Scaffold(
-        //Used to help unfocus the workoutNoteTextField widget
-        body: GestureDetector(
-          onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  _BuildWorkoutHeading(workoutValues.exerciseDay.toString()),
-                  const SizedBox(height: 15),
-                  _BuildTimer(),
-                  const SizedBox(height: 15),
-                  _BuildTextDescription(workoutValues.exerciseDescription),
-                  const SizedBox(height: 15),
-                  _BuildWorkoutNoteTextField(),
-                  const SizedBox(height: 15),
-                  _BuildWorkoutColumn(),
-                  _TestBtn(),
-                ],
+    return LayoutBuilder(
+      builder: (context, constraints) => Container(
+        padding: EdgeInsets.only(top: topPadding),
+        child: Scaffold(
+          appBar: PreferredSize(
+            preferredSize: Size.fromHeight(56),
+            child: BottomSheetAppBar(),
+          ),
+          //Used to help unfocus the workoutNoteTextField widget
+          body: GestureDetector(
+            onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8.0),
+              child: SingleChildScrollView(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    _BuildWorkoutHeading(workoutValues.exerciseDay.toString()),
+                    const SizedBox(height: 15),
+                    _BuildTimer(),
+                    const SizedBox(height: 15),
+                    _BuildTextDescription(workoutValues.exerciseDescription),
+                    const SizedBox(height: 15),
+                    _BuildWorkoutNoteTextField(),
+                    const SizedBox(height: 15),
+                    _BuildWorkoutColumn(),
+                    _TestBtn(),
+                  ],
+                ),
               ),
             ),
           ),
         ),
       ),
+    );
+  }
+}
+
+class BottomSheetAppBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      backgroundColor: Theme.of(context).canvasColor,
+      actions: [
+        TextButton(
+          child: Text("Finish"),
+          onPressed: () {},
+        )
+      ],
     );
   }
 }
