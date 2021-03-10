@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
+import 'package:gym_tracker/providers/states/signup_screen/login_state.dart';
 import 'package:gym_tracker/providers/states/user_state_provider.dart';
 import 'package:gym_tracker/routing/app_router.dart';
 
@@ -26,11 +27,15 @@ class LoginScreenController {
     if (formKey.currentState.validate()) {
       String email = emailController.value.text;
       String password = passwordController.value.text;
+      //set isLoadingState to true
+      read(loginStateProvider).changeLoginState(true);
       //Auth Repository Login method
       await read(firebaseAuthRepoProvider)
           .loginWithEmailAndPassword(email: email, password: password)
           .catchError(
         (e) async {
+          //set loginState to false if error
+          read(loginStateProvider).changeLoginState(false);
           //todo: refactor this
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
@@ -48,6 +53,8 @@ class LoginScreenController {
       String photoURL =
           read(userStateController).state.data.value.profileImageURL;
       read(circleAvatarStateProvider).getImageFromURL(photoURL);
+      //set Login State to false
+      read(loginStateProvider).changeLoginState(false);
       //Dismiss keyboard
       FocusScope.of(context).unfocus();
       // navigate to the homeScreen
@@ -59,6 +66,8 @@ class LoginScreenController {
           duration: Duration(seconds: 2),
         ),
       );
+      //  set loginState to false if error
+      read(loginStateProvider).changeLoginState(false);
     }
   }
 }

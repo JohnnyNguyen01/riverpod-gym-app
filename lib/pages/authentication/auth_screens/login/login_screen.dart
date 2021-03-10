@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
 import "package:flutter_riverpod/flutter_riverpod.dart";
 import 'package:gym_tracker/pages/authentication/auth_screens/login/login_screen_controller.dart';
+import 'package:gym_tracker/providers/states/signup_screen/login_state.dart';
 
 class LoginScreen extends StatelessWidget {
   @override
@@ -31,11 +32,12 @@ class _BuildHeading extends StatelessWidget {
   }
 }
 
-class _BuildForm extends StatelessWidget {
+class _BuildForm extends ConsumerWidget {
   final _formKey = GlobalKey<FormState>();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final loginState = watch(loginStateProvider.state);
     TextEditingController _emailController = TextEditingController();
     TextEditingController _passwordController = TextEditingController();
     Widget _sizedBox = SizedBox(height: 10);
@@ -65,12 +67,14 @@ class _BuildForm extends StatelessWidget {
               ),
             ),
             _sizedBox,
-            ElevatedButton(
-                child: Text("Submit"),
-                onPressed: () => context
-                    .read(loginScreenController)
-                    .validateAndSubmit(_emailController, _passwordController,
-                        _formKey, context))
+            loginState.data.value == false
+                ? ElevatedButton(
+                    child: Text("Submit"),
+                    onPressed: () => context
+                        .read(loginScreenController)
+                        .validateAndSubmit(_emailController,
+                            _passwordController, _formKey, context))
+                : CircularProgressIndicator()
           ],
         ),
       ),
