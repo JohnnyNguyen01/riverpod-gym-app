@@ -6,10 +6,10 @@ import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
 import 'package:gym_tracker/domain/storage/firebase_cloud_storage_service.dart';
 import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
 import 'package:gym_tracker/providers/states/auth_state_change_provider.dart';
+import 'package:gym_tracker/providers/states/signup_screen/login_state.dart';
 
 import '../../../../domain/authentication/models/user_model.dart';
 import '../../../../providers/states/signup_screen/circle_avatar_state.dart';
-import '../../../../providers/states/user_state_provider.dart';
 import '../../../../providers/states/user_state_provider.dart';
 import '../../../../routing/app_router.dart';
 
@@ -35,6 +35,8 @@ class SignUpScreenController {
 
     if (formKey.currentState.validate() &&
         circleAvatarState.state.data != null) {
+      //set login state to true
+      read(loginStateProvider).changeLoginState(true);
       await read(firebaseAuthRepoProvider)
           //1. sign up with email password
           .signUpWithEmailAndPassword(
@@ -58,11 +60,17 @@ class SignUpScreenController {
                       .getUserProfilePhotoUrl(userState.state.data.value.uid))))
           .then((_) async => await userState.setUserName(nameController.text))
           //3. catch any errors
-          .catchError((e) => _showErrorSnackbar(context, e))
+          .catchError((e) {
+        _showErrorSnackbar(context, e);
+        //set loginState to false
+        read(loginStateProvider).changeLoginState(false);
+      })
           //5. Navigate to homeScreen
           .then((value) =>
               Navigator.popAndPushNamed(context, AppRoutes.homeScreen));
     } else {
+      //set loginState to false
+      read(loginStateProvider).changeLoginState(false);
       _showErrorSnackbar(context, "Invalid form ");
     }
   }

@@ -3,6 +3,7 @@ import 'package:form_field_validator/form_field_validator.dart';
 import 'package:gym_tracker/pages/authentication/auth_screens/signup/signup_screen_controller.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/providers/states/signup_screen/circle_avatar_state.dart';
+import 'package:gym_tracker/providers/states/signup_screen/login_state.dart';
 
 import 'signup_screen_controller.dart';
 
@@ -45,6 +46,7 @@ class _BuildSignupForm extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final _circleAvaterState = watch(circleAvatarStateProvider.state);
+    final _loginState = watch(loginStateProvider.state);
 
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 25),
@@ -114,18 +116,20 @@ class _BuildSignupForm extends ConsumerWidget {
                   .validateMatch(val, _firstPasswordController.text),
             ),
             SizedBox(height: 15),
-            ElevatedButton(
-              onPressed: () => context
-                  .read(signUpScreenController)
-                  .validateAndSubmitForm(
-                      nameController: _nameController,
-                      emailController: _emailController,
-                      firstPassController: _firstPasswordController,
-                      secondPassController: _secondPasswordController,
-                      formKey: _formKey,
-                      context: context),
-              child: Text("Sign Up"),
-            )
+            _loginState.data.value == true
+                ? CircularProgressIndicator()
+                : ElevatedButton(
+                    onPressed: () => context
+                        .read(signUpScreenController)
+                        .validateAndSubmitForm(
+                            nameController: _nameController,
+                            emailController: _emailController,
+                            firstPassController: _firstPasswordController,
+                            secondPassController: _secondPasswordController,
+                            formKey: _formKey,
+                            context: context),
+                    child: Text("Sign Up"),
+                  )
           ],
         ),
       ),
