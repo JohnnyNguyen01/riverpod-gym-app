@@ -16,6 +16,7 @@ class WorkoutBottomSheet extends ConsumerWidget {
       builder: (context, constraints) => Container(
         padding: EdgeInsets.only(top: topPadding),
         child: Scaffold(
+          resizeToAvoidBottomInset: false,
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(60),
             child: BottomSheetAppBar(),
