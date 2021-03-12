@@ -11,9 +11,19 @@ import 'package:gym_tracker/pages/workout/widgets/tick_box.dart';
 class ExerciseTable extends ConsumerWidget {
   final Exercise exercise;
   ExerciseTable({@required this.exercise});
+
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final _exerciseTableController = watch(exerciseTableControllerProvider);
+
+    List<Widget> _buildFormRows() {
+      List<Widget> rows = [];
+      int sets = int.parse(exercise.sets);
+      for (int i = 1; i < sets; i++) {
+        rows.add(_BuildExerciseRow(set: i.toString()));
+      }
+      return rows;
+    }
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,66 +37,68 @@ class ExerciseTable extends ConsumerWidget {
           url: exercise.exerciseURL,
         ),
         const SizedBox(height: 8),
-        Table(
-          defaultVerticalAlignment: TableCellVerticalAlignment.middle,
-          defaultColumnWidth: FixedColumnWidth(80),
-          columnWidths: {
-            3: FixedColumnWidth(5),
-            5: FixedColumnWidth(5),
-            6: FixedColumnWidth(35)
-          },
-          children: _buildRows(),
-        ),
+        _BuildRowHeader(),
+        Column(children: _buildFormRows())
       ],
     );
   }
+}
 
-  List<TableRow> _buildRows() {
-    //get all sets
-    int sets = int.parse(exercise.sets);
-    //Create table row list
-    List<TableRow> rows = [];
-    //Create Table Header
-    rows.add(
-      TableRow(
+class _BuildRowHeader extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 5),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text("SET"),
-          Text("PREVIOUS"),
-          Text("KG"),
-          SizedBox(width: 1), //[3]spacer
-          Text("REPS"),
-          SizedBox(width: 1), //[5]spacer
-          SizedBox(width: 1),
-          SizedBox(width: 1), //[7]spacer
+          Text("Set"),
+          Text("Previous"),
+          Text("Kg"),
+          const SizedBox(width: 20),
+          Text("Reps"),
+          const SizedBox(width: 20),
+          const SizedBox(width: 15),
         ],
       ),
     );
-    //create a table row for each set
-    for (int i = 0; i < sets; i++) {
-      rows.add(TableRow(
-          decoration: BoxDecoration(
-              // color: Color(0xFFEBFCF3),
-              ),
+  }
+}
+
+class _BuildExerciseRow extends StatelessWidget {
+  final String set;
+
+  _BuildExerciseRow({this.set});
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: 5),
+      child: Form(
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisSize: MainAxisSize.max,
           children: [
-            Text(i.toString()),
+            Text(set),
+            const SizedBox(width: 15),
             Text("-"),
-            _BuildInputTextField(i), //kg textField
-            SizedBox(width: 5),
-            _BuildInputTextField(i), //reps textField
-            SizedBox(width: 5),
-            TickBox(),
-            SizedBox(width: 1),
-          ]));
-    }
-    //return table
-    return rows;
+            const SizedBox(width: 15),
+            _BuildInputTextField(),
+            // const SizedBox(width: 15),
+            _BuildInputTextField(),
+            TickBox()
+          ],
+        ),
+      ),
+    );
   }
 }
 
 class _BuildInputTextField extends StatelessWidget {
-  final int keyValue;
+  // final int keyValue;
 
-  _BuildInputTextField(this.keyValue);
+  // _BuildInputTextField(this.keyValue);
 
   @override
   Widget build(BuildContext context) {
@@ -94,8 +106,9 @@ class _BuildInputTextField extends StatelessWidget {
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 2),
       height: 39,
-      child: TextField(
-          key: Key(keyValue.toString()),
+      width: 80,
+      child: TextFormField(
+          // key: Key(keyValue.toString()),
           inputFormatters: [
             LengthLimitingTextInputFormatter(6),
           ],
