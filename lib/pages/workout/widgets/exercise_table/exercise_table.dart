@@ -67,7 +67,9 @@ class _BuildRowHeader extends StatelessWidget {
 
 class _BuildExerciseRow extends StatelessWidget {
   final String set;
-
+  final _formKey = GlobalKey<FormState>();
+  final _kgTFController = TextEditingController();
+  final _repsTFController = TextEditingController();
   _BuildExerciseRow({this.set});
 
   @override
@@ -75,6 +77,7 @@ class _BuildExerciseRow extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 5),
       child: Form(
+        key: _formKey,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -84,10 +87,13 @@ class _BuildExerciseRow extends StatelessWidget {
             const SizedBox(width: 15),
             Text("-"),
             const SizedBox(width: 15),
-            _BuildInputTextField(),
-            // const SizedBox(width: 15),
-            _BuildInputTextField(),
-            TickBox()
+            _BuildInputTextField(
+              controller: _kgTFController,
+            ),
+            _BuildInputTextField(
+              controller: _repsTFController,
+            ),
+            TickBox(onTapped: () => print(_formKey.toString()))
           ],
         ),
       ),
@@ -97,31 +103,34 @@ class _BuildExerciseRow extends StatelessWidget {
 
 class _BuildInputTextField extends StatelessWidget {
   // final int keyValue;
-
-  // _BuildInputTextField(this.keyValue);
+  final TextEditingController controller;
+  _BuildInputTextField({@required this.controller});
 
   @override
   Widget build(BuildContext context) {
-    final _controller = TextEditingController();
     return Container(
       padding: const EdgeInsets.symmetric(vertical: 2),
       height: 39,
       width: 80,
       child: TextFormField(
-          // key: Key(keyValue.toString()),
-          inputFormatters: [
-            LengthLimitingTextInputFormatter(6),
-          ],
-          controller: _controller,
-          keyboardType: TextInputType.number,
-          decoration: InputDecoration(
-            contentPadding: const EdgeInsets.only(bottom: 5, left: 10),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(8),
-              borderSide: BorderSide(width: 1),
-            ),
+        // key: Key(keyValue.toString()),
+        inputFormatters: [
+          LengthLimitingTextInputFormatter(6),
+        ],
+        controller: controller,
+        keyboardType: TextInputType.number,
+        decoration: InputDecoration(
+          contentPadding: const EdgeInsets.only(bottom: 5, left: 10),
+          border: OutlineInputBorder(
+            borderRadius: BorderRadius.circular(8),
+            borderSide: BorderSide(width: 1),
           ),
-          onChanged: (value) => log(value)),
+        ),
+        // onChanged: (value) => print(
+        //   controller.toString(),
+        // ),
+        onTap: () => print(controller.toString()),
+      ),
     );
   }
 }

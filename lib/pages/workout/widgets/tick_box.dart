@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 
 class TickBox extends StatefulWidget {
+  final Function onTapped;
+
+  TickBox({@required this.onTapped});
   @override
   _TickBoxState createState() => _TickBoxState();
 }
@@ -34,6 +37,7 @@ class _TickBoxState extends State<TickBox> {
   }
 
   void handleOnTap() {
+    widget.onTapped();
     setState(() {
       isChecked = !isChecked;
     });
