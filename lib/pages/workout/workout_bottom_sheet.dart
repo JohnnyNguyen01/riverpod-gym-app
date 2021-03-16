@@ -167,12 +167,14 @@ class _BuildWorkoutNoteTextField extends StatelessWidget {
 class _BuildWorkoutColumn extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final _workoutState = watch(workoutStateprovider).state.data.value;
-    return Column(
-      children: [
-        for (var exercise in _workoutState.exerciseList)
-          ExerciseTable(exercise: exercise),
-      ],
-    );
+    final _workoutState = watch(workoutStateprovider.state).data.value;
+    return ListView.builder(
+        physics: NeverScrollableScrollPhysics(),
+        shrinkWrap: true,
+        itemCount: _workoutState.exerciseList.length,
+        itemBuilder: (context, index) {
+          var exercise = _workoutState.exerciseList[index];
+          return ExerciseTable(exercise: exercise);
+        });
   }
 }
