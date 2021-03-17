@@ -13,9 +13,7 @@ class ExerciseRow extends StatefulWidget {
 
 class _ExerciseRowState extends State<ExerciseRow> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
   final _kgTFController = TextEditingController();
-
   final _repsTFController = TextEditingController();
 
   @override

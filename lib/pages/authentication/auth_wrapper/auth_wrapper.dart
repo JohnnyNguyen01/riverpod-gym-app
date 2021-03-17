@@ -15,8 +15,7 @@ class AuthWrapper extends ConsumerWidget {
     return StreamBuilder(
       stream: _authProvider.getCurrentSignedInUserStream(),
       builder: (BuildContext context, AsyncSnapshot<User> userSnapshot) {
-        if (userSnapshot.data == null ||
-            userSnapshot.data == UserModel.initValue()) {
+        if (userSnapshot.data == null) {
           return InitialAuthScreen();
         } else
           context.read(userStateController).setCurrentUserFromAuthRepo();
