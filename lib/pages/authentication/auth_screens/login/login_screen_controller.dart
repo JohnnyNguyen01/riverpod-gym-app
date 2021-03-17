@@ -48,10 +48,10 @@ class LoginScreenController {
       //if successful -> map user state
       await read(userStateController)
           .setUserFromDatabase(read(firebaseAuthRepoProvider).uid);
-      log(read(userStateController).state.data.toString());
+      log(read(userStateController.state).data.toString());
       //set circle avatar state to user avatar
       String photoURL =
-          read(userStateController).state.data.value.profileImageURL;
+          read(userStateController.state).data.value.profileImageURL;
       read(circleAvatarStateProvider).getImageFromURL(photoURL);
       //set Login State to false
       read(loginStateProvider).changeLoginState(false);

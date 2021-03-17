@@ -4,3 +4,4 @@ class FilledOutExercises {
 
   FilledOutExercises({this.exerciseName, this.setsValues});
 }
+  

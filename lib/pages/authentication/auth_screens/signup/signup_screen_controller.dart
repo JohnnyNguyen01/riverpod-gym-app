@@ -28,13 +28,11 @@ class SignUpScreenController {
       TextEditingController secondPassController,
       BuildContext context,
       GlobalKey<FormState> formKey}) async {
-    final circleAvatarState = read(circleAvatarStateProvider);
-    final circleAvatarPath =
-        circleAvatarState.state.data.value.entries.first.key;
+    final circleAvatarState = read(circleAvatarStateProvider.state);
+    final circleAvatarPath = circleAvatarState.data.value.entries.first.key;
     final userState = read(userStateController);
 
-    if (formKey.currentState.validate() &&
-        circleAvatarState.state.data != null) {
+    if (formKey.currentState.validate() && circleAvatarState.data != null) {
       //set login state to true
       read(loginStateProvider).changeLoginState(true);
       await read(firebaseAuthRepoProvider)
@@ -53,11 +51,12 @@ class SignUpScreenController {
               .read(databaseProvider)
               .addNewUser(UserModel(
                   userName: nameController.text,
-                  email: userState.state.data.value.email,
-                  uid: userState.state.data.value.uid,
+                  email: read(userStateController.state).data.value.email,
+                  uid: read(userStateController.state).data.value.uid,
                   profileImageURL: await context
                       .read(storageCloudService)
-                      .getUserProfilePhotoUrl(userState.state.data.value.uid))))
+                      .getUserProfilePhotoUrl(
+                          read(userStateController.state).data.value.uid))))
           .then((_) async => await userState.setUserName(nameController.text))
           //3. catch any errors
           .catchError((e) {

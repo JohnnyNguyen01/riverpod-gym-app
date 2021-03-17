@@ -98,7 +98,7 @@ class _TestBtn extends StatelessWidget {
     return ElevatedButton(
       child: Text("Grab workout state"),
       onPressed: () =>
-          print(context.read(workoutStateprovider).state.data.value.toString()),
+          print(context.read(workoutStateprovider.state).data.value.toString()),
     );
   }
 }

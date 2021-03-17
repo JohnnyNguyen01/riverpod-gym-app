@@ -1,5 +1,3 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/pages/home/home_screen_controller.dart';
@@ -15,7 +13,8 @@ import '../../providers/states/user_state_provider.dart';
 class HomeScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
-    final currentUserState = watch(userStateController);
+    final currentUserController = watch(userStateController);
+    final currentUserState = watch(userStateController.state);
     final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey();
     final homeScreenController = watch(homeScreenControllerProvider);
 

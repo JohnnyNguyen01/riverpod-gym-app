@@ -22,7 +22,7 @@ class NameChangeDialogController {
       //change internal state name
       read(userStateController).setUserName(nameController.text);
       //change name in database
-      final String uid = read(userStateController).state.data.value.uid;
+      final String uid = read(userStateController.state).data.value.uid;
       read(databaseProvider).setUserName(uid, nameController.text);
       //pop context after
       Navigator.of(context).pop();

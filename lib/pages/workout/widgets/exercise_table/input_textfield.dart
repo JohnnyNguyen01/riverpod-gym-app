@@ -19,7 +19,7 @@ class InputTextField extends StatelessWidget {
         ],
         validator: (value) {
           if (value.isEmpty) {
-            return "Incorrect";
+            return "";
           } else
             return null;
         },
@@ -27,6 +27,7 @@ class InputTextField extends StatelessWidget {
         keyboardType: TextInputType.number,
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.only(bottom: 5, left: 10),
+          errorStyle: TextStyle(height: 0),
           border: OutlineInputBorder(
             borderRadius: BorderRadius.circular(8),
             borderSide: BorderSide(width: 1),
