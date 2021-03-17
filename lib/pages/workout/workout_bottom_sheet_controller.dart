@@ -13,4 +13,6 @@ class WorkoutBottomSheetController {
   void handleWorkoutNoteTF(String value) {
     read(workoutUserValuesStateprovider).addWorkoutNote(value);
   }
+
+  void handleRepKgSubmission() {}
 }
