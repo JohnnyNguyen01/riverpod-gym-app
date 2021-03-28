@@ -4,6 +4,7 @@ import 'package:gym_tracker/domain/authentication/models/exercise_model.dart';
 import 'package:gym_tracker/pages/widgets/youtube_player/youtube_player_tile.dart';
 import 'package:gym_tracker/pages/workout/widgets/exercise_table/exercise_table_controller.dart';
 import 'package:gym_tracker/pages/workout/widgets/exercise_table/exercise_table_row.dart';
+import 'package:gym_tracker/providers/states/user_state_provider.dart';
 
 class ExerciseTable extends ConsumerWidget {
   final Exercise exercise;
@@ -32,9 +33,10 @@ class ExerciseTable extends ConsumerWidget {
           style: Theme.of(context).textTheme.headline6,
         ),
         const SizedBox(height: 8),
-        YoutubePlayerTile(
-          url: exercise.exerciseURL,
-        ),
+        //todo: uncomment below after testing
+        // YoutubePlayerTile(
+        //   url: exercise.exerciseURL,
+        // ),
         const SizedBox(height: 8),
         _BuildRowHeader(),
         _buildFormListView()

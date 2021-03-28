@@ -11,6 +11,7 @@ class CustomBottomNavBar extends ConsumerWidget {
     final _selectedIndexState = watch(bottomNavBarStateNotifier.state);
 
     return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed,
       items: [
         BottomNavigationBarItem(
           icon: Icon(Icons.account_box),
@@ -24,11 +25,15 @@ class CustomBottomNavBar extends ConsumerWidget {
           label: 'Workout',
           icon: Icon(Icons.add),
         ),
+        BottomNavigationBarItem(
+          icon: Icon(Icons.message),
+          label: "Messages",
+        ),
       ],
       currentIndex: _selectedIndexState.data.value,
       onTap: (index) => context
           .read(bottomNavBarStateNotifier)
-          .changeSelectedIndex(index, drawerKey),
+          .changeSelectedIndex(index, drawerKey, context),
     );
   }
 }

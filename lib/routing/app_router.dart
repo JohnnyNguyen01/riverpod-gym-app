@@ -3,12 +3,14 @@ import 'package:gym_tracker/pages/authentication/auth_screens/initial_auth_scree
 import 'package:gym_tracker/pages/authentication/auth_screens/login/login_screen.dart';
 import 'package:gym_tracker/pages/authentication/auth_screens/signup/signup_screen.dart';
 import 'package:gym_tracker/pages/home/home_screen.dart';
+import 'package:gym_tracker/pages/messaging_contacts/messaging_contacts_screen.dart';
 
 class AppRoutes {
   static const String initAuthScreen = '/init-auth-screen';
   static const String authLoginScreen = '/auth-login-screen';
   static const String authSignUpScreen = '/auth-signup-screen';
   static const String homeScreen = '/home-screen';
+  static const String messagingContactsScreen = '/messaging-contacts-screen';
 }
 
 class AppRouter {
@@ -27,6 +29,9 @@ class AppRouter {
       case AppRoutes.homeScreen:
         return MaterialPageRoute(
             builder: (_) => HomeScreen(), settings: settings);
+      case AppRoutes.messagingContactsScreen:
+        return MaterialPageRoute(
+            builder: (_) => MessagingContactsScreen(), settings: settings);
       default:
         return null;
     }
