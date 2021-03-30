@@ -42,9 +42,7 @@ class _ExerciseRowState extends State<ExerciseRow> {
                 controller: _repsTFController,
               ),
               TickBox(
-                onTapped: () {
-                  _formKey.currentState.validate();
-                },
+                onTapped: _formKey.currentState.validate,
               )
             ],
           ),

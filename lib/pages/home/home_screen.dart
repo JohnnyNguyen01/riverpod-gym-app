@@ -75,14 +75,18 @@ class _BuildWorkoutCard extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final workoutState = watch(workoutStateprovider.state);
-
-    return WorkoutCard(
-      exercises: workoutState.data.value.exerciseList,
-      title: "Day ${workoutState.data.value.exerciseDay}",
-      description: workoutState.data.value.exerciseDescription,
-      onTap: () => context
-          .read(homeScreenControllerProvider)
-          .showModalBottomSheet(context),
-    );
+    if (workoutState.data.value.exerciseDay == 0) {
+      return Center(
+        child: Text("There are no workouts for today."),
+      );
+    } else
+      return WorkoutCard(
+        exercises: workoutState.data.value.exerciseList,
+        title: "Day ${workoutState.data.value.exerciseDay}",
+        description: workoutState.data.value.exerciseDescription,
+        onTap: () => context
+            .read(homeScreenControllerProvider)
+            .showModalBottomSheet(context),
+      );
   }
 }
