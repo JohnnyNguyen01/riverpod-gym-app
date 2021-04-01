@@ -1,7 +1,6 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/domain/authentication/models/filled_out_exercises.dart';
-import 'package:gym_tracker/domain/authentication/models/workout_user_values_model.dart';
+import 'package:gym_tracker/domain/models/models.dart';
 
 final workoutUserValuesStateprovider = StateNotifierProvider<WorkoutUserValues>(
     (ref) => WorkoutUserValues(ref.read));

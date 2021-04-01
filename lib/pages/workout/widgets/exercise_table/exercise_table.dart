@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/domain/authentication/models/exercise_model.dart';
-import 'package:gym_tracker/pages/widgets/youtube_player/youtube_player_tile.dart';
-import 'package:gym_tracker/pages/workout/widgets/exercise_table/exercise_table_controller.dart';
-import 'package:gym_tracker/pages/workout/widgets/exercise_table/exercise_table_row.dart';
-import 'package:gym_tracker/providers/states/user_state_provider.dart';
+
+import 'package:gym_tracker/domain/models/models.dart';
+import 'package:gym_tracker/states/states.dart';
+import '../../../widgets/youtube_player/youtube_player_tile.dart';
+import 'exercise_table_controller.dart';
+import 'exercise_table_row.dart';
 
 class ExerciseTable extends ConsumerWidget {
   final Exercise exercise;
