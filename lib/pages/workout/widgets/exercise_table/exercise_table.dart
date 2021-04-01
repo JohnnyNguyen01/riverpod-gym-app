@@ -22,7 +22,7 @@ class ExerciseTable extends ConsumerWidget {
           physics: NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
             return ExerciseRow(
-              set: index.toString(),
+              setNumber: index.toString(),
               exercise: exercise,
             );
           });

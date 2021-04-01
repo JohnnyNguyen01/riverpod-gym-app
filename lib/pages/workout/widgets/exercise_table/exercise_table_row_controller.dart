@@ -18,19 +18,25 @@ class ExerciseTableRowController {
   void submitKgRepsForm(
       {@required TextEditingController kgController,
       @required TextEditingController repsController,
-      @required String exerciseName}) {
+      @required String exerciseName,
+      @required int setNumber}) {
     final _workoutValuesProvider = read(workoutUserValuesStateprovider);
-    _workoutValuesProvider.addKgRepsToFilleldOutExercise(exerciseName,
-        int.parse(kgController.text), int.parse(repsController.text));
+    _workoutValuesProvider.setKgRepsToFilleldOutExercise(
+        setNumber: setNumber,
+        exerciseName: exerciseName,
+        kg: int.parse(kgController.text),
+        reps: int.parse(repsController.text));
   }
 
   bool handleOnTickBoxTapped(
       {@required GlobalKey<FormState> formKey,
       @required TextEditingController kgController,
       @required TextEditingController repsController,
+      @required int setNumber,
       @required String exerciseName}) {
     bool result = validateForm(formKey: formKey);
     submitKgRepsForm(
+        setNumber: setNumber,
         kgController: kgController,
         repsController: repsController,
         exerciseName: exerciseName);

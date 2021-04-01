@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/models/filled_out_exercises.dart';
 import 'package:gym_tracker/domain/authentication/models/workout_user_values_model.dart';
@@ -38,12 +39,16 @@ class WorkoutUserValues
     state = AsyncValue.data(newState);
   }
 
-  void addKgRepsToFilleldOutExercise(String exerciseName, int kg, int reps) {
+  void setKgRepsToFilleldOutExercise(
+      {@required String exerciseName,
+      @required int setNumber,
+      @required int kg,
+      @required int reps}) {
     final topLevelState = state.data.value;
     final filldOutExercisesList = state.data.value.filledOutExercises;
     //get exercise we're looking to change
     FilledOutExercises exerciseToEdit =
-        FilledOutExercises(exerciseName: '', setsValues: []);
+        FilledOutExercises(exerciseName: exerciseName, setsValues: []);
 
     filldOutExercisesList.forEach((element) {
       if (element.exerciseName == exerciseName) {
@@ -54,9 +59,14 @@ class WorkoutUserValues
         return false;
       }
     });
+    //remove existing set if it exists
+    exerciseToEdit.setsValues
+        .removeWhere((element) => element['set'] == setNumber);
     //add the new kg and reps object to list
-    exerciseToEdit.setsValues.add({'kg': kg, 'reps': reps});
-    //create new filledOutExerciseList
+    exerciseToEdit.setsValues.add({'set': setNumber, 'kg': kg, 'reps': reps});
+    //remove previous iteration of exerciseSets
+    filldOutExercisesList
+        .removeWhere((element) => element.exerciseName == exerciseName);
     List<FilledOutExercises> newList = [
       ...filldOutExercisesList,
       exerciseToEdit
@@ -68,5 +78,10 @@ class WorkoutUserValues
         filledOutExercises: newList);
     //assign to state
     state = AsyncValue.data(newState);
+  }
+
+  void clearFilledOutExercisesList() {
+    final filldOutExercisesList = state.data.value.filledOutExercises;
+    filldOutExercisesList.clear();
   }
 }

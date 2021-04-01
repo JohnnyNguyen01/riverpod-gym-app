@@ -6,10 +6,10 @@ import 'package:gym_tracker/pages/workout/widgets/exercise_table/input_textfield
 import 'package:gym_tracker/pages/workout/widgets/tick_box.dart';
 
 class ExerciseRow extends StatefulWidget {
-  final String set;
+  final String setNumber;
   final Exercise exercise;
 
-  ExerciseRow({@required this.set, @required this.exercise});
+  ExerciseRow({@required this.setNumber, @required this.exercise});
 
   @override
   _ExerciseRowState createState() => _ExerciseRowState();
@@ -33,7 +33,7 @@ class _ExerciseRowState extends State<ExerciseRow> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Text(widget.set),
+              Text(widget.setNumber),
               const SizedBox(width: 15),
               Text("-"),
               const SizedBox(width: 15),
@@ -46,6 +46,7 @@ class _ExerciseRowState extends State<ExerciseRow> {
               TextButton(
                 child: Text('Submit'),
                 onPressed: () => pageController.handleOnTickBoxTapped(
+                    setNumber: int.parse(widget.setNumber),
                     formKey: _formKey,
                     kgController: _kgTFController,
                     repsController: _repsTFController,
