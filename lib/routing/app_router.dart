@@ -33,7 +33,22 @@ class AppRouter {
         return MaterialPageRoute(
             builder: (_) => MessagingContactsScreen(), settings: settings);
       default:
-        return null;
+        return MaterialPageRoute(builder: (_) => _errorScreen());
     }
+  }
+
+  static Widget _errorScreen() {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(
+          'Error',
+          style: TextStyle(fontWeight: FontWeight.w600),
+        ),
+        backgroundColor: Colors.white,
+      ),
+      body: Center(
+        child: Text("Something went wrong. This is an error page."),
+      ),
+    );
   }
 }

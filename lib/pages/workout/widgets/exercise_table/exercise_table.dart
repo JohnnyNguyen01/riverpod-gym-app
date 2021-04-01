@@ -21,7 +21,10 @@ class ExerciseTable extends ConsumerWidget {
           itemCount: _sets,
           physics: NeverScrollableScrollPhysics(),
           itemBuilder: (context, index) {
-            return ExerciseRow(set: index.toString());
+            return ExerciseRow(
+              set: index.toString(),
+              exercise: exercise,
+            );
           });
     }
 

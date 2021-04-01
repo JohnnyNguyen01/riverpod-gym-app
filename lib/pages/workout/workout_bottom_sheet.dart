@@ -4,6 +4,7 @@ import 'package:gym_tracker/pages/widgets/safe-area_top_padding.dart';
 import 'package:gym_tracker/pages/workout/widgets/exercise_table/exercise_table.dart';
 import 'package:gym_tracker/pages/workout/workout_bottom_sheet_controller.dart';
 import 'package:gym_tracker/providers/states/workout/selected_workout_state.dart';
+import 'package:gym_tracker/providers/states/workout/workout_user_values_state.dart';
 
 class WorkoutBottomSheet extends ConsumerWidget {
   @override
@@ -97,8 +98,12 @@ class _TestBtn extends StatelessWidget {
   Widget build(BuildContext context) {
     return ElevatedButton(
       child: Text("Grab workout state"),
-      onPressed: () =>
-          print(context.read(workoutStateprovider.state).data.value.toString()),
+      onPressed: () => print(context
+          .read(workoutUserValuesStateprovider.state)
+          .data
+          .value
+          .filledOutExercises
+          .toString()),
     );
   }
 }

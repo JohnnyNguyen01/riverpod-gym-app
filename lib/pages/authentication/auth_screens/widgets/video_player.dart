@@ -26,7 +26,7 @@ class _CustomVideoPlayerState extends State<CustomVideoPlayer> {
 
   @override
   Widget build(BuildContext context) {
-    return _videoController.value.initialized
+    return !_videoController.value.hasError
         ? SizedBox(
             width: _videoController.value.size?.width ?? 0,
             height: _videoController.value.size?.height ?? 0,

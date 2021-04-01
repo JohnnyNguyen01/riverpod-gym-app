@@ -36,7 +36,7 @@ class InputTextField extends StatelessWidget {
         // onChanged: (value) => print(
         //   controller.toString(),
         // ),
-        onTap: () => print(controller.toString()),
+        // onTap: () => print(controller.toString()),
       ),
     );
   }

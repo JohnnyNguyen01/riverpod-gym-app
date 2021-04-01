@@ -34,6 +34,7 @@ class ExerciseTableRowController {
         kgController: kgController,
         repsController: repsController,
         exerciseName: exerciseName);
+
     return result;
   }
 }

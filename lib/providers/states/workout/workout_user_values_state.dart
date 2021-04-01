@@ -43,8 +43,16 @@ class WorkoutUserValues
     final filldOutExercisesList = state.data.value.filledOutExercises;
     //get exercise we're looking to change
     FilledOutExercises exerciseToEdit =
-        filldOutExercisesList.firstWhere((element) {
-      return element.exerciseName == exerciseName;
+        FilledOutExercises(exerciseName: '', setsValues: []);
+
+    filldOutExercisesList.forEach((element) {
+      if (element.exerciseName == exerciseName) {
+        exerciseToEdit = element;
+      } else {
+        exerciseToEdit =
+            FilledOutExercises(exerciseName: exerciseName, setsValues: []);
+        return false;
+      }
     });
     //add the new kg and reps object to list
     exerciseToEdit.setsValues.add({'kg': kg, 'reps': reps});

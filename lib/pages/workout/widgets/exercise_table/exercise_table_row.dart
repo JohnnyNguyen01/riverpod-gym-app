@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/domain/authentication/models/exercise_model.dart';
 import 'package:gym_tracker/pages/workout/widgets/exercise_table/exercise_table_row_controller.dart';
 import 'package:gym_tracker/pages/workout/widgets/exercise_table/input_textfield.dart';
 import 'package:gym_tracker/pages/workout/widgets/tick_box.dart';
 
 class ExerciseRow extends StatefulWidget {
   final String set;
+  final Exercise exercise;
 
-  ExerciseRow({this.set});
+  ExerciseRow({@required this.set, @required this.exercise});
 
   @override
   _ExerciseRowState createState() => _ExerciseRowState();
@@ -41,9 +43,21 @@ class _ExerciseRowState extends State<ExerciseRow> {
               InputTextField(
                 controller: _repsTFController,
               ),
-              TickBox(
-                onTapped: _formKey.currentState.validate,
+              TextButton(
+                child: Text('Submit'),
+                onPressed: () => pageController.handleOnTickBoxTapped(
+                    formKey: _formKey,
+                    kgController: _kgTFController,
+                    repsController: _repsTFController,
+                    exerciseName: widget.exercise.exerciseName),
               )
+              // TickBox(
+              //   onTapped: () => pageController.handleOnTickBoxTapped(
+              //       formKey: _formKey,
+              //       kgController: _kgTFController,
+              //       repsController: _repsTFController,
+              //       exerciseName: widget.exercise.exerciseName),
+              // )
             ],
           ),
         ),
