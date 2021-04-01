@@ -34,6 +34,7 @@ class ExerciseTableRowController {
       @required TextEditingController repsController,
       @required int setNumber,
       @required String exerciseName}) {
+    final _workoutValuesProvider = read(workoutUserValuesStateprovider);
     if (validateForm(formKey: formKey)) {
       submitKgRepsForm(
           setNumber: setNumber,
@@ -42,6 +43,8 @@ class ExerciseTableRowController {
           exerciseName: exerciseName);
       return true;
     } else
-      return false;
+      _workoutValuesProvider.removeSetFromExercise(
+          exerciseName: exerciseName, setNumber: setNumber);
+    return false;
   }
 }

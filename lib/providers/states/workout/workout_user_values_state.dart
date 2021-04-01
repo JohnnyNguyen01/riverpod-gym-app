@@ -39,6 +39,7 @@ class WorkoutUserValues
     state = AsyncValue.data(newState);
   }
 
+  /// Add or change the user entered sets and reps for each exercise.
   void setKgRepsToFilleldOutExercise(
       {@required String exerciseName,
       @required int setNumber,
@@ -80,6 +81,41 @@ class WorkoutUserValues
     state = AsyncValue.data(newState);
   }
 
+  void removeSetFromExercise(
+      {@required String exerciseName, @required int setNumber}) {
+    final topLevelState = state.data.value;
+    final filledOutExercisesList = state.data.value.filledOutExercises;
+    FilledOutExercises exerciseToEdit;
+
+    filledOutExercisesList.forEach((element) {
+      if (element.exerciseName == exerciseName) {
+        exerciseToEdit = element;
+      }
+    });
+
+    //find set
+    if (exerciseToEdit != null) {
+      //remove old FilledOutExercise
+      filledOutExercisesList.remove(exerciseToEdit);
+      //remove set from new one
+      exerciseToEdit.setsValues
+          .removeWhere((element) => element["set"] == setNumber);
+      //new FilledOutExercise List
+      List<FilledOutExercises> newList = [
+        ...filledOutExercisesList,
+        exerciseToEdit
+      ];
+      //change the value in an immutable fashion
+      final newState = WorkoutUserValuesModel(
+          workoutNote: topLevelState.workoutNote,
+          completedAt: topLevelState.completedAt,
+          filledOutExercises: newList);
+      //assign to state
+      state = AsyncValue.data(newState);
+    }
+  }
+
+  ///Deletes all `FilledOutExercises`
   void clearFilledOutExercisesList() {
     final filldOutExercisesList = state.data.value.filledOutExercises;
     filldOutExercisesList.clear();
