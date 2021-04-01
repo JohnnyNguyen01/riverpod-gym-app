@@ -1,7 +1,7 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/authentication/auth_repository.dart';
 import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
-import 'package:gym_tracker/domain/authentication/models/user_model.dart';
+import 'package:gym_tracker/domain/models/models.dart';
 import 'package:gym_tracker/domain/storage/firebase_cloud_storage_service.dart';
 import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
 

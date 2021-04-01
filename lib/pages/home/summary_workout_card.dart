@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker/domain/authentication/models/exercise_model.dart';
+import 'package:gym_tracker/domain/models/models.dart';
 
 class WorkoutCard extends StatelessWidget {
   final List<Exercise> exercises;
