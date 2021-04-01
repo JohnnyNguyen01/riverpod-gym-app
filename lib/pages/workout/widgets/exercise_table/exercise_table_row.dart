@@ -43,22 +43,14 @@ class _ExerciseRowState extends State<ExerciseRow> {
               InputTextField(
                 controller: _repsTFController,
               ),
-              TextButton(
-                child: Text('Submit'),
-                onPressed: () => pageController.handleOnTickBoxTapped(
+              TickBox(
+                onTapped: () => pageController.handleOnTickBoxTapped(
                     setNumber: int.parse(widget.setNumber),
                     formKey: _formKey,
                     kgController: _kgTFController,
                     repsController: _repsTFController,
                     exerciseName: widget.exercise.exerciseName),
               )
-              // TickBox(
-              //   onTapped: () => pageController.handleOnTickBoxTapped(
-              //       formKey: _formKey,
-              //       kgController: _kgTFController,
-              //       repsController: _repsTFController,
-              //       exerciseName: widget.exercise.exerciseName),
-              // )
             ],
           ),
         ),

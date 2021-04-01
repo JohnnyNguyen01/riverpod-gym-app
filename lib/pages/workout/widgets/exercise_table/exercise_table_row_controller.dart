@@ -34,13 +34,14 @@ class ExerciseTableRowController {
       @required TextEditingController repsController,
       @required int setNumber,
       @required String exerciseName}) {
-    bool result = validateForm(formKey: formKey);
-    submitKgRepsForm(
-        setNumber: setNumber,
-        kgController: kgController,
-        repsController: repsController,
-        exerciseName: exerciseName);
-
-    return result;
+    if (validateForm(formKey: formKey)) {
+      submitKgRepsForm(
+          setNumber: setNumber,
+          kgController: kgController,
+          repsController: repsController,
+          exerciseName: exerciseName);
+      return true;
+    } else
+      return false;
   }
 }

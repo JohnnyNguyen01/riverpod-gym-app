@@ -37,6 +37,9 @@ class _TickBoxState extends State<TickBox> {
   }
 
   void handleOnTap() {
-    widget.onTapped();
+    bool result = widget.onTapped();
+    setState(() {
+      isChecked = result;
+    });
   }
 }
