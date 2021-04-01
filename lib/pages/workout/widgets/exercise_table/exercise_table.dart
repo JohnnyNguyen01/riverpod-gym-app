@@ -37,9 +37,9 @@ class ExerciseTable extends ConsumerWidget {
         ),
         const SizedBox(height: 8),
         //todo: uncomment below after testing
-        // YoutubePlayerTile(
-        //   url: exercise.exerciseURL,
-        // ),
+        YoutubePlayerTile(
+          url: exercise.exerciseURL,
+        ),
         const SizedBox(height: 8),
         _BuildRowHeader(),
         _buildFormListView()

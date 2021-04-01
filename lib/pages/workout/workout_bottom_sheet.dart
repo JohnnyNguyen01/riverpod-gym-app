@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/pages/widgets/safe-area_top_padding.dart';
 import 'package:gym_tracker/pages/workout/widgets/exercise_table/exercise_table.dart';
+import 'package:gym_tracker/pages/workout/widgets/exercise_table/workout_timer.dart';
 import 'package:gym_tracker/pages/workout/workout_bottom_sheet_controller.dart';
 import 'package:gym_tracker/providers/states/workout/selected_workout_state.dart';
 import 'package:gym_tracker/providers/states/workout/workout_user_values_state.dart';
@@ -33,7 +34,8 @@ class WorkoutBottomSheet extends ConsumerWidget {
                   children: [
                     _BuildWorkoutHeading(workoutValues.exerciseDay.toString()),
                     const SizedBox(height: 15),
-                    _BuildTimer(),
+                    // _BuildTimer(),
+                    WorkoutTimer(),
                     const SizedBox(height: 15),
                     _BuildTextDescription(workoutValues.exerciseDescription),
                     const SizedBox(height: 15),
@@ -134,16 +136,16 @@ class _BuildTextDescription extends StatelessWidget {
   }
 }
 
-//todo: implement timer
-class _BuildTimer extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      "07:18",
-      style: TextStyle(color: Colors.grey),
-    );
-  }
-}
+// //todo: implement timer
+// class _BuildTimer extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return Text(
+//       "07:18",
+//       style: TextStyle(color: Colors.grey),
+//     );
+//   }
+// }
 
 class _BuildWorkoutNoteTextField extends StatelessWidget {
   final _controller = TextEditingController();
