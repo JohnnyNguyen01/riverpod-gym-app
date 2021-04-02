@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_tracker/pages/widgets/bottom_nav_bar/custom_bottom_navbar.dart';
 
 class MessagingContactsScreen extends StatelessWidget {
   @override

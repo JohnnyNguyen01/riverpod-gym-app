@@ -1,5 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-
 import 'filled_out_exercises.dart';
 
 class WorkoutUserValuesModel {
