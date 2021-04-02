@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/pages/widgets/safe-area_top_padding.dart';
-import 'package:gym_tracker/pages/workout/widgets/exercise_table/exercise_table.dart';
-import 'package:gym_tracker/pages/workout/widgets/exercise_table/workout_timer.dart';
-import 'package:gym_tracker/pages/workout/workout_bottom_sheet_controller.dart';
-import 'package:gym_tracker/providers/states/workout/selected_workout_state.dart';
-import 'package:gym_tracker/providers/states/workout/workout_user_values_state.dart';
+import '../widgets/safe-area_top_padding.dart';
+import 'widgets/exercise_table/exercise_table.dart';
+import 'widgets/exercise_table/workout_timer.dart';
+import 'workout_bottom_sheet_controller.dart';
+import 'package:gym_tracker/states/states.dart';
 
 class WorkoutBottomSheet extends ConsumerWidget {
   @override

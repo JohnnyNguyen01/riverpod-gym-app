@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:gym_tracker/pages/authentication/auth_screens/signup/signup_screen_controller.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/providers/states/signup_screen/circle_avatar_state.dart';
-import 'package:gym_tracker/providers/states/signup_screen/login_state.dart';
-
 import 'signup_screen_controller.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/states/states.dart';
 
 class SignUpScreen extends StatelessWidget {
   @override

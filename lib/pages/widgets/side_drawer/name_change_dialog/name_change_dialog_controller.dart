@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
-
-import '../../../../providers/states/user_state_provider.dart';
+import '../../../../domain/storage/firebase_firestore_service.dart';
+import 'package:gym_tracker/states/states.dart';
 
 final nameChangeDialogControllerProvider =
     Provider<NameChangeDialogController>((ref) {

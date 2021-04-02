@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:form_field_validator/form_field_validator.dart';
-import 'package:gym_tracker/pages/widgets/side_drawer/name_change_dialog/name_change_dialog_controller.dart';
+
+import 'name_change_dialog_controller.dart';
 
 class NameChangeDialog extends ConsumerWidget {
   @override

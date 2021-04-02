@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker/pages/authentication/auth_screens/initial_auth_screen.dart';
-import 'package:gym_tracker/pages/authentication/auth_screens/login/login_screen.dart';
-import 'package:gym_tracker/pages/authentication/auth_screens/signup/signup_screen.dart';
-import 'package:gym_tracker/pages/home/home_screen.dart';
-import 'package:gym_tracker/pages/messaging_contacts/messaging_contacts_screen.dart';
+
+import '../pages/authentication/auth_screens/initial_auth_screen.dart';
+import '../pages/authentication/auth_screens/login/login_screen.dart';
+import '../pages/authentication/auth_screens/signup/signup_screen.dart';
+import '../pages/home/home_screen.dart';
+import '../pages/messaging_contacts/messaging_contacts_screen.dart';
 
 class AppRoutes {
   static const String initAuthScreen = '/init-auth-screen';

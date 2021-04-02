@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:gym_tracker/pages/authentication/auth_screens/widgets/video_player.dart';
-import 'package:gym_tracker/routing/app_router.dart';
+
+import '../../../routing/app_router.dart';
+import 'widgets/video_player.dart';
 
 class InitialAuthScreen extends StatelessWidget {
   @override

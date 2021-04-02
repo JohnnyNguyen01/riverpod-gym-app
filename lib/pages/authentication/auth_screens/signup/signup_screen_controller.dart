@@ -1,16 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
-import 'package:gym_tracker/domain/storage/firebase_cloud_storage_service.dart';
-import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
-import 'package:gym_tracker/providers/states/auth_state_change_provider.dart';
-import 'package:gym_tracker/providers/states/signup_screen/login_state.dart';
-
-import '../../../../domain/authentication/models/user_model.dart';
-import '../../../../providers/states/signup_screen/circle_avatar_state.dart';
-import '../../../../providers/states/user_state_provider.dart';
+import '../../../../domain/authentication/firebase_auth_repo.dart';
+import '../../../../domain/models/models.dart';
+import '../../../../domain/storage/firebase_cloud_storage_service.dart';
+import '../../../../domain/storage/firebase_firestore_service.dart';
+import 'package:gym_tracker/states/states.dart';
 import '../../../../routing/app_router.dart';
 
 final signUpScreenController =

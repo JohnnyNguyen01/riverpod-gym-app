@@ -1,6 +1,5 @@
 import 'package:flutter/foundation.dart';
-
-import 'models/user_model.dart';
+import '../models/models.dart';
 
 abstract class AuthRepository {
   Future<String> loginWithEmailAndPassword(

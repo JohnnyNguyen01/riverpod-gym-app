@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
-import 'package:gym_tracker/pages/widgets/side_drawer/custom_side_drawer_controller.dart';
-import 'package:gym_tracker/pages/widgets/side_drawer/drawer_tile.dart';
-import 'package:gym_tracker/providers/states/user_state_provider.dart';
-
-import '../../../providers/states/signup_screen/circle_avatar_state.dart';
+import 'package:gym_tracker/states/states.dart';
+import 'custom_side_drawer_controller.dart';
+import 'drawer_tile.dart';
 
 class SideDrawer extends ConsumerWidget {
   @override

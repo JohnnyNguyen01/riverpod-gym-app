@@ -2,9 +2,8 @@ import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/domain/authentication/models/workout_model.dart';
 
-import '../authentication/models/user_model.dart';
+import '../models/models.dart';
 
 final databaseProvider = Provider<FirestoreService>((ref) {
   return FirestoreService(read: ref.read);
@@ -83,7 +82,6 @@ class FirestoreService {
       dates.forEach((timestamp) {
         DateTime docDate = DateTime.parse(timestamp.toDate().toString());
         if (docDate == dateTime) {
-          print(true);
           workout = Workout.fromWorkoutPlan(docSnapshot);
         }
       });

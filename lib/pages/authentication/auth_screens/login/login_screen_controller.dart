@@ -2,13 +2,9 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/domain/authentication/firebase_auth_repo.dart';
-import 'package:gym_tracker/providers/states/signup_screen/login_state.dart';
-import 'package:gym_tracker/providers/states/user_state_provider.dart';
-import 'package:gym_tracker/routing/app_router.dart';
-
-import '../../../../providers/states/signup_screen/circle_avatar_state.dart';
-import '../../../../providers/states/user_state_provider.dart';
+import 'package:gym_tracker/states/states.dart';
+import '../../../../domain/authentication/firebase_auth_repo.dart';
+import '../../../../routing/app_router.dart';
 
 final loginScreenController =
     Provider.autoDispose((ref) => LoginScreenController(ref.read));

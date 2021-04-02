@@ -1,11 +1,11 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/pages/authentication/auth_wrapper/auth_wrapper.dart';
-import 'package:gym_tracker/pages/widgets/safe-area_top_padding.dart';
-import 'package:gym_tracker/routing/app_router.dart';
+import 'pages/authentication/auth_wrapper/auth_wrapper.dart';
+import 'pages/widgets/safe-area_top_padding.dart';
+import 'routing/app_router.dart';
 import 'package:flutter/services.dart';
-import 'package:gym_tracker/theme.dart';
+import 'utils/theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

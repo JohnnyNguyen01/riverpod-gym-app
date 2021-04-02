@@ -1,4 +1,4 @@
-import 'package:gym_tracker/domain/authentication/models/exercise_model.dart';
+import 'models.dart';
 
 class Workout {
   List<Exercise> exerciseList;

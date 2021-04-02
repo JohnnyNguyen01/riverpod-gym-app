@@ -1,5 +1,5 @@
 import 'package:flutter/foundation.dart';
-import 'package:gym_tracker/domain/authentication/auth_repository.dart';
+import '../authentication/auth_repository.dart';
 
 class UserModel {
   String userName;

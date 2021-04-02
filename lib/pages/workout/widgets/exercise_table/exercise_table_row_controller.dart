@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/providers/states/workout/workout_user_values_state.dart';
+import 'package:gym_tracker/states/states.dart';
 
 final exerciseTableRowControllerProvider =
     Provider<ExerciseTableRowController>((ref) {

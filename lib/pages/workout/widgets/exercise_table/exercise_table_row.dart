@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/domain/authentication/models/exercise_model.dart';
-import 'package:gym_tracker/pages/workout/widgets/exercise_table/exercise_table_row_controller.dart';
-import 'package:gym_tracker/pages/workout/widgets/exercise_table/input_textfield.dart';
-import 'package:gym_tracker/pages/workout/widgets/tick_box.dart';
+
+import '../../../../domain/models/models.dart';
+import '../tick_box.dart';
+import 'exercise_table_row_controller.dart';
+import 'input_textfield.dart';
 
 class ExerciseRow extends StatefulWidget {
   final String setNumber;

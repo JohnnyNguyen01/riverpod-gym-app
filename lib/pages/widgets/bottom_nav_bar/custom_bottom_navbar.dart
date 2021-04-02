@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/pages/widgets/bottom_nav_bar/custom_bottom_nav_bar_controller.dart';
+
+import 'custom_bottom_nav_bar_controller.dart';
 
 class CustomBottomNavBar extends ConsumerWidget {
   final GlobalKey<ScaffoldState> drawerKey;

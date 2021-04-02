@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:gym_tracker/domain/authentication/models/filled_out_exercises.dart';
+import 'filled_out_exercises.dart';
 
 class WorkoutUserValuesModel {
   Timestamp completedAt;

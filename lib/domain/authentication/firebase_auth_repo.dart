@@ -2,8 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/domain/authentication/auth_repository.dart';
-import 'package:gym_tracker/domain/authentication/models/user_model.dart';
+
+import '../models/models.dart';
+import 'auth_repository.dart';
 
 final firebaseAuthRepoProvider =
     Provider<FirebaseAuthRepo>((ref) => FirebaseAuthRepo());
