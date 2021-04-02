@@ -12,6 +12,7 @@ class WorkoutBottomSheet extends ConsumerWidget {
     final workoutState = watch(workoutStateprovider.state);
     final workoutValues = workoutState.data.value;
     final topPadding = RootMediaQueryDataHolder.of(context).data.padding.top;
+    // final _workoutTimer = WorkoutTimer(isFinished: false);
 
     return LayoutBuilder(
       builder: (context, constraints) => Container(
@@ -41,6 +42,7 @@ class WorkoutBottomSheet extends ConsumerWidget {
                     _BuildWorkoutNoteTextField(),
                     const SizedBox(height: 15),
                     _BuildWorkoutColumn(),
+                    const SizedBox(height: 15),
                     _TestBtn(),
                   ],
                 ),
@@ -97,14 +99,12 @@ class BottomSheetAppBar extends StatelessWidget {
 class _TestBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ElevatedButton(
-      child: Text("Grab workout state"),
-      onPressed: () => print(context
-          .read(workoutUserValuesStateprovider.state)
-          .data
-          .value
-          .filledOutExercises
-          .toString()),
+    return Center(
+      child: ElevatedButton(
+          child: Text("Grab workout state"),
+          onPressed: context
+              .read(workoutBottomSheetControllerProvider)
+              .handleCompleteWorkoutBtn),
     );
   }
 }
@@ -134,17 +134,6 @@ class _BuildTextDescription extends StatelessWidget {
     return Text(description);
   }
 }
-
-// //todo: implement timer
-// class _BuildTimer extends StatelessWidget {
-//   @override
-//   Widget build(BuildContext context) {
-//     return Text(
-//       "07:18",
-//       style: TextStyle(color: Colors.grey),
-//     );
-//   }
-// }
 
 class _BuildWorkoutNoteTextField extends StatelessWidget {
   final _controller = TextEditingController();

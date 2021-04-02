@@ -49,7 +49,7 @@ class FirestoreService {
     CollectionReference users = _firestore.collection('users');
     final userSnapshot = await users.doc(uid).get().catchError((e) {
       print(e);
-      return UserModel.initValue();
+      return null;
     });
     UserModel user = UserModel.fromDocumentSnapshot(userSnapshot.data());
     return user;

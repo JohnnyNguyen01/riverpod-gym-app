@@ -14,5 +14,20 @@ class WorkoutBottomSheetController {
     read(workoutUserValuesStateprovider).addWorkoutNote(value);
   }
 
-  void handleRepKgSubmission() {}
+  void handleCompleteWorkoutBtn() {
+    final stateController = read(workoutUserValuesStateprovider);
+    final currentState = read(workoutUserValuesStateprovider.state).data.value;
+    //todo: Check why this doesn't update until the second call
+    stateController.setCompletedAt(DateTime.now());
+    //set minutes taken to complete workout
+    final completedAt = currentState.completedAt;
+    final startedAt = currentState.startedAt;
+    int completionTimeInMinutes = completedAt.difference(startedAt).inMinutes;
+    stateController.setCompletedTime(completionTime: completionTimeInMinutes);
+    // Send to firebase
+    //todo: test
+    print(
+        'startedAt: $startedAt, completedAt: $completedAt, minutes: $completionTimeInMinutes');
+    //
+  }
 }

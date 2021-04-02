@@ -10,7 +10,6 @@ class Failure extends Equatable {
   });
 
   @override
-  // TODO: implement stringify
   bool get stringify => true;
 
   @override

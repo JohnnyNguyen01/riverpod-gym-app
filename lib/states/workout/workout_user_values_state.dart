@@ -12,11 +12,50 @@ class WorkoutUserValues
   WorkoutUserValues(this.read)
       : super(AsyncData(WorkoutUserValuesModel.initEmpty()));
 
+  ///Sets the completed workout note
   void addWorkoutNote(String workoutNote) {
     final currentState = state.data.value;
     final newState = WorkoutUserValuesModel(
         completedAt: currentState.completedAt,
+        startedAt: currentState.startedAt,
         workoutNote: workoutNote,
+        workoutCompletionTime: currentState.workoutCompletionTime,
+        filledOutExercises: currentState.filledOutExercises);
+    state = AsyncValue.data(newState);
+  }
+
+  //Sets the `startTime` DateTime property.
+  void setStartTime(DateTime startTime) {
+    final currentState = state.data.value;
+    final newState = WorkoutUserValuesModel(
+        startedAt: startTime,
+        completedAt: currentState.completedAt,
+        workoutNote: currentState.workoutNote,
+        workoutCompletionTime: currentState.workoutCompletionTime,
+        filledOutExercises: currentState.filledOutExercises);
+    state = AsyncValue.data(newState);
+  }
+
+  //Sets the `completedAt` DateTime property to `DateTime.now()`.
+  Future<void> setCompletedAt(DateTime completedAt) async {
+    final currentState = state.data.value;
+    final newState = WorkoutUserValuesModel(
+        startedAt: currentState.startedAt,
+        completedAt: completedAt,
+        workoutNote: currentState.workoutNote,
+        workoutCompletionTime: currentState.workoutCompletionTime,
+        filledOutExercises: currentState.filledOutExercises);
+    state = AsyncValue.data(newState);
+  }
+
+  ///Sets the time the user took to complete the workout
+  void setCompletedTime({@required int completionTime}) {
+    final currentState = state.data.value;
+    final newState = WorkoutUserValuesModel(
+        completedAt: currentState.completedAt,
+        workoutNote: currentState.workoutNote,
+        startedAt: currentState.startedAt,
+        workoutCompletionTime: completionTime,
         filledOutExercises: currentState.filledOutExercises);
     state = AsyncValue.data(newState);
   }
@@ -34,6 +73,8 @@ class WorkoutUserValues
     final newState = WorkoutUserValuesModel(
         completedAt: currentState.completedAt,
         workoutNote: currentState.workoutNote,
+        workoutCompletionTime: currentState.workoutCompletionTime,
+        startedAt: currentState.startedAt,
         filledOutExercises: newfilledOutExercisesState);
     state = AsyncValue.data(newState);
   }
@@ -44,7 +85,7 @@ class WorkoutUserValues
       @required int setNumber,
       @required int kg,
       @required int reps}) {
-    final topLevelState = state.data.value;
+    final currentState = state.data.value;
     final filldOutExercisesList = state.data.value.filledOutExercises;
     //get exercise we're looking to change
     FilledOutExercises exerciseToEdit =
@@ -73,8 +114,10 @@ class WorkoutUserValues
     ];
     //change the value in an immutable fashion
     final newState = WorkoutUserValuesModel(
-        workoutNote: topLevelState.workoutNote,
-        completedAt: topLevelState.completedAt,
+        workoutNote: currentState.workoutNote,
+        workoutCompletionTime: currentState.workoutCompletionTime,
+        completedAt: currentState.completedAt,
+        startedAt: currentState.startedAt,
         filledOutExercises: newList);
     //assign to state
     state = AsyncValue.data(newState);
@@ -82,7 +125,7 @@ class WorkoutUserValues
 
   void removeSetFromExercise(
       {@required String exerciseName, @required int setNumber}) {
-    final topLevelState = state.data.value;
+    final currentState = state.data.value;
     final filledOutExercisesList = state.data.value.filledOutExercises;
     FilledOutExercises exerciseToEdit;
 
@@ -106,8 +149,10 @@ class WorkoutUserValues
       ];
       //change the value in an immutable fashion
       final newState = WorkoutUserValuesModel(
-          workoutNote: topLevelState.workoutNote,
-          completedAt: topLevelState.completedAt,
+          workoutNote: currentState.workoutNote,
+          completedAt: currentState.completedAt,
+          workoutCompletionTime: currentState.workoutCompletionTime,
+          startedAt: currentState.startedAt,
           filledOutExercises: newList);
       //assign to state
       state = AsyncValue.data(newState);
