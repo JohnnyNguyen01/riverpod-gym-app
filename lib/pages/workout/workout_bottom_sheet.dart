@@ -45,7 +45,7 @@ class WorkoutBottomSheet extends ConsumerWidget {
                     const SizedBox(height: 15),
                     _BuildWorkoutColumn(),
                     const SizedBox(height: 15),
-                    _TestBtn(),
+                    _SubmitWorkoutBtn(),
                   ],
                 ),
               ),
@@ -97,26 +97,15 @@ class BottomSheetAppBar extends StatelessWidget {
   }
 }
 
-//todo: remove
-class _TestBtn extends StatelessWidget {
+class _SubmitWorkoutBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
       child: ElevatedButton(
-          child: Text("Send Workout state"),
-          onPressed: () async {
-            try {
-              String uid =
-                  context.read(userStateController.state).data.value.uid;
-              final workoutValues =
-                  context.read(workoutUserValuesStateprovider.state).data.value;
-              await context
-                  .read(databaseProvider)
-                  .uploadUserWorkoutValues(model: workoutValues, uid: uid);
-            } on Failure catch (e) {
-              print(e.message);
-            }
-          }),
+          child: Text("Submit Workout"),
+          onPressed: () => context
+              .read(workoutBottomSheetControllerProvider)
+              .handleSubmitWorkoutBtn(context: context)),
     );
   }
 }

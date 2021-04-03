@@ -1,4 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/domain/models/models.dart';
+import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
 import 'package:gym_tracker/states/states.dart';
 
 final workoutBottomSheetControllerProvider =
@@ -12,6 +15,19 @@ class WorkoutBottomSheetController {
 
   void handleWorkoutNoteTF(String value) {
     read(workoutUserValuesStateprovider).addWorkoutNote(value);
+  }
+
+  void handleSubmitWorkoutBtn({@required BuildContext context}) async {
+    try {
+      String uid = read(userStateController.state).data.value.uid;
+      final workoutValues =
+          read(workoutUserValuesStateprovider.state).data.value;
+      await read(databaseProvider)
+          .uploadUserWorkoutValues(model: workoutValues, uid: uid);
+    } on Failure catch (e) {
+      print(e);
+      //ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
   }
 
   void handleCompleteWorkoutBtn() {

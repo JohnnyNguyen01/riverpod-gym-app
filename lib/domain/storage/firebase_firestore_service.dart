@@ -56,6 +56,7 @@ class FirestoreService {
           .collection(Paths.userWorkoutDates)
           .doc(DateTime.now().toString())
           .set({
+        'workoutNote': model.workoutNote,
         'completedAt': model.completedAt,
         'startedAt': model.startedAt,
         'workoutCompletionTime': model.workoutCompletionTime,
@@ -64,7 +65,7 @@ class FirestoreService {
     } on PlatformException catch (e) {
       throw Failure(error: e.code, message: e.message);
     } catch (e) {
-      print(e.toString());
+      throw Failure(error: "Generic", message: e.toString());
     }
   }
 
