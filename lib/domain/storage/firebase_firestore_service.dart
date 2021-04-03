@@ -41,14 +41,6 @@ class FirestoreService {
   Future<void> uploadUserWorkoutValues(
       {@required WorkoutUserValuesModel model, @required String uid}) async {
     CollectionReference userEntries = _firestore.collection(Paths.userEntries);
-    // Create list of filled out exercise objects that firestore can read
-    List filledOutExerciseObjList = [];
-    model.filledOutExercises.forEach((exercise) {
-      filledOutExerciseObjList.add({
-        'exerciseName': exercise.exerciseName,
-        'setsValues': exercise.setsValues
-      });
-    });
     // Send to firestore
     try {
       await userEntries
@@ -60,7 +52,7 @@ class FirestoreService {
         'completedAt': model.completedAt,
         'startedAt': model.startedAt,
         'workoutCompletionTime': model.workoutCompletionTime,
-        'filledOutExercises': filledOutExerciseObjList
+        'filledOutExercises': model.filledOutExercisesForFirestore()
       });
     } on PlatformException catch (e) {
       throw Failure(error: e.code, message: e.message);
@@ -70,7 +62,7 @@ class FirestoreService {
   }
 
   Future<String> setUserName(String uid, String newName) async {
-    CollectionReference users = _firestore.collection('users');
+    CollectionReference users = _firestore.collection(Paths.users);
     try {
       await users.doc(uid).update({'username': newName});
       return "Success";

@@ -37,6 +37,17 @@ class WorkoutUserValuesModel {
           workoutNote: workoutNote ?? this.workoutNote,
           filledOutExercises: filledOutExercises ?? this.filledOutExercises);
 
+  List filledOutExercisesForFirestore() {
+    List filledOutExerciseObjList = [];
+    filledOutExercises.forEach((exercise) {
+      filledOutExerciseObjList.add({
+        'exerciseName': exercise.exerciseName,
+        'setsValues': exercise.setsValues
+      });
+    });
+    return filledOutExerciseObjList;
+  }
+
   @override
   String toString() {
     return "completedAt: $completedAt || startedAt: $startedAt|| Workout Time: $workoutCompletionTime || Note: $workoutNote || Filled Out Exercises: $filledOutExercises ";
