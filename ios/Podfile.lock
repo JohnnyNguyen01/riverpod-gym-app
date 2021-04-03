@@ -281,6 +281,10 @@ PODS:
   - flutter_inappwebview/Core (0.0.1):
     - Flutter
     - OrderedSet (~> 5.0)
+  - "flutter_sound (8.0.0+6)":
+    - Flutter
+    - mobile-ffmpeg-full (= 4.4.LTS)
+    - "tau_sound_core (= 8.0.0+6)"
   - GoogleDataTransport (8.1.0):
     - nanopb (~> 2.30906.0)
   - GoogleUtilities/AppDelegateSwizzler (7.2.2):
@@ -328,6 +332,7 @@ PODS:
   - integration_test (0.0.1):
     - Flutter
   - leveldb-library (1.22)
+  - mobile-ffmpeg-full (4.4.LTS)
   - nanopb (2.30906.0):
     - nanopb/decode (= 2.30906.0)
     - nanopb/encode (= 2.30906.0)
@@ -337,6 +342,7 @@ PODS:
   - path_provider (0.0.1):
     - Flutter
   - PromisesObjC (1.2.12)
+  - "tau_sound_core (8.0.0+6)"
   - video_player (0.0.1):
     - Flutter
 
@@ -347,6 +353,7 @@ DEPENDENCIES:
   - firebase_storage (from `.symlinks/plugins/firebase_storage/ios`)
   - Flutter (from `Flutter`)
   - flutter_inappwebview (from `.symlinks/plugins/flutter_inappwebview/ios`)
+  - flutter_sound (from `.symlinks/plugins/flutter_sound/ios`)
   - image_picker (from `.symlinks/plugins/image_picker/ios`)
   - integration_test (from `.symlinks/plugins/integration_test/ios`)
   - path_provider (from `.symlinks/plugins/path_provider/ios`)
@@ -368,9 +375,11 @@ SPEC REPOS:
     - gRPC-Core
     - GTMSessionFetcher
     - leveldb-library
+    - mobile-ffmpeg-full
     - nanopb
     - OrderedSet
     - PromisesObjC
+    - tau_sound_core
 
 EXTERNAL SOURCES:
   cloud_firestore:
@@ -385,6 +394,8 @@ EXTERNAL SOURCES:
     :path: Flutter
   flutter_inappwebview:
     :path: ".symlinks/plugins/flutter_inappwebview/ios"
+  flutter_sound:
+    :path: ".symlinks/plugins/flutter_sound/ios"
   image_picker:
     :path: ".symlinks/plugins/image_picker/ios"
   integration_test:
@@ -409,6 +420,7 @@ SPEC CHECKSUMS:
   FirebaseStorage: 5002b1895bfe74a5ce92ad54f966e6162d0da2e5
   Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
   flutter_inappwebview: bfd58618f49dc62f2676de690fc6dcda1d6c3721
+  flutter_sound: 9519b4dd640fde85d2d499db0413681138c315f4
   GoogleDataTransport: 116c84c4bdeb76be2a7a46de51244368f9794eab
   GoogleUtilities: 31c5b01f978a70c6cff2afc6272b3f1921614b43
   "gRPC-C++": 13d8ccef97d5c3c441b7e3c529ef28ebee86fad2
@@ -417,10 +429,12 @@ SPEC CHECKSUMS:
   image_picker: 50e7c7ff960e5f58faa4d1f4af84a771c671bc4a
   integration_test: 6eb66a19f7104200dcfdd62bc0077e1b09686e4f
   leveldb-library: 55d93ee664b4007aac644a782d11da33fba316f7
+  mobile-ffmpeg-full: f17c82219b4ff9e4018b5e21f88b78c28a3475db
   nanopb: 1bf24dd71191072e120b83dd02d08f3da0d65e53
   OrderedSet: aaeb196f7fef5a9edf55d89760da9176ad40b93c
   path_provider: abfe2b5c733d04e238b0d8691db0cfd63a27a93c
   PromisesObjC: 3113f7f76903778cf4a0586bd1ab89329a0b7b97
+  tau_sound_core: c34a32074c96cc960a5b457c91e25211203707cf
   video_player: 9cc823b1d9da7e8427ee591e8438bfbcde500e6e
 
 PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c

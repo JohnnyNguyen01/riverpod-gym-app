@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/domain/models/models.dart';
-import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
 import '../widgets/safe-area_top_padding.dart';
 import 'widgets/exercise_table/exercise_table.dart';
 import 'widgets/exercise_table/workout_timer.dart';
@@ -13,12 +11,12 @@ class WorkoutBottomSheet extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final workoutState = watch(workoutStateprovider.state);
     final workoutValues = workoutState.data.value;
-    final topPadding = RootMediaQueryDataHolder.of(context).data.padding.top;
+    // final topPadding = RootMediaQueryDataHolder.of(context).data.padding.top;
     // final _workoutTimer = WorkoutTimer(isFinished: false);
 
-    return LayoutBuilder(
-      builder: (context, constraints) => Container(
-        padding: EdgeInsets.only(top: topPadding),
+    return SafeArea(
+      child: Container(
+        height: MediaQuery.of(context).size.height * 0.90,
         child: Scaffold(
           resizeToAvoidBottomInset: false,
           appBar: PreferredSize(

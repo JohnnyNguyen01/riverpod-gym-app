@@ -14,10 +14,11 @@ class HomeScreenController {
 
   HomeScreenController(this.read);
 
-  void showModalBottomSheet(
+  void showWorkoutBottomSheet(
     BuildContext context,
   ) {
-    showBottomSheet<void>(
+    showModalBottomSheet<void>(
+      isScrollControlled: true,
       context: context,
       builder: (context) => WorkoutBottomSheet(),
     );

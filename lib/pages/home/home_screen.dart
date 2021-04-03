@@ -84,7 +84,7 @@ class _BuildWorkoutCard extends ConsumerWidget {
         description: workoutState.data.value.exerciseDescription,
         onTap: () => context
             .read(homeScreenControllerProvider)
-            .showModalBottomSheet(context),
+            .showWorkoutBottomSheet(context),
       );
   }
 }
