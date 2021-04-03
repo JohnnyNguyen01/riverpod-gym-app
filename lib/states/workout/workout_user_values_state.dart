@@ -10,7 +10,19 @@ class WorkoutUserValues
   final Reader read;
 
   WorkoutUserValues(this.read)
-      : super(AsyncData(WorkoutUserValuesModel.initEmpty()));
+      : super(AsyncData(WorkoutUserValuesModel.initEmpty())) {
+    initStateFix();
+  }
+
+  ///Reset init state due to date time issue for `completedAt` property
+  ///todo: Find fix for this
+  void initStateFix() {
+    final currentState = state.data.value;
+    WorkoutUserValuesModel newInitState =
+        currentState.copyWith(completedAt: DateTime.now());
+    state = AsyncData(newInitState);
+    print(newInitState.completedAt);
+  }
 
   ///Sets the completed workout note
   void addWorkoutNote(String workoutNote) {

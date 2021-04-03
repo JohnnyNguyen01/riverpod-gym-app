@@ -23,6 +23,20 @@ class WorkoutUserValuesModel {
     this.filledOutExercises = [];
   }
 
+  WorkoutUserValuesModel copyWith(
+          {DateTime completedAt,
+          DateTime startedAt,
+          int workoutCompletionTime,
+          String workoutNote,
+          List<FilledOutExercises> filledOutExercises}) =>
+      WorkoutUserValuesModel(
+          completedAt: completedAt ?? this.completedAt,
+          startedAt: startedAt ?? this.startedAt,
+          workoutCompletionTime:
+              workoutCompletionTime ?? this.workoutCompletionTime,
+          workoutNote: workoutNote ?? this.workoutNote,
+          filledOutExercises: filledOutExercises ?? this.filledOutExercises);
+
   @override
   String toString() {
     return "completedAt: $completedAt || startedAt: $startedAt|| Workout Time: $workoutCompletionTime || Note: $workoutNote || Filled Out Exercises: $filledOutExercises ";
