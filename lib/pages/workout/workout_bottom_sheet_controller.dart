@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/models/models.dart';
 import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
+import 'package:gym_tracker/pages/widgets/error_snack_bar.dart';
 import 'package:gym_tracker/states/states.dart';
 
 final workoutBottomSheetControllerProvider =
@@ -25,8 +26,8 @@ class WorkoutBottomSheetController {
       await read(databaseProvider)
           .uploadUserWorkoutValues(model: workoutValues, uid: uid);
     } on Failure catch (e) {
-      print(e);
-      //ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      ScaffoldMessenger.of(context)
+          .showSnackBar(ErrorSnackBar(message: e.message).snackbar());
     }
   }
 
