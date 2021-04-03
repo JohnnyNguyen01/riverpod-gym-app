@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gym_tracker/domain/audio/sound_player.dart';
 
 class TickBox extends StatefulWidget {
   final Function onTapped;
@@ -38,6 +39,8 @@ class _TickBoxState extends State<TickBox> {
 
   void handleOnTap() {
     bool result = widget.onTapped();
+    if (result)
+      SoundPlayer.playAssetSound(asset: 'assets/sounds/tickbox_click.mp3');
     setState(() {
       isChecked = result;
     });
