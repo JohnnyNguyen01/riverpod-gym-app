@@ -1,7 +1,10 @@
 import 'dart:developer';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/utils/utils.dart';
 
 import '../models/models.dart';
 
@@ -30,6 +33,38 @@ class FirestoreService {
       });
     } catch (e) {
       log(e);
+    }
+  }
+
+  ///Adds a new doc to `user_entries` in firestore using a user's `uid`. This will
+  ///contain a collection of all their entered workout data.
+  Future<void> uploadUserWorkoutValues(
+      {@required WorkoutUserValuesModel model, @required String uid}) async {
+    CollectionReference userEntries = _firestore.collection(Paths.userEntries);
+    // Create list of filled out exercise objects that firestore can read
+    List filledOutExerciseObjList = [];
+    model.filledOutExercises.forEach((exercise) {
+      filledOutExerciseObjList.add({
+        'exerciseName': exercise.exerciseName,
+        'setsValues': exercise.setsValues
+      });
+    });
+    // Send to firestore
+    try {
+      await userEntries
+          .doc(uid)
+          .collection(Paths.userWorkoutDates)
+          .doc(DateTime.now().toString())
+          .set({
+        'completedAt': model.completedAt,
+        'startedAt': model.startedAt,
+        'workoutCompletionTime': model.workoutCompletionTime,
+        'filledOutExercises': filledOutExerciseObjList
+      });
+    } on PlatformException catch (e) {
+      throw Failure(error: e.code, message: e.message);
+    } catch (e) {
+      print(e.toString());
     }
   }
 

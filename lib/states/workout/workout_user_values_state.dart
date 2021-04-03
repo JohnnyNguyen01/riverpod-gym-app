@@ -10,9 +10,7 @@ class WorkoutUserValues
   final Reader read;
 
   WorkoutUserValues(this.read)
-      : super(AsyncData(WorkoutUserValuesModel.initEmpty())) {
-    initStateFix();
-  }
+      : super(AsyncData(WorkoutUserValuesModel.initEmpty()));
 
   ///Reset init state due to date time issue for `completedAt` property
   ///todo: Find fix for this
