@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/domain/models/models.dart';
 import 'home_screen_controller.dart';
 import 'summary_workout_card.dart';
 import '../widgets/bottom_nav_bar/custom_bottom_navbar.dart';

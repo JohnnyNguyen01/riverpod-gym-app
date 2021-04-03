@@ -1,7 +1,8 @@
+import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 import '../authentication/auth_repository.dart';
 
-class UserModel {
+class UserModel extends Equatable {
   String userName;
   String uid;
   String email;
@@ -35,8 +36,25 @@ class UserModel {
     this.profileImageURL = '';
   }
 
+  UserModel copyWith(
+          {String userName,
+          String uid,
+          String email,
+          String profileImageURL}) =>
+      UserModel(
+          userName: userName ?? this.userName,
+          uid: uid ?? this.uid,
+          email: email ?? this.email,
+          profileImageURL: profileImageURL ?? this.profileImageURL);
+
+  // @override
+  // String toString() {
+  //   return 'username: $userName || email: $email || uid: $uid || image_irl: $profileImageURL';
+  // }
+
   @override
-  String toString() {
-    return 'username: $userName || email: $email || uid: $uid || image_irl: $profileImageURL';
-  }
+  bool get stringify => true;
+
+  @override
+  List<Object> get props => [userName, uid, email, profileImageURL];
 }
