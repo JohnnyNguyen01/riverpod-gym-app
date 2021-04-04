@@ -25,12 +25,14 @@ class WorkoutBottomSheetController {
           read(workoutUserValuesStateprovider.state).data.value;
       await read(databaseProvider)
           .uploadUserWorkoutValues(model: workoutValues, uid: uid);
+      Navigator.of(context).pop();
     } on Failure catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(ErrorSnackBar(message: e.message).snackbar());
     }
   }
 
+  //todo: currently unused until fixed.
   void handleCompleteWorkoutBtn() {
     final stateController = read(workoutUserValuesStateprovider);
     final currentState = read(workoutUserValuesStateprovider.state).data.value;

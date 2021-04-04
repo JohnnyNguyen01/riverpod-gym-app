@@ -34,7 +34,10 @@ class _ExerciseRowState extends State<ExerciseRow> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisSize: MainAxisSize.max,
             children: [
-              Text(widget.setNumber),
+              Text(
+                widget.setNumber,
+                style: TextStyle(fontWeight: FontWeight.w600),
+              ),
               const SizedBox(width: 15),
               Text("-"),
               const SizedBox(width: 15),
