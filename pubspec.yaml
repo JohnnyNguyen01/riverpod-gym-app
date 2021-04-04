@@ -24,6 +24,7 @@ dependencies:
   flutter:
     sdk: flutter
   assets_audio_player: ^3.0.3+2
+  cached_network_image: ^3.0.0
   cloud_firestore: ^1.0.3
   cupertino_icons: ^1.0.1
   date_picker_timeline: ^1.2.1

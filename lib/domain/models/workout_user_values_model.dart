@@ -1,11 +1,13 @@
+import 'package:equatable/equatable.dart';
+
 import 'filled_out_exercises.dart';
 
-class WorkoutUserValuesModel {
-  DateTime completedAt;
-  DateTime startedAt;
-  int workoutCompletionTime;
-  String workoutNote;
-  List<FilledOutExercises> filledOutExercises;
+class WorkoutUserValuesModel extends Equatable {
+  final DateTime completedAt;
+  final DateTime startedAt;
+  final int workoutCompletionTime;
+  final String workoutNote;
+  final List<FilledOutExercises> filledOutExercises;
 
   WorkoutUserValuesModel({
     this.workoutCompletionTime,
@@ -15,13 +17,12 @@ class WorkoutUserValuesModel {
     this.filledOutExercises,
   });
 
-  WorkoutUserValuesModel.initEmpty() {
-    this.completedAt = DateTime.now();
-    this.startedAt = DateTime.now();
-    this.workoutNote = "";
-    this.workoutCompletionTime = 0;
-    this.filledOutExercises = [];
-  }
+  WorkoutUserValuesModel.initEmpty()
+      : this.completedAt = DateTime.now(),
+        this.startedAt = DateTime.now(),
+        this.workoutCompletionTime = 0,
+        this.filledOutExercises = [],
+        this.workoutNote = "";
 
   WorkoutUserValuesModel copyWith(
           {DateTime completedAt,
@@ -52,4 +53,13 @@ class WorkoutUserValuesModel {
   String toString() {
     return "completedAt: $completedAt || startedAt: $startedAt|| Workout Time: $workoutCompletionTime || Note: $workoutNote || Filled Out Exercises: $filledOutExercises ";
   }
+
+  @override
+  List<Object> get props => [
+        completedAt,
+        startedAt,
+        workoutCompletionTime,
+        workoutNote,
+        filledOutExercises
+      ];
 }
