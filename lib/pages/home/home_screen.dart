@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/domain/models/models.dart';
-import 'package:gym_tracker/pages/workout/widgets/workout_complete_dialog/workout_complete_dialog_box.dart';
 import 'home_screen_controller.dart';
 import 'summary_workout_card.dart';
 import '../widgets/bottom_nav_bar/custom_bottom_navbar.dart';
@@ -30,14 +28,6 @@ class HomeScreen extends ConsumerWidget {
               _BuildTodaysWorkoutHeading(),
               const SizedBox(height: 10),
               _BuildWorkoutCard(scaffoldkey: _scaffoldKey),
-              TextButton(
-                child: Text('dialog boxopen'),
-                onPressed: () {
-                  showDialog(
-                      context: context,
-                      builder: (context) => WorkoutCompleteDialogBox());
-                },
-              )
             ],
           ),
         ),

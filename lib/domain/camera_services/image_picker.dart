@@ -17,7 +17,7 @@ class ImagePickerService {
   Future<File> getNewAvatarImageFromCamera() async {
     File image;
     final _pickedFile = await _imagePicker.getImage(source: ImageSource.camera);
-    _pickedFile != null ? image = File(_pickedFile.path) : null;
+    _pickedFile != null ? image = File(_pickedFile.path) : image = null;
     return image;
   }
 }
