@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:gym_tracker/pages/widgets/bottom_nav_bar/custom_bottom_navbar.dart';
 
@@ -45,7 +46,9 @@ class MessagingContactsScreen extends StatelessWidget {
           horizontalTitleGap: 15,
           minVerticalPadding: 10,
           leading: CircleAvatar(
-            backgroundImage: NetworkImage('https://picsum.photos/200/300'),
+            backgroundImage: CachedNetworkImageProvider(
+                'https://picsum.photos/200/300',
+                scale: 1), //NetworkImage('https://picsum.photos/200/300'),
             radius: 25,
           ),
           onTap: () {},
