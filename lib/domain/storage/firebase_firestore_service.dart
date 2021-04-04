@@ -41,7 +41,6 @@ class FirestoreService {
   Future<void> uploadUserWorkoutValues(
       {@required WorkoutUserValuesModel model, @required String uid}) async {
     CollectionReference userEntries = _firestore.collection(Paths.userEntries);
-    // Send to firestore
     try {
       await userEntries
           .doc(uid)
