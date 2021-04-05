@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:gym_tracker/pages/messaging/messaging_screen.dart';
 import 'package:gym_tracker/pages/widgets/bottom_nav_bar/custom_bottom_navbar.dart';
 
 class MessagingContactsScreen extends StatelessWidget {
@@ -17,7 +18,7 @@ class MessagingContactsScreen extends StatelessWidget {
                 shrinkWrap: true,
                 itemCount: 3,
                 itemBuilder: (context, index) {
-                  return _buildContactCard();
+                  return _buildContactCard(context: context);
                 },
               )
             ],
@@ -37,7 +38,7 @@ class MessagingContactsScreen extends StatelessWidget {
     );
   }
 
-  Widget _buildContactCard() {
+  Widget _buildContactCard({@required BuildContext context}) {
     return ClipRRect(
       borderRadius: BorderRadius.circular(30),
       child: Card(
@@ -51,7 +52,10 @@ class MessagingContactsScreen extends StatelessWidget {
                 scale: 1), //NetworkImage('https://picsum.photos/200/300'),
             radius: 25,
           ),
-          onTap: () {},
+          onTap: () {
+            Navigator.of(context).pushReplacement(
+                MaterialPageRoute(builder: (context) => MessagingScreen()));
+          },
           title: Text(
             'Amir Fazeli',
             style: TextStyle(fontWeight: FontWeight.bold),
