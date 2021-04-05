@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
+import 'package:gym_tracker/states/coach/coach_state.dart';
 
 import '../../../domain/authentication/firebase_auth_repo.dart';
 import 'package:gym_tracker/states/states.dart';
@@ -19,7 +20,7 @@ class AuthWrapper extends ConsumerWidget {
         if (userSnapshot.data == null) {
           return InitialAuthScreen();
         } else {
-          setUser(context);
+          setAppStates(context);
           return HomeScreen();
         }
       },
@@ -27,12 +28,15 @@ class AuthWrapper extends ConsumerWidget {
   }
 
   //todo: See if i can fix this up and separate logic
-  void setUser(BuildContext context) async {
+  void setAppStates(BuildContext context) async {
     context.read(userStateController).setCurrentUserFromAuthRepo();
     final user = await context
         .read(databaseProvider)
         .getUser(context.read(userStateController.state).data.value.uid);
     context.read(userStateController).setUserName(user.userName);
     context.read(circleAvatarStateProvider).getImageFromWebStorage(user.uid);
+    context
+        .read(coachStateProvider)
+        .setCoachFromDatabase(coachUID: user.coachUID);
   }
 }

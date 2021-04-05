@@ -36,6 +36,21 @@ class FirestoreService {
     }
   }
 
+  ///Retrieves a `Coach` object from firestore via a specified `uid`
+  Future<Coach> getCoach({@required String coachUid}) async {
+    CollectionReference coachesCollection =
+        _firestore.collection(Paths.coaches);
+
+    try {
+      final coachSnapshot = await coachesCollection.doc(coachUid).get();
+      return Coach.fromDatabase(coachSnapshot.data());
+    } on PlatformException catch (e) {
+      throw Failure(error: e.code, message: e.message);
+    } catch (e) {
+      throw Failure(error: "", message: e.toString());
+    }
+  }
+
   ///Adds a new doc to `user_entries` in firestore using a user's `uid`. This will
   ///contain a collection of all their entered workout data.
   Future<void> uploadUserWorkoutValues(

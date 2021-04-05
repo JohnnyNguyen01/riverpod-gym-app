@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/states/coach/coach_state.dart';
 import 'package:gym_tracker/states/states.dart';
 import '../../../../domain/authentication/firebase_auth_repo.dart';
 import '../../../../routing/app_router.dart';
@@ -44,13 +45,14 @@ class LoginScreenController {
       //if successful -> map user state
       await read(userStateController)
           .setUserFromDatabase(read(firebaseAuthRepoProvider).uid);
-      log(read(userStateController.state).data.toString());
+      final user = read(userStateController.state).data.value;
       //set circle avatar state to user avatar
-      String photoURL =
-          read(userStateController.state).data.value.profileImageURL;
+      String photoURL = user.profileImageURL;
       read(circleAvatarStateProvider).getImageFromURL(photoURL);
       //set Login State to false
       read(loginStateProvider).changeLoginState(false);
+      //Set coach object
+      read(coachStateProvider).setCoachFromDatabase(coachUID: user.coachUID);
       //Dismiss keyboard
       FocusScope.of(context).unfocus();
       // navigate to the homeScreen

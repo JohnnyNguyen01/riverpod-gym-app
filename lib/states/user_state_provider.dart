@@ -48,7 +48,8 @@ class UserStateAsyncNotifier extends StateNotifier<AsyncValue<UserModel>> {
         email: state.data.value.email,
         uid: currentUID,
         profileImageURL: profileURL,
-        userName: newName);
+        userName: newName,
+        coachUID: state.data.value.coachUID);
     state = AsyncData(newState);
   }
 

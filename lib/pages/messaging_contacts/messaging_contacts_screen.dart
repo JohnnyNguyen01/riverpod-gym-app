@@ -1,11 +1,13 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/pages/messaging/messaging_screen.dart';
 import 'package:gym_tracker/pages/widgets/bottom_nav_bar/custom_bottom_navbar.dart';
+import 'package:gym_tracker/states/states.dart';
 
-class MessagingContactsScreen extends StatelessWidget {
+class MessagingContactsScreen extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader read) {
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 18.0),
@@ -53,8 +55,9 @@ class MessagingContactsScreen extends StatelessWidget {
             radius: 25,
           ),
           onTap: () {
-            Navigator.of(context).pushReplacement(
-                MaterialPageRoute(builder: (context) => MessagingScreen()));
+            print(context.read(userStateController.state).data.value.coachUID);
+            // Navigator.of(context).pushReplacement(
+            //     MaterialPageRoute(builder: (context) => MessagingScreen()));
           },
           title: Text(
             'Amir Fazeli',
