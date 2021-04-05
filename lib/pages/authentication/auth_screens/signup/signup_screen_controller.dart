@@ -48,6 +48,7 @@ class SignUpScreenController {
                   userName: nameController.text,
                   email: read(userStateController.state).data.value.email,
                   uid: read(userStateController.state).data.value.uid,
+                  coachUID: '',
                   profileImageURL: await context
                       .read(storageCloudService)
                       .getUserProfilePhotoUrl(

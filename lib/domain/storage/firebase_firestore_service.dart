@@ -78,12 +78,14 @@ class FirestoreService {
   ///Retrieves a list of all of this client's chatrooms as a `MessageConact` list
   ///via their uid.
   Future<List<MessageContact>> getChatRooms({String uid}) async {
-    CollectionReference chatRooms = _firestore
+    final chatRooms = _firestore
         .collection(Paths.chatRooms)
-        .where('clientID', isEqualTo: uid);
+        .where('clientID', isEqualTo: uid)
+        .get();
     try {
       List<MessageContact> chatList = [];
-      final snapshotList = await chatRooms.get();
+      final snapshotList = await chatRooms;
+      print(snapshotList.docs.first);
       for (var snapshot in snapshotList.docs) {
         chatList.add(MessageContact.fromDocumentSnapshot(snapshot.data()));
       }
