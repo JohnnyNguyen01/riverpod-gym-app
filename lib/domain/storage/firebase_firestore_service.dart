@@ -75,6 +75,26 @@ class FirestoreService {
     }
   }
 
+  ///Retrieves a list of all of this client's chatrooms as a `MessageConact` list
+  ///via their uid.
+  Future<List<MessageContact>> getChatRooms({String uid}) async {
+    CollectionReference chatRooms = _firestore
+        .collection(Paths.chatRooms)
+        .where('clientID', isEqualTo: uid);
+    try {
+      List<MessageContact> chatList = [];
+      final snapshotList = await chatRooms.get();
+      for (var snapshot in snapshotList.docs) {
+        chatList.add(MessageContact.fromDocumentSnapshot(snapshot.data()));
+      }
+      return chatList;
+    } on PlatformException catch (e) {
+      throw Failure(error: e.code, message: e.message);
+    } catch (e) {
+      throw Failure(error: "Error", message: e.toString());
+    }
+  }
+
   Future<String> setUserName(String uid, String newName) async {
     CollectionReference users = _firestore.collection(Paths.users);
     try {
