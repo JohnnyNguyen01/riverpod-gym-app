@@ -37,6 +37,7 @@ dependencies:
   form_field_validator: ^1.0.1
   google_fonts: ^2.0.0
   image_picker: ^0.7.4
+  intl: ^0.17.0
   lottie: ^1.0.1
   video_player: ^2.1.0
   youtube_player_flutter: ^8.0.0

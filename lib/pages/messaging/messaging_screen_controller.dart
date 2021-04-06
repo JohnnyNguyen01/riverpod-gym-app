@@ -28,8 +28,9 @@ class MessagingScreenController {
           message: Message(
               message: controller.text,
               sentAt: DateTime.now(),
-              sentBy: userDetails.uid,
-              profileImageURL: userDetails.profileImageURL));
+              sentBy: userDetails.userName,
+              profileImageURL: userDetails.profileImageURL,
+              senderUID: userDetails.uid));
     } on Failure catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(ErrorSnackBar(message: e.message).snackbar());

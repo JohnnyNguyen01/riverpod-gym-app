@@ -1,6 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/pages/messaging/messaging_screen_controller.dart';
+import 'package:gym_tracker/pages/messaging/widgets/message_bubble.dart';
 import 'package:gym_tracker/states/messages/message_state.dart';
 
 class MessagingScreen extends ConsumerWidget {
@@ -8,11 +10,23 @@ class MessagingScreen extends ConsumerWidget {
   Widget build(BuildContext context, ScopedReader watch) {
     final roomInfo = watch(messageRoomStateProvider.state).data.value;
     final chatMessages = watch(chatMessagesProvider);
-    final textTheme = Theme.of(context).textTheme;
+    // final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        title: Text(roomInfo.coach,
-            style: textTheme.headline6.copyWith(color: Colors.black)),
+        leadingWidth: 0,
+        title: Row(
+          children: [
+            CircleAvatar(
+              backgroundImage:
+                  CachedNetworkImageProvider(roomInfo.coachImagURL, scale: 1),
+            ),
+            const SizedBox(width: 5),
+            Text(
+              roomInfo.coach,
+              style: TextStyle(color: Colors.black),
+            ),
+          ],
+        ),
         backgroundColor: Colors.white,
       ),
       body: Column(
@@ -20,13 +34,16 @@ class MessagingScreen extends ConsumerWidget {
           Expanded(
             child: chatMessages.when(
                 data: (messageList) {
-                  return ListView.builder(
-                      shrinkWrap: true,
-                      itemCount: messageList.length,
-                      physics: BouncingScrollPhysics(),
-                      itemBuilder: (context, i) {
-                        return Text(messageList[i].message);
-                      });
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                    child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: messageList.length,
+                        physics: BouncingScrollPhysics(),
+                        itemBuilder: (context, i) {
+                          return MessageBubble(message: messageList[i]);
+                        }),
+                  );
                 },
                 loading: () => const CircularProgressIndicator(),
                 error: (err, st) => Text(err)),
