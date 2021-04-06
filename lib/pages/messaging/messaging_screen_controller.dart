@@ -4,7 +4,6 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/models/models.dart';
 import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
 import 'package:gym_tracker/pages/widgets/error_snack_bar.dart';
-import 'package:gym_tracker/states/messages/message_state.dart';
 import 'package:gym_tracker/states/states.dart';
 
 final messagingScreenController = Provider<MessagingScreenController>((ref) {
@@ -31,6 +30,15 @@ class MessagingScreenController {
               sentBy: userDetails.userName,
               profileImageURL: userDetails.profileImageURL,
               senderUID: userDetails.uid));
+
+      read(messageRoomStateProvider).setLatestMessage(
+          message: controller.text,
+          sentBy: userDetails.uid,
+          sentAt: DateTime.now());
+
+      final newRoomInfo = read(messageRoomStateProvider.state).data.value;
+      read(databaseProvider).updateChatRoomDoc(roomInfo: newRoomInfo);
+      controller.text = '';
     } on Failure catch (e) {
       ScaffoldMessenger.of(context)
           .showSnackBar(ErrorSnackBar(message: e.message).snackbar());

@@ -3,7 +3,6 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/foundation.dart';
 
 class MessageContact extends Equatable {
-  final String docID;
   final String clientID;
   final String client;
   final String latestMessage;
@@ -15,8 +14,7 @@ class MessageContact extends Equatable {
   final String chatRoomID;
 
   MessageContact(
-      {@required this.docID,
-      @required this.latestMessage,
+      {@required this.latestMessage,
       @required this.coach,
       @required this.coachID,
       @required this.sentAt,
@@ -32,15 +30,13 @@ class MessageContact extends Equatable {
         this.coach = '',
         this.coachID = '',
         this.coachImageURL = '',
-        this.docID = '',
         this.latestMessage = '',
         this.sentAt = null,
         this.chatRoomID = '',
         this.sentBy = '';
 
   MessageContact.fromDocumentSnapshot(Map<String, dynamic> snapshot)
-      : this.docID = snapshot['docID'],
-        this.latestMessage = snapshot['latestMessage'],
+      : this.latestMessage = snapshot['latestMessage'],
         this.coach = snapshot['coach'],
         this.coachID = snapshot['coachID'],
         this.sentAt = snapshot['sentAt'],
@@ -52,7 +48,6 @@ class MessageContact extends Equatable {
 
   Map<String, dynamic> toMap() {
     return {
-      'docID': this.docID,
       'latestMessage': this.latestMessage,
       'coach': this.coach,
       'coachID': this.coachID,
@@ -66,8 +61,7 @@ class MessageContact extends Equatable {
   }
 
   MessageContact copyWith(
-      {String docID,
-      String latestMessage,
+      {String latestMessage,
       String coach,
       String coachID,
       Timestamp sentAt,
@@ -77,7 +71,6 @@ class MessageContact extends Equatable {
       String chatRoomID,
       String sentBy}) {
     return MessageContact(
-        docID: docID ?? this.docID,
         latestMessage: latestMessage ?? this.latestMessage,
         coach: coach ?? this.coach,
         coachID: coachID ?? this.coachID,
@@ -91,7 +84,6 @@ class MessageContact extends Equatable {
 
   @override
   List<Object> get props => [
-        docID,
         latestMessage,
         coach,
         coachID,

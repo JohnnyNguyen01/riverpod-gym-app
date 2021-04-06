@@ -90,12 +90,10 @@ class FirestoreService {
       List<Message> messages = [];
       var allMessages = event.docs;
       for (var doc in allMessages) {
-        print(allMessages.length);
         messages.add(Message.fromDocSnapshot(doc.data()));
       }
       return messages;
     });
-
     return messageStream.asBroadcastStream();
   }
 
@@ -128,6 +126,20 @@ class FirestoreService {
       throw Failure(error: e.code, message: e.message);
     } catch (e) {
       throw Failure(error: "Error", message: e.toString());
+    }
+  }
+
+  ///update a specific chat room with the latest details;
+  ///`roomInfo` - must be the latest updated messageRoom state.
+  Future<void> updateChatRoomDoc({@required MessageContact roomInfo}) async {
+    try {
+      final roomCollection =
+          _firestore.collection(Paths.chatRooms).doc(roomInfo.chatRoomID);
+      roomCollection.update(roomInfo.toMap());
+    } on PlatformException catch (e) {
+      throw Failure(error: e.code, message: e.message);
+    } catch (e) {
+      throw Failure(error: 'Error', message: e.toString());
     }
   }
 

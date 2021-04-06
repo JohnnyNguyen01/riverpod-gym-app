@@ -28,6 +28,13 @@ class HomeScreen extends ConsumerWidget {
               _BuildTodaysWorkoutHeading(),
               const SizedBox(height: 10),
               _BuildWorkoutCard(scaffoldkey: _scaffoldKey),
+              ElevatedButton(
+                  onPressed: () {
+                    final messageRoomState =
+                        context.read(messageRoomStateProvider.state).data.value;
+                    print(messageRoomState);
+                  },
+                  child: Text('test'))
             ],
           ),
         ),

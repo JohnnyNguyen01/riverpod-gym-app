@@ -64,6 +64,7 @@ class _MessagingContactsScreenState extends State<MessagingContactsScreen> {
     @required MessageContact roominfo,
   }) {
     final sentAtDateTime = roominfo.sentAt.toDate();
+    final userState = context.read(userStateController.state).data.value;
     return ClipRRect(
       borderRadius: BorderRadius.circular(30),
       child: Card(
@@ -84,8 +85,12 @@ class _MessagingContactsScreenState extends State<MessagingContactsScreen> {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           subtitle: Text(
-            roominfo.latestMessage,
-            style: TextStyle(fontWeight: FontWeight.w600),
+            userState.uid == roominfo.sentBy
+                ? 'you: ${roominfo.latestMessage}'
+                : '${roominfo.latestMessage}',
+            style: userState.uid == roominfo.sentBy
+                ? TextStyle(fontWeight: FontWeight.w300)
+                : TextStyle(fontWeight: FontWeight.w600),
           ),
           trailing: Column(
             children: [
