@@ -1,23 +1,44 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:gym_tracker/domain/models/message_model.dart';
+import 'package:gym_tracker/states/messages/message_state.dart';
 
-class MessagingScreen extends StatelessWidget {
+class MessagingScreen extends ConsumerWidget {
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ScopedReader watch) {
+    final roomInfo = watch(messageRoomStateProvider.state).data.value;
+    final chatMessages = watch(chatMessagesProvider.stream);
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat',
-            style: textTheme.headline5.copyWith(color: Colors.black)),
+        title: Text(roomInfo.coach,
+            style: textTheme.headline6.copyWith(color: Colors.black)),
         backgroundColor: Colors.white,
       ),
-      body: _buildInputRow(),
+      body: Column(
+        children: [
+          Expanded(
+            child: StreamBuilder(
+                stream: chatMessages,
+                builder: (context, AsyncSnapshot<List<Message>> snapshot) {
+                  return ListView.builder(
+                      shrinkWrap: true,
+                      itemCount: snapshot.data.length,
+                      itemBuilder: (context, i) {
+                        return Text('${snapshot.data[i].message}');
+                      });
+                }),
+          ),
+          _buildInputRow(watch: watch),
+        ],
+      ),
     );
   }
 
-  Widget _buildInputRow() {
+  Widget _buildInputRow({@required ScopedReader watch}) {
     final _inputController = TextEditingController();
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0),
+      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: Row(
         children: [
           Expanded(
@@ -29,7 +50,9 @@ class MessagingScreen extends StatelessWidget {
           const SizedBox(width: 14),
           ElevatedButton(
             child: Text('Send'),
-            onPressed: () {},
+            onPressed: () async {
+              print('pressed');
+            },
           )
         ],
       ),

@@ -75,6 +75,48 @@ class FirestoreService {
     }
   }
 
+  // Returns a stream of a specific chat room between a coach and client.
+  Stream<List<Message>> getChatRoomStream(
+      {@required String coachUID, @required clientUID}) {
+    final streamSnapshot = _firestore
+        .collection(Paths.chatRooms)
+        .doc('$coachUID\_$clientUID')
+        .collection(Paths.messages)
+        .orderBy('sentAt', descending: true)
+        .snapshots();
+
+    // await for (var snapshot in streamSnapshot) {
+    //   var allChats = snapshot.docs;
+    //   for (var doc in allChats) {
+    //     print(doc.data());
+    //   }
+    // }
+
+    Stream<List<Message>> messageStream = streamSnapshot.map((event) {
+      List<Message> messages = [];
+      var allMessages = event.docs;
+      for (var doc in allMessages) {
+        print(allMessages.length);
+        messages.add(Message.fromDocSnapshot(doc.data()));
+      }
+      return messages;
+    });
+
+    return messageStream;
+  }
+
+  // Add messages to chat room between a specific coach and client
+  Future<void> addMessageToChatRoom(
+      {@required String coachUID,
+      @required clientUID,
+      @required Message message}) async {
+    final chatRoomDoc =
+        _firestore.collection(Paths.chatRooms).doc('$coachUID\_$clientUID');
+    // final docSnapshot = await coachClientChatDoc.get();
+    final messagesCollection = chatRoomDoc.collection(Paths.messages);
+    messagesCollection.add(message.toMap());
+  }
+
   ///Retrieves a list of all of this client's chatrooms as a `MessageConact` list
   ///via their uid.
   Future<List<MessageContact>> getChatRooms({String uid}) async {
@@ -85,7 +127,6 @@ class FirestoreService {
     try {
       List<MessageContact> chatList = [];
       final snapshotList = await chatRooms;
-      print(snapshotList.docs.first);
       for (var snapshot in snapshotList.docs) {
         chatList.add(MessageContact.fromDocumentSnapshot(snapshot.data()));
       }

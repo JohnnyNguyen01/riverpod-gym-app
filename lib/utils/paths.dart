@@ -10,4 +10,5 @@ class Paths {
   static final savedWorkoutTemplates = 'saved_workout_templates';
   static final userEntries = 'user_entries';
   static final chatRooms = 'chat_rooms';
+  static final messages = 'messages';
 }
