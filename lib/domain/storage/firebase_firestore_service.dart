@@ -102,11 +102,10 @@ class FirestoreService {
   // Add messages to chat room between a specific coach and client
   Future<void> addMessageToChatRoom(
       {@required String coachUID,
-      @required clientUID,
+      @required String clientUID,
       @required Message message}) async {
     final chatRoomDoc =
         _firestore.collection(Paths.chatRooms).doc('$coachUID\_$clientUID');
-    // final docSnapshot = await coachClientChatDoc.get();
     final messagesCollection = chatRoomDoc.collection(Paths.messages);
     messagesCollection.add(message.toMap());
   }

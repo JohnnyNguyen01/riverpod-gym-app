@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:gym_tracker/domain/models/message_model.dart';
+import 'package:gym_tracker/pages/messaging/messaging_screen_controller.dart';
 import 'package:gym_tracker/states/messages/message_state.dart';
 
 class MessagingScreen extends ConsumerWidget {
@@ -31,25 +31,22 @@ class MessagingScreen extends ConsumerWidget {
                 loading: () => const CircularProgressIndicator(),
                 error: (err, st) => Text(err)),
           ),
-          // Expanded(
-          //   child: StreamBuilder(
-          //       stream: chatMessages,
-          //       builder: (context, AsyncSnapshot<List<Message>> snapshot) {
-          //         return ListView.builder(
-          //             shrinkWrap: true,
-          //             itemCount: snapshot.data.length,
-          //             itemBuilder: (context, i) {
-          //               return Text('${snapshot.data[i].message}');
-          //             });
-          //       }),
-          // ),
-          _buildInputRow(watch: watch),
+          _BuildInputRow(watch: watch),
         ],
       ),
     );
   }
+}
 
-  Widget _buildInputRow({@required ScopedReader watch}) {
+class _BuildInputRow extends StatelessWidget {
+  const _BuildInputRow({
+    @required this.watch,
+  });
+
+  final ScopedReader watch;
+
+  @override
+  Widget build(BuildContext context) {
     final _inputController = TextEditingController();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
@@ -65,7 +62,8 @@ class MessagingScreen extends ConsumerWidget {
           ElevatedButton(
             child: Text('Send'),
             onPressed: () async {
-              print('pressed');
+              watch(messagingScreenController).handleSendButton(
+                  controller: _inputController, context: context);
             },
           )
         ],
