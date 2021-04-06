@@ -7,7 +7,7 @@ class MessagingScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final roomInfo = watch(messageRoomStateProvider.state).data.value;
-    final chatMessages = watch(chatMessagesProvider.stream);
+    final chatMessages = watch(chatMessagesProvider);
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
@@ -18,17 +18,31 @@ class MessagingScreen extends ConsumerWidget {
       body: Column(
         children: [
           Expanded(
-            child: StreamBuilder(
-                stream: chatMessages,
-                builder: (context, AsyncSnapshot<List<Message>> snapshot) {
+            child: chatMessages.when(
+                data: (messageList) {
                   return ListView.builder(
                       shrinkWrap: true,
-                      itemCount: snapshot.data.length,
+                      itemCount: messageList.length,
+                      physics: BouncingScrollPhysics(),
                       itemBuilder: (context, i) {
-                        return Text('${snapshot.data[i].message}');
+                        return Text(messageList[i].message);
                       });
-                }),
+                },
+                loading: () => const CircularProgressIndicator(),
+                error: (err, st) => Text(err)),
           ),
+          // Expanded(
+          //   child: StreamBuilder(
+          //       stream: chatMessages,
+          //       builder: (context, AsyncSnapshot<List<Message>> snapshot) {
+          //         return ListView.builder(
+          //             shrinkWrap: true,
+          //             itemCount: snapshot.data.length,
+          //             itemBuilder: (context, i) {
+          //               return Text('${snapshot.data[i].message}');
+          //             });
+          //       }),
+          // ),
           _buildInputRow(watch: watch),
         ],
       ),

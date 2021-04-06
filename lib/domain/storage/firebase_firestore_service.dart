@@ -83,14 +83,8 @@ class FirestoreService {
         .doc('$coachUID\_$clientUID')
         .collection(Paths.messages)
         .orderBy('sentAt', descending: true)
-        .snapshots();
-
-    // await for (var snapshot in streamSnapshot) {
-    //   var allChats = snapshot.docs;
-    //   for (var doc in allChats) {
-    //     print(doc.data());
-    //   }
-    // }
+        .snapshots()
+        .asBroadcastStream();
 
     Stream<List<Message>> messageStream = streamSnapshot.map((event) {
       List<Message> messages = [];
@@ -102,7 +96,7 @@ class FirestoreService {
       return messages;
     });
 
-    return messageStream;
+    return messageStream.asBroadcastStream();
   }
 
   // Add messages to chat room between a specific coach and client
