@@ -36,6 +36,9 @@ class FirestoreService {
     }
   }
 
+  ///Set the latest chatroom information for a particular chatroom.
+  Future<void> setLatestChatRoomInformation(MessageContact roomInfo) async {}
+
   ///Retrieves a `Coach` object from firestore via a specified `uid`
   Future<Coach> getCoach({@required String coachUid}) async {
     CollectionReference coachesCollection =
