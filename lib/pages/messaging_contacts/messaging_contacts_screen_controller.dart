@@ -24,7 +24,7 @@ class MessagingContactsScreenController {
   void handleOnChatRoomTap(
       {@required BuildContext context, @required MessageContact roomInfo}) {
     read(messageRoomStateProvider).setMessageRoomModel(roomInfo: roomInfo);
-    Navigator.of(context).pushReplacement(
-        MaterialPageRoute(builder: (context) => MessagingScreen()));
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => MessagingScreen()));
   }
 }
