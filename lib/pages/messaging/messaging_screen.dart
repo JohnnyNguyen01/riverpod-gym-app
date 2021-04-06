@@ -9,12 +9,18 @@ class MessagingScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final roomInfo = watch(messageRoomStateProvider.state).data.value;
-    final roomInfoController = watch(messageRoomStateProvider);
     final chatMessages = watch(chatMessagesProvider);
-    // final textTheme = Theme.of(context).textTheme;
+    final messagingScreenController = watch(messagingScreenControllerProvider);
     return Scaffold(
       appBar: AppBar(
-        leadingWidth: 0,
+        leadingWidth: 25,
+        leading: IconButton(
+            onPressed: () => messagingScreenController.handleLeadingBackButton(
+                context: context),
+            icon: Icon(
+              Icons.arrow_back_ios,
+              color: Colors.black,
+            )),
         title: Row(
           children: [
             CircleAvatar(
@@ -116,7 +122,7 @@ class __BuildInputRowState extends State<_BuildInputRow> {
                 onPressed: _buttonIsEnabled
                     ? () async {
                         widget
-                            .watch(messagingScreenController)
+                            .watch(messagingScreenControllerProvider)
                             .handleSendButton(
                                 controller: _inputController, context: context);
                       }

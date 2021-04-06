@@ -6,7 +6,8 @@ import 'package:gym_tracker/domain/storage/firebase_firestore_service.dart';
 import 'package:gym_tracker/pages/widgets/error_snack_bar.dart';
 import 'package:gym_tracker/states/states.dart';
 
-final messagingScreenController = Provider<MessagingScreenController>((ref) {
+final messagingScreenControllerProvider =
+    Provider<MessagingScreenController>((ref) {
   return MessagingScreenController(read: ref.read);
 });
 
@@ -14,6 +15,9 @@ class MessagingScreenController {
   final Reader read;
 
   MessagingScreenController({@required this.read});
+
+  void handleLeadingBackButton({@required BuildContext context}) =>
+      Navigator.of(context).pop();
 
   void handleSendButton(
       {@required TextEditingController controller,
