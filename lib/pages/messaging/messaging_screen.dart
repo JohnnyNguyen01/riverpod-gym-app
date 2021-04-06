@@ -29,27 +29,30 @@ class MessagingScreen extends ConsumerWidget {
         ),
         backgroundColor: Colors.white,
       ),
-      body: Column(
-        children: [
-          Expanded(
-            child: chatMessages.when(
-                data: (messageList) {
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 5.0),
-                    child: ListView.builder(
-                        shrinkWrap: true,
-                        itemCount: messageList.length,
-                        physics: BouncingScrollPhysics(),
-                        itemBuilder: (context, i) {
-                          return MessageBubble(message: messageList[i]);
-                        }),
-                  );
-                },
-                loading: () => const CircularProgressIndicator(),
-                error: (err, st) => Text(err)),
-          ),
-          _BuildInputRow(watch: watch),
-        ],
+      body: GestureDetector(
+        onTap: () => FocusScope.of(context).requestFocus(FocusNode()),
+        child: Column(
+          children: [
+            Expanded(
+              child: chatMessages.when(
+                  data: (messageList) {
+                    return Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5.0),
+                      child: ListView.builder(
+                          shrinkWrap: true,
+                          itemCount: messageList.length,
+                          physics: BouncingScrollPhysics(),
+                          itemBuilder: (context, i) {
+                            return MessageBubble(message: messageList[i]);
+                          }),
+                    );
+                  },
+                  loading: () => const CircularProgressIndicator(),
+                  error: (err, st) => Text(err)),
+            ),
+            _BuildInputRow(watch: watch),
+          ],
+        ),
       ),
     );
   }
@@ -78,35 +81,52 @@ class __BuildInputRowState extends State<_BuildInputRow> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
-      child: Row(
-        children: [
-          Expanded(
-            child: TextField(
-              controller: _inputController,
-              onChanged: (_) {
-                setState(() {
-                  setButtonIsEnabled();
-                });
-              },
-            ),
+    return Column(
+      children: [
+        Container(
+          height: 1,
+          width: double.infinity,
+          color: Colors.white,
+          child: Material(
+            elevation: 1,
           ),
-          const SizedBox(width: 14),
-          IconButton(
-            onPressed: _buttonIsEnabled
-                ? () async {
-                    widget.watch(messagingScreenController).handleSendButton(
-                        controller: _inputController, context: context);
-                  }
-                : () {},
-            icon: Icon(
-              Icons.send,
-              color: _buttonIsEnabled ? Colors.red : Colors.grey,
-            ),
+        ),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: _inputController,
+                  decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Enter your message here"),
+                  onChanged: (_) {
+                    setState(() {
+                      setButtonIsEnabled();
+                    });
+                  },
+                ),
+              ),
+              const SizedBox(width: 8),
+              IconButton(
+                onPressed: _buttonIsEnabled
+                    ? () async {
+                        widget
+                            .watch(messagingScreenController)
+                            .handleSendButton(
+                                controller: _inputController, context: context);
+                      }
+                    : () {},
+                icon: Icon(
+                  Icons.send,
+                  color: _buttonIsEnabled ? Colors.red : Colors.grey,
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 
