@@ -26,6 +26,8 @@ class LoginScreenController {
       String password = passwordController.value.text;
       //set isLoadingState to true
       read(loginStateProvider).changeLoginState(true);
+      //Dismiss keyboard
+      FocusScope.of(context).requestFocus(FocusNode());
       //Auth Repository Login method
       await read(firebaseAuthRepoProvider)
           .loginWithEmailAndPassword(email: email, password: password)
@@ -53,8 +55,7 @@ class LoginScreenController {
       read(loginStateProvider).changeLoginState(false);
       //Set coach object
       read(coachStateProvider).setCoachFromDatabase(coachUID: user.coachUID);
-      //Dismiss keyboard
-      FocusScope.of(context).unfocus();
+
       // navigate to the homeScreen
       Navigator.pushReplacementNamed(context, AppRoutes.homeScreen);
     } else {

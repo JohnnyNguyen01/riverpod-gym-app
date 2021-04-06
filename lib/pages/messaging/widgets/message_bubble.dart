@@ -26,7 +26,7 @@ class MessageBubble extends ConsumerWidget {
                 _fromUser ? MainAxisAlignment.end : MainAxisAlignment.start,
             children: [
               CircleAvatar(
-                radius: 10,
+                radius: 15,
                 backgroundImage:
                     CachedNetworkImageProvider(message.profileImageURL),
               ),
@@ -43,7 +43,7 @@ class MessageBubble extends ConsumerWidget {
                     message.message,
                     style: textTheme.bodyText2.copyWith(
                         color: _fromUser ? Colors.white : Colors.black,
-                        fontSize: 12),
+                        fontSize: 14),
                   ),
                 ),
                 color: _fromUser ? Color(0xFF1A233B) : Colors.white,
