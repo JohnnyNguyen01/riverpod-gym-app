@@ -55,7 +55,7 @@ class MessagingScreen extends ConsumerWidget {
   }
 }
 
-class _BuildInputRow extends StatelessWidget {
+class _BuildInputRow extends StatefulWidget {
   const _BuildInputRow({
     @required this.watch,
   });
@@ -63,8 +63,21 @@ class _BuildInputRow extends StatelessWidget {
   final ScopedReader watch;
 
   @override
+  __BuildInputRowState createState() => __BuildInputRowState();
+}
+
+class __BuildInputRowState extends State<_BuildInputRow> {
+  bool _buttonIsEnabled = false;
+  final _inputController = TextEditingController();
+
+  void setButtonIsEnabled() {
+    _inputController.text.isNotEmpty
+        ? _buttonIsEnabled = true
+        : _buttonIsEnabled = false;
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final _inputController = TextEditingController();
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0),
       child: Row(
@@ -72,19 +85,34 @@ class _BuildInputRow extends StatelessWidget {
           Expanded(
             child: TextField(
               controller: _inputController,
-              onChanged: (_) => print(_inputController.text),
+              onChanged: (_) {
+                setState(() {
+                  setButtonIsEnabled();
+                });
+              },
             ),
           ),
           const SizedBox(width: 14),
-          ElevatedButton(
-            child: Text('Send'),
-            onPressed: () async {
-              watch(messagingScreenController).handleSendButton(
-                  controller: _inputController, context: context);
-            },
-          )
+          IconButton(
+            onPressed: _buttonIsEnabled
+                ? () async {
+                    widget.watch(messagingScreenController).handleSendButton(
+                        controller: _inputController, context: context);
+                  }
+                : () {},
+            icon: Icon(
+              Icons.send,
+              color: _buttonIsEnabled ? Colors.red : Colors.grey,
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _inputController.dispose();
   }
 }
