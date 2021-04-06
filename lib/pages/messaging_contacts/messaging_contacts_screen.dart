@@ -73,7 +73,7 @@ class _MessagingContactsScreenState extends State<MessagingContactsScreen> {
           minVerticalPadding: 10,
           leading: CircleAvatar(
             backgroundImage:
-                CachedNetworkImageProvider(roominfo.coachImagURL, scale: 1),
+                CachedNetworkImageProvider(roominfo.coachImageURL, scale: 1),
             radius: 25,
           ),
           onTap: () => context

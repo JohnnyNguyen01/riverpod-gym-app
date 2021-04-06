@@ -9,6 +9,7 @@ class MessagingScreen extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ScopedReader watch) {
     final roomInfo = watch(messageRoomStateProvider.state).data.value;
+    final roomInfoController = watch(messageRoomStateProvider);
     final chatMessages = watch(chatMessagesProvider);
     // final textTheme = Theme.of(context).textTheme;
     return Scaffold(
@@ -18,7 +19,7 @@ class MessagingScreen extends ConsumerWidget {
           children: [
             CircleAvatar(
               backgroundImage:
-                  CachedNetworkImageProvider(roomInfo.coachImagURL, scale: 1),
+                  CachedNetworkImageProvider(roomInfo.coachImageURL, scale: 1),
             ),
             const SizedBox(width: 5),
             Text(
@@ -39,6 +40,7 @@ class MessagingScreen extends ConsumerWidget {
                     return Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 5.0),
                       child: ListView.builder(
+                          reverse: true,
                           shrinkWrap: true,
                           itemCount: messageList.length,
                           physics: BouncingScrollPhysics(),

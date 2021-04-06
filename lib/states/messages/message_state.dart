@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/models/models.dart';
@@ -25,6 +26,18 @@ class MessageRoomState extends StateNotifier<AsyncValue<MessageContact>> {
 
   void setMessageRoomModel({@required MessageContact roomInfo}) {
     state = AsyncData(roomInfo);
+  }
+
+  void setLatestMessage(
+      {@required String message,
+      @required String sentBy,
+      @required DateTime sentAt}) {
+    final currentState = state.data.value;
+    final newState = currentState.copyWith(
+        latestMessage: message,
+        sentAt: Timestamp.fromDate(sentAt),
+        sentBy: sentBy);
+    state = AsyncData(newState);
   }
 
   void setCoach({@required String coachID}) {
