@@ -12,6 +12,8 @@ class MessageBubble extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ScopedReader watch) {
+    final formattedDateString = DateFormat('hh:mm a').format(message.sentAt);
+
     final user = watch(userStateController.state).data.value;
     final textTheme = Theme.of(context).textTheme;
     final bool _fromUser = message.senderUID == user.uid;
@@ -51,7 +53,7 @@ class MessageBubble extends ConsumerWidget {
             ],
           ),
           Text(
-            'Sent At: ${DateFormat('hh:mm').format(message.sentAt)}',
+            'Sent At: $formattedDateString',
             style: const TextStyle(fontSize: 10, color: Colors.grey),
           )
         ],

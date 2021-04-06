@@ -4,6 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:gym_tracker/domain/models/models.dart';
 import 'package:gym_tracker/pages/messaging_contacts/messaging_contacts_screen_controller.dart';
 import 'package:gym_tracker/states/states.dart';
+import 'package:intl/intl.dart';
 
 class MessagingContactsScreen extends StatefulWidget {
   @override
@@ -64,6 +65,7 @@ class _MessagingContactsScreenState extends State<MessagingContactsScreen> {
     @required MessageContact roominfo,
   }) {
     final sentAtDateTime = roominfo.sentAt.toDate();
+    final formattedDateTime = DateFormat('hh:mm a').format(sentAtDateTime);
     final userState = context.read(userStateController.state).data.value;
     return ClipRRect(
       borderRadius: BorderRadius.circular(30),
@@ -96,7 +98,7 @@ class _MessagingContactsScreenState extends State<MessagingContactsScreen> {
             children: [
               //time of message received
               Text(
-                '${sentAtDateTime.hour} : ${sentAtDateTime.second}',
+                '$formattedDateTime',
                 style: TextStyle(color: Colors.grey.shade900),
               ),
               const SizedBox(height: 5),

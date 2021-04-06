@@ -49,7 +49,8 @@ class MessagingScreen extends ConsumerWidget {
                           }),
                     );
                   },
-                  loading: () => const CircularProgressIndicator(),
+                  loading: () =>
+                      Center(child: const CircularProgressIndicator()),
                   error: (err, st) => Text(err)),
             ),
             _BuildInputRow(watch: watch),
