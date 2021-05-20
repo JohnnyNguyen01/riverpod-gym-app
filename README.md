@@ -1,17 +1,83 @@
-# gym_tracker
 
-A new Flutter project.
+<p align="center">
+  <a href="https://example.com/">
+    <img src="https://www.adonisathletics.com.au/wp-content/uploads/2020/10/logo.png" alt="Logo" width=119 height=72>
+  </a>
 
-## Getting Started
+  <h3 align="center">Logo</h3>
 
-This project is a starting point for a Flutter application.
+  <p align="center">
+    The mobile application for Adonis Athletics. This is the client side application that enables clients to receive, log and update their coach assigned workouts in real-time. It also allows them to edit their user information, instantly message their assigned coach, and view video tutorials for each of their assigned exercises.
+    <br>
+  </p>
+</p>
 
-A few resources to get you started if this is your first Flutter project:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+## Table of contents
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# riverpod-gym-app
+- [Quickstart](#quick-start)
+- [Status](#status)
+-  [Demo](#Demo)
+- [To Do](#To-Do)
+- [Creators](#creators)
+- [Thanks](#thanks)
+- [Copyright and license](#copyright-and-license)
+
+
+## Quick start
+
+For testing purposes, fork/clone the repo and run via an Android or iOS emulator using Flutter. For more info, please 
+<a href="https://flutter.dev/docs/get-started/codelab"> Click here </a>
+
+## Status
+
+Currently builds. Not all features are created.
+
+## What's included
+
+
+
+| Features| Ready |
+| ------------- | ------------- |
+| User Account Creation (Create, Read, Update, Delete) | ✔️  |
+| Real time workout tracking and logging  | ✔️ |
+| Instant Messaging with Coaches  | ✔️ |
+| Access to Video Tutorials for each exercise | ✔️ |
+| Ability to upload lifts and exercises in logs | ❌|
+| View historical workouts and progression | ❌|
+
+## Demo
+
+<figure class="video_container">
+  <iframe 
+	  src="https://www.youtube.com/embed/gh2JA40HE8Y" 
+	  frameborder="0" 
+	  allowfullscreen="true"
+	  width="420"
+	  height="315">
+	  </iframe>
+<p>Demo 1</p>
+</figure>
+
+## To Do
+- Add ability to upload workout recordings in a log.
+- Create a dashboard that contains all of ther user's previous workout hirstory.
+- Gamification of certain aspects.
+- Remodel a few of the Firebase model classes.
+- Update this app's Riverpod to the latest deployment.
+
+## Creators
+
+**Creator**
+
+- <https://github.com/Johnnythenewbie>
+
+## Thanks
+
+Amir Fazeli and the Adonis Athletic Company for letting me build this.
+
+## Copyright and license
+
+Code and documentation copyright 2011-2018 the authors. Code released under the [MIT License]
+
+Enjoy :metal:
