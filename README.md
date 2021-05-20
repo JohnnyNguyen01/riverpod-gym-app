@@ -48,16 +48,7 @@ Currently builds. Not all features are created.
 
 ## Demo
 
-<figure class="video_container">
-  <iframe 
-	  src="https://www.youtube.com/embed/gh2JA40HE8Y" 
-	  frameborder="0" 
-	  allowfullscreen="true"
-	  width="420"
-	  height="315">
-	  </iframe>
-<p>Demo 1</p>
-</figure>
+[![Alternate Text]({http://img.youtube.com/vi/gh2JA40HE8Y/0.jpg})]({https://www.youtube.com/watch?v=gh2JA40HE8Y} "Demo 1")
 
 ## To Do
 - Add ability to upload workout recordings in a log.
