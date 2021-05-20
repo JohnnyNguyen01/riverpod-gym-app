@@ -48,7 +48,9 @@ Currently builds. Not all features are created.
 
 ## Demo
 
-[![Alternate Text]({http://img.youtube.com/vi/gh2JA40HE8Y/0.jpg})]({https://www.youtube.com/watch?v=gh2JA40HE8Y} "Demo 1")
+<p>Demo 1</p>
+
+[![Demo 1](http://img.youtube.com/vi/gh2JA40HE8Y/0.jpg)](https://www.youtube.com/watch?v=gh2JA40HE8Y "Demo 1")
 
 ## To Do
 - Add ability to upload workout recordings in a log.
