@@ -35,8 +35,6 @@ Currently builds. Not all features are created.
 
 ## What's included
 
-
-
 | Features| Ready |
 | ------------- | ------------- |
 | User Account Creation (Create, Read, Update, Delete) | ✔️  |
@@ -45,6 +43,28 @@ Currently builds. Not all features are created.
 | Access to Video Tutorials for each exercise | ✔️ |
 | Ability to upload lifts and exercises in logs | ❌|
 | View historical workouts and progression | ❌|
+
+<table>
+<tr>
+  <th>Packages Used</th>
+<tr> 
+<tr> 
+  <td>Firebase Authentication ✔️</td>
+  <td>Firebase Storage ✔️</td>
+</tr>
+<tr> 
+  <td>Firebase Firestore ✔️</td>
+  <td>Firebase Core ✔️</td>
+</tr>
+<tr> 
+  <td>Riverpod ✔️</td>
+  <td>Youtube Player ✔️</td>
+</tr>
+<tr> 
+  <td>Equatable ✔️</td>
+  <td> And much much more! Check out the pubspec.yaml file</td>
+</tr>
+<table>
 
 ## Demo
 
