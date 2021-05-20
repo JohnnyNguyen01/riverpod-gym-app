@@ -48,9 +48,11 @@ Currently builds. Not all features are created.
 
 ## Demo
 
-<p>Demo 1</p>
+| <p>Demo 1</p> | <p>Demo 2 - Better showcase of instant messaging with web-app</p> |
+| ------------- | ------------- |
+| [![Demo 1](http://img.youtube.com/vi/gh2JA40HE8Y/0.jpg)](https://www.youtube.com/watch?v=gh2JA40HE8Y "Demo 1") | [![Demo 2](http://img.youtube.com/vi/XPVG-HBeDXU/0.jpg)](https://www.youtube.com/watch?v=XPVG-HBeDXU "Demo 2")| 
 
-[![Demo 1](http://img.youtube.com/vi/gh2JA40HE8Y/0.jpg)](https://www.youtube.com/watch?v=gh2JA40HE8Y "Demo 1")
+
 
 ## To Do
 - Add ability to upload workout recordings in a log.
